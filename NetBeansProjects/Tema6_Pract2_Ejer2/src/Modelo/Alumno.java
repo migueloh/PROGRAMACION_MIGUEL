@@ -6,7 +6,6 @@ que corresponda con un codigo tecleado.
  */
 package Modelo;
 
-
 /**
  *
  * @author 1gdaw09
@@ -18,6 +17,8 @@ public class Alumno {
     private String domicilioA;
     private String telefonoA;
 
+    public String informacionAlumnoRetornar;
+
     public Alumno() {
     }
 
@@ -26,6 +27,10 @@ public class Alumno {
         this.nombreA = nombreA;
         this.domicilioA = domicilioA;
         this.telefonoA = telefonoA;
+    }
+
+    public Alumno(String informacionAlumnoRetornar) {
+        this.informacionAlumnoRetornar = informacionAlumnoRetornar;
     }
 
     public String getCodA() {
@@ -60,9 +65,13 @@ public class Alumno {
         this.telefonoA = telefonoA;
     }
 
-    public String datosAlumnoRetorno() {
-        
-        return codigo + " " + codA + " " +  nombreA + " " +  domicilioA + " " +  telefonoA;
+    public String getInformacionAlumnoRetornar() {
+        informacionAlumnoRetornar = "\n" + codA + " - " + nombreA + " - " + domicilioA + " - " + telefonoA;
+        return informacionAlumnoRetornar;
+    }
+
+    public void setInformacionAlumnoRetornar(String informacionAlumnoRetornar) {
+        this.informacionAlumnoRetornar = informacionAlumnoRetornar;
     }
 
 }

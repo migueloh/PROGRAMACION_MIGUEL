@@ -9,6 +9,7 @@ package tema6_pract2_ejer2;
 import Modelo.Alumno;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import Excepciones.*;
 
 /**
  *
@@ -16,11 +17,11 @@ import javax.swing.JOptionPane;
  */
 public class Controladora {
 
-
     public static void main(String[] args) {
 
         // INICIO MAIN
-        ArrayList<Alumno> listaAlumnos = null;
+        ArrayList<Alumno> listaAlumnos;
+        String buscarCodAlumno;
 
         try {
 
@@ -28,20 +29,22 @@ public class Controladora {
 
             listaAlumnos = new ArrayList();
 
+            buscarCodAlumno = null;
+
             introducirAlumnos(a, listaAlumnos);
 
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error Desconocido");
-        }
+            buscarAlumnoPorCodigo(listaAlumnos, buscarCodAlumno);
 
-        mostrarLosAlumnos(listaAlumnos);
+        } catch (Exception E) {
+            JOptionPane.showMessageDialog(null, "Error " + E.getMessage());
+        }
 
     }
 
     public static ArrayList<Alumno> introducirAlumnos(Alumno a, ArrayList<Alumno> listaAlumnos) {
 
         do {
-            
+
             a = new Alumno();
 
             a.setCodA(JOptionPane.showInputDialog("Introduce el Codigo del Alumno"));
@@ -50,20 +53,73 @@ public class Controladora {
             a.setTelefonoA(JOptionPane.showInputDialog("Introduce el Telefono del Alumno"));
 
             listaAlumnos.add(a);
-            
-        } while (JOptionPane.showConfirmDialog(null, "¿Deseas intorducir mas alumnos?") == 0);
+
+        } while (JOptionPane.showConfirmDialog(null, "¿Deseas introducir mas alumnos?") == 0);
 
         return listaAlumnos;
     }
 
-    public static void mostrarLosAlumnos(ArrayList<Alumno> listaAlumnos) {
-        
-        for (Alumno listaAlumno : listaAlumnos) {
-            
+    public static void buscarAlumnoPorCodigo(ArrayList<Alumno> listaAlumnos, String buscarCodAlumno) {
+        try {
 
-            JOptionPane.showMessageDialog(null, listaAlumno.datosAlumnoRetorno(codigo));
+            buscarCodAlumno = JOptionPane.showInputDialog("Introduce el Codigo del Alumno que deseas buscar");
+
+            if (buscarCodAlumno.isEmpty()) {
+
+                throw new DatoNoValido();
+
+            } else {
+
+                for (Alumno listaAlumno : listaAlumnos) {
+
+                    
+
+                        if (buscarCodAlumno.equalsIgnoreCase(listaAlumno.getCodA())) {
+
+                            JOptionPane.showMessageDialog(null, "El alumno SI existe y sus datos son los siguientes:");
+
+                            mostrarInfoDelAlumno(listaAlumnos, buscarCodAlumno);
+
+                        } else {
+
+                            JOptionPane.showMessageDialog(null, "El alumno NO existe.");
+
+                        } 
+                }
+
+            }
+
+        } catch (DatoNoValido DNV) {
+            JOptionPane.showMessageDialog(null, "No puedes buscar un Alumno si no introduces su Codigo.");
+        } catch (Exception E) {
+            JOptionPane.showMessageDialog(null, "Error " + E.getMessage());
         }
 
+    }
+
+    /*
+    public static void mostrarElAlumno(ArrayList<Alumno> listaAlumnos, String buscarCodAlumno) {
+
+        for (Alumno listaAlumno : listaAlumnos) {
+            
+            if (buscarCodAlumno.equals(listaAlumno.getCodA()))
+            
+                JOptionPane.showMessageDialog(null, listaAlumno.getInformacionAlumnoRetornar());
+        }
+
+    }
+     */
+
+    public static void mostrarInfoDelAlumno(ArrayList<Alumno> listaAlumnos, String buscarCodAlumno) {
+
+        for (int x = 0; x < listaAlumnos.size(); x++) {
+            
+            buscarCodAlumno = "Codigo Alumno: " + listaAlumnos.get(x).getCodA() + "\n"
+                    + "\nNombre: " + listaAlumnos.get(x).getNombreA()
+                    + "\nDomicilio: " + listaAlumnos.get(x).getDomicilioA()
+                    + "\nTeléfono: " + listaAlumnos.get(x).getTelefonoA();
+        }
+        JOptionPane.showMessageDialog(null, buscarCodAlumno);
     }
 
 }
