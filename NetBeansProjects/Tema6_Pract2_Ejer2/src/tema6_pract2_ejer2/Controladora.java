@@ -115,7 +115,7 @@ public class Controladora {
         for (int x = 0; x < listaAlumnos.size(); x++) {
             
             buscarCodAlumno = "Codigo Alumno: " + listaAlumnos.get(x).getCodA() + "\n"
-                    + "\nNombre: " + listaAlumnos.get(x).getNombreA()
+                    + "\nNombre: " + listaAlumnos.get(x).getNombreA(b)
                     + "\nDomicilio: " + listaAlumnos.get(x).getDomicilioA()
                     + "\nTeléfono: " + listaAlumnos.get(x).getTelefonoA();
         }
