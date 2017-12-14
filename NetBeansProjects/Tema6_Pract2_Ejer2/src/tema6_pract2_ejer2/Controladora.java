@@ -78,7 +78,7 @@ public class Controladora {
 
                             JOptionPane.showMessageDialog(null, "El alumno SI existe y sus datos son los siguientes:");
 
-                            mostrarInfoDelAlumno(listaAlumnos, buscarCodAlumno);
+                            
 
                         } else {
 
@@ -115,7 +115,7 @@ public class Controladora {
         for (int x = 0; x < listaAlumnos.size(); x++) {
             
             buscarCodAlumno = "Codigo Alumno: " + listaAlumnos.get(x).getCodA() + "\n"
-                    + "\nNombre: " + listaAlumnos.get(x).getNombreA(b)
+                    + "\nNombre: " + listaAlumnos.get(x).getNombreA()
                     + "\nDomicilio: " + listaAlumnos.get(x).getDomicilioA()
                     + "\nTeléfono: " + listaAlumnos.get(x).getTelefonoA();
         }

@@ -16,8 +16,8 @@ public class Alumno {
     private String nombreA;
     private String domicilioA;
     private String telefonoA;
-
-    public String informacionAlumnoRetornar;
+    
+    private String informacionAlumnoRetornar;
 
     public Alumno() {
     }
@@ -27,10 +27,6 @@ public class Alumno {
         this.nombreA = nombreA;
         this.domicilioA = domicilioA;
         this.telefonoA = telefonoA;
-    }
-
-    public Alumno(String informacionAlumnoRetornar) {
-        this.informacionAlumnoRetornar = informacionAlumnoRetornar;
     }
 
     public String getCodA() {
@@ -70,8 +66,5 @@ public class Alumno {
         return informacionAlumnoRetornar;
     }
 
-    public void setInformacionAlumnoRetornar(String informacionAlumnoRetornar) {
-        this.informacionAlumnoRetornar = informacionAlumnoRetornar;
-    }
-
+ 
 }
