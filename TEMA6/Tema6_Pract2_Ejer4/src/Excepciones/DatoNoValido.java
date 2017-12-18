@@ -32,11 +32,12 @@ public class DatoNoValido extends Exception {
 
         switch (numeroExcepcion) {
             case 1:
-                mensajeConLaExcepcion = "Todos los campos son Obglque se requieren son obligatorios."
-                                        + "\n.";
+                mensajeConLaExcepcion = "Los campos son Obligatorios."
+                                        + "\nNo puedes dejarlos en blanco.";
                 break;
             case 2:
-                mensajeConLaExcepcion = "";
+                mensajeConLaExcepcion = "La fecha generada a partir de los "
+                                      + "datos introducidos no es valida.";
                 break;
             case 3:
                 mensajeConLaExcepcion = "";

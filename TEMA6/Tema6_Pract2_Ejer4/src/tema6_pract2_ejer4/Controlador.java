@@ -25,6 +25,10 @@ import Modelo.*;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import Excepciones.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Optional;
 
 /**
  *
@@ -42,7 +46,8 @@ public class Controlador {
             listaDePersonas = insertarPersonas();
 
         } catch (Exception e) {
-
+            
+            JOptionPane.showMessageDialog(null, "Error Inexperado" + e.getMessage());
         }
 
     }
@@ -55,39 +60,85 @@ public class Controlador {
 
             try {
 
-                String nombre = JOptionPane.showInputDialog("Introduce el nombre de la Persona");
-                String diaNacimiento = JOptionPane.showInputDialog("Introduce el Dia de Nacimiento de la Persona");
-                String mesNacimiento = JOptionPane.showInputDialog("Introduce el Mes de Nacimiento de la Persona");
-                String anoNacimiento = JOptionPane.showInputDialog("Introduce el Año de Nacimiento de la Persona");
-                String direccion = JOptionPane.showInputDialog("Introduce la Direccion donde reside la Persona");
-                String ciudad = JOptionPane.showInputDialog("Introduce la Ciudad donde vive la Persona");
-                String codigoPostal = JOptionPane.showInputDialog("Introduce el Codigo Postal de la Ciudad");
+                String nombre = JOptionPane.showInputDialog("Introduce el nombre de la Persona").toUpperCase();
+                preValidarMedianteExpresionRegular(1, nombre, "^[A-Z]{2,}([ ][A-Z]{2,})([ ][A-Z]{2,})*$");
 
-                if (nombre.isEmpty() || diaNacimiento.isEmpty() || mesNacimiento.isEmpty() || anoNacimiento.isEmpty() || direccion.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty()) {
+                String anio = JOptionPane.showInputDialog("Introduce el año en el que nacio");
+                preValidarMedianteExpresionRegular(2, anio, "^[1-9]{4}*$");
+                //CONVERSION DE STRING A INT CON EL AÑO
+                int anoCumpleComoInt = Integer.parseInt(anio);
+                
+                String mes = JOptionPane.showInputDialog("Introduce el mes en el que nacio");
+                preValidarMedianteExpresionRegular(3, mes, "^[09]{2}*$");
+                //CONVERSION DE STRING A INT CON EL MES
+                int mesCumpleComoInt = Integer.parseInt(mes);
 
+                String dia = JOptionPane.showInputDialog("Introduce el dia en el que nacio");
+                preValidarMedianteExpresionRegular(4, dia, "^[0-9]{1*$");
+                //CONVERSION DE STRING A INT CON EL MES
+                int diaCumpleComoInt = Integer.parseInt(dia);
+
+                String direccion = JOptionPane.showInputDialog("Introduce la Direccion donde reside");
+                preValidarMedianteExpresionRegular(5, direccion, "^*$");
+
+                String ciudad = JOptionPane.showInputDialog("Introduce la Ciudad donde vive");
+                preValidarMedianteExpresionRegular(6, ciudad, "^*$");
+
+                String codigoPostal = JOptionPane.showInputDialog("Introduce el Codigo Postal");
+                preValidarMedianteExpresionRegular(7, codigoPostal, "^[0-9]{4}*$");
+
+                //SIMPLEMENTE QUIERO VALIDAR QUE NINGUNO DE LOS DATOS QUE SE PIDEN SE QUEDAN EN BLANCO 
+                if (nombre.isEmpty() || anio.isEmpty() || mes.isEmpty() || dia.isEmpty() || direccion.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty()) {
+
+                    // PARA SABER SI UN DATO PASADO COMO INT ESTA VACIO O NULO Optional.ofNullable(anio).orElse(0) != 0
+                    
                     throw new DatoNoValido();
-                    
+
                 } else {
-                    
-                    validarDatosPersonales(nombre, diaNacimiento, mesNacimiento, anoNacimiento, direccion, ciudad, codigoPostal);
+
+                    validarFecha(anoCumpleComoInt, mesCumpleComoInt, diaCumpleComoInt);
                 }
 
-            } 
-            catch (DatoNoValido DNV) {
-                
+            } catch (DatoNoValido DNV) {
+
                 JOptionPane.showMessageDialog(null, DNV.getMensajeConLaExcepcion());
-                
+
+            } catch (Exception e) {
             }
-            catch (Exception e) {
-            } 
 
         } while (JOptionPane.showConfirmDialog(null, "¿Deseas introducir mas personas?") == 0);
 
         return listaDatosPersonales;
     }
 
-    public static void validarDatosPersonales(String nombre, String diaNacimiento, String mesNacimiento, String anoNacimiento, String direccion, String ciudad, String codigoPostal) {
+    public static void preValidarMedianteExpresionRegular(int i, String nombre, String aZ2_AZ2_AZ2$) {
 
+    }
+
+    public static void validarFecha(int anoCumpleComoInt, int mesCumpleComoInt, int diaCumpleComoInt) {
+
+        try {
+
+            if (anoCumpleComoInt < 1900) {
+                throw new IllegalArgumentException();
+            } else {
+
+                Calendar calendar = Calendar.getInstance();
+                calendar.setLenient(false);
+                calendar.set(Calendar.YEAR, anoCumpleComoInt); // Comprueba el aÃ±o
+                calendar.set(Calendar.MONTH, mesCumpleComoInt - 1); // del 0 al 11 por eso al mes introducido el resto 1
+                calendar.set(Calendar.DAY_OF_MONTH, diaCumpleComoInt); // no tengo problemas a la hora de saber si tiene que ser un mes con 28, 29, 30 o 31 dias porque compruebo primero el aÃ±o.
+
+                Date date = calendar.getTime(); // cojo la fecha actual del equipo para compararla
+
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Aplico el patron de la fecha o establezco una mascara DIA/MES/AÃ‘O - Pattern("dd/MM/yyyy")
+                sdf.format(date);
+                
+                throw new DatoNoValido();
+
+            }
+        } catch (Exception e) {
+        }
     }
 
 }

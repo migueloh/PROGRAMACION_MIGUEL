@@ -22,93 +22,83 @@ package Modelo;
  */
 public class Persona {
 
-    private String nombre;
-    private String diaNacimiento;
-    private String mesNacimiento;
-    private String anoNacimiento;
-    private String direccion;
-    private String codigoPostal;
-    private String ciudad;
+    private String nombrePersona;
+    private Integer diaNacimientoPersona;
+    private Integer mesNacimientoPersona;
+    private Integer anoNacimientoPersona;
+    private String direccionPersona;
+    private String codigoPostalPersona;
+    private String ciudadPersona;
 
     public Persona() {
     }
 
-    public Persona(String nombre, String diaNacimiento, String mesNacimiento, String anoNacimiento, String direccion, String codigoPostal, String ciudad) {
-        this.nombre = nombre;
-        this.diaNacimiento = diaNacimiento;
-        this.mesNacimiento = mesNacimiento;
-        this.anoNacimiento = anoNacimiento;
-        this.direccion = direccion;
-        this.codigoPostal = codigoPostal;
-        this.ciudad = ciudad;
+    public String getNombrePersona() {
+        return nombrePersona;
     }
 
-    public String getNombre() {
-        return nombre;
+    public void setNombrePersona(String nombrePersona) {
+        this.nombrePersona = nombrePersona;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public Integer getDiaNacimientoPersona() {
+        return diaNacimientoPersona;
     }
 
-    public String getDiaNacimiento() {
-        return diaNacimiento;
+    public void setDiaNacimientoPersona(Integer diaNacimientoPersona) {
+        this.diaNacimientoPersona = diaNacimientoPersona;
     }
 
-    public void setDiaNacimiento(String diaNacimiento) {
-        this.diaNacimiento = diaNacimiento;
+    public Integer getMesNacimientoPersona() {
+        return mesNacimientoPersona;
     }
 
-    public String getMesNacimiento() {
-        return mesNacimiento;
+    public void setMesNacimientoPersona(Integer mesNacimientoPersona) {
+        this.mesNacimientoPersona = mesNacimientoPersona;
     }
 
-    public void setMesNacimiento(String mesNacimiento) {
-        this.mesNacimiento = mesNacimiento;
+    public Integer getAnoNacimientoPersona() {
+        return anoNacimientoPersona;
     }
 
-    public String getAnoNacimiento() {
-        return anoNacimiento;
+    public void setAnoNacimientoPersona(Integer anoNacimientoPersona) {
+        this.anoNacimientoPersona = anoNacimientoPersona;
     }
 
-    public void setAnoNacimiento(String anoNacimiento) {
-        this.anoNacimiento = anoNacimiento;
+    public String getDireccionPersona() {
+        return direccionPersona;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public void setDireccionPersona(String direccionPersona) {
+        this.direccionPersona = direccionPersona;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public String getCodigoPostalPersona() {
+        return codigoPostalPersona;
     }
 
-    public String getCodigoPostal() {
-        return codigoPostal;
+    public void setCodigoPostalPersona(String codigoPostalPersona) {
+        this.codigoPostalPersona = codigoPostalPersona;
     }
 
-    public void setCodigoPostal(String codigoPostal) {
-        this.codigoPostal = codigoPostal;
+    public String getCiudadPersona() {
+        return ciudadPersona;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public void setCiudadPersona(String ciudadPersona) {
+        this.ciudadPersona = ciudadPersona;
     }
-
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
-    }
-
+    
     // FUNCIONES DE LA CLASE
     public String mostrarInformacionPersona() {
 
-        return    "\n Nombre: " + nombre
-                + "\n Dia Nacimiento" + diaNacimiento
-                + "\n Mes Nacimiento" + mesNacimiento
-                + "\n Año Nacimiento" + anoNacimiento
-                + "\n Direccion" + direccion
-                + "\n Codigo Postal " + codigoPostal
-                + "\n Ciudad" + ciudad;
+        return "\nNombre: " + nombrePersona
+              +"\nDia Nacimiento" + diaNacimientoPersona
+              +"\nMes Nacimiento" + mesNacimientoPersona
+              +"\nAño Nacimiento" + anoNacimientoPersona
+              +"\nDireccion" + direccionPersona
+              +"\nCodigo Postal " + codigoPostalPersona
+              +"\nCiudad" + ciudadPersona;
 
     }
 }
