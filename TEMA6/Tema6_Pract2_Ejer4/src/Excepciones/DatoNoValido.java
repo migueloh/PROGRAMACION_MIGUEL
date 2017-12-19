@@ -8,56 +8,59 @@ import javax.swing.JOptionPane;
  */
 public class DatoNoValido extends Exception {
 
-    private int numeroExcepcion;
+    private final int numeroExcepcion;
     private String mensajeConLaExcepcion;
 
-    public int getNumeroExcepcion() {
-        return numeroExcepcion;
-    }
-
-    public void setNumeroExcepcion(int numeroExcepcion) {
+    public DatoNoValido(int numeroExcepcion) {
         this.numeroExcepcion = numeroExcepcion;
     }
 
-    public String getMensajeConLaExcepcion() {
-        return mensajeConLaExcepcion;
-    }
-
-    public void setMensajeConLaExcepcion(String mensajeConLaExcepcion) {
-        this.mensajeConLaExcepcion = mensajeConLaExcepcion;
-    }
-
     // FUNCIONES DE LA CLASE
-    public String SwitchMensajesErrores() {
+    public String tipoExcepcion() {
 
         switch (numeroExcepcion) {
             case 1:
-                mensajeConLaExcepcion = "Los campos son Obligatorios."
-                                        + "\nNo puedes dejarlos en blanco.";
+                mensajeConLaExcepcion = "Los campos son Obligatorios. "
+                        + "\nNo puedes dejarlos en blanco.";
                 break;
             case 2:
-                mensajeConLaExcepcion = "La fecha generada a partir de los "
-                                      + "datos introducidos no es valida.";
+                mensajeConLaExcepcion = "El Nombre introducido no "
+                        + "cumple los requisitos.";
                 break;
             case 3:
-                mensajeConLaExcepcion = "";
+                mensajeConLaExcepcion = "El Año introducido no "
+                        + "cumple los requisitos.";
                 break;
             case 4:
-                mensajeConLaExcepcion = "";
+                mensajeConLaExcepcion = "El Mes introducido no "
+                        + "cumple los requisitos.";
                 break;
             case 5:
-                mensajeConLaExcepcion = "";
+                mensajeConLaExcepcion = "El Dia introducido no "
+                        + "cumple los requisitos.";
                 break;
             case 6:
-                mensajeConLaExcepcion = "";
+                mensajeConLaExcepcion = "La Fecha generada a partir de los "
+                        + "datos introducidos no es valida.";
+                break;
+            case 7:
+                mensajeConLaExcepcion = "La Direccion introducida "
+                        + "no cumple los requisitos.";
+                break;
+            case 8:
+                mensajeConLaExcepcion = "La Ciudad introducida "
+                        + "no cumple los requisitos.";
+                break;
+                            case 9:
+                mensajeConLaExcepcion = "El Codido Postal introducida "
+                        + "no cumple los requisitos.";
                 break;
 
             default:
-                mensajeConLaExcepcion = "";
-                break;         
+                mensajeConLaExcepcion = "Lo siento se ha probocado un error desconocido.";
+                break;
         }
         return mensajeConLaExcepcion;
     }
-
 
 }

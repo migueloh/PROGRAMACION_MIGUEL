@@ -29,6 +29,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -61,38 +63,38 @@ public class Controlador {
             try {
 
                 String nombre = JOptionPane.showInputDialog("Introduce el nombre de la Persona").toUpperCase();
-                preValidarMedianteExpresionRegular(1, nombre, "^[A-Z]{2,}([ ][A-Z]{2,})([ ][A-Z]{2,})*$");
+                preValidarMedianteExpresionRegular(2, nombre, "^[A-Z]{2,}([ ][A-Z]{2,})([ ][A-Z]{2,})*$");
 
                 String anio = JOptionPane.showInputDialog("Introduce el año en el que nacio");
-                preValidarMedianteExpresionRegular(2, anio, "^[1-9]{4}*$");
+                preValidarMedianteExpresionRegular(3, anio, "^[1-9]{4}*$");
                 //CONVERSION DE STRING A INT CON EL AÑO
                 int anoCumpleComoInt = Integer.parseInt(anio);
                 
                 String mes = JOptionPane.showInputDialog("Introduce el mes en el que nacio");
-                preValidarMedianteExpresionRegular(3, mes, "^[09]{2}*$");
+                preValidarMedianteExpresionRegular(4, mes, "^[09]{2}*$");
                 //CONVERSION DE STRING A INT CON EL MES
                 int mesCumpleComoInt = Integer.parseInt(mes);
 
                 String dia = JOptionPane.showInputDialog("Introduce el dia en el que nacio");
-                preValidarMedianteExpresionRegular(4, dia, "^[0-9]{1*$");
+                preValidarMedianteExpresionRegular(5, dia, "^[0-9]{1*$");
                 //CONVERSION DE STRING A INT CON EL MES
                 int diaCumpleComoInt = Integer.parseInt(dia);
 
-                String direccion = JOptionPane.showInputDialog("Introduce la Direccion donde reside");
-                preValidarMedianteExpresionRegular(5, direccion, "^*$");
+                String direccion = JOptionPane.showInputDialog("Introduce la Direccion donde reside").toUpperCase();
+                preValidarMedianteExpresionRegular(7, direccion, "^*$");
 
-                String ciudad = JOptionPane.showInputDialog("Introduce la Ciudad donde vive");
-                preValidarMedianteExpresionRegular(6, ciudad, "^*$");
+                String ciudad = JOptionPane.showInputDialog("Introduce la Ciudad donde vive").toUpperCase();
+                preValidarMedianteExpresionRegular(8, ciudad, "^*$");
 
                 String codigoPostal = JOptionPane.showInputDialog("Introduce el Codigo Postal");
-                preValidarMedianteExpresionRegular(7, codigoPostal, "^[0-9]{4}*$");
+                preValidarMedianteExpresionRegular(9, codigoPostal, "^[0-9]{4}*$");
 
                 //SIMPLEMENTE QUIERO VALIDAR QUE NINGUNO DE LOS DATOS QUE SE PIDEN SE QUEDAN EN BLANCO 
                 if (nombre.isEmpty() || anio.isEmpty() || mes.isEmpty() || dia.isEmpty() || direccion.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty()) {
 
                     // PARA SABER SI UN DATO PASADO COMO INT ESTA VACIO O NULO Optional.ofNullable(anio).orElse(0) != 0
                     
-                    throw new DatoNoValido();
+                    throw new DatoNoValido(1);
 
                 } else {
 
@@ -101,7 +103,7 @@ public class Controlador {
 
             } catch (DatoNoValido DNV) {
 
-                JOptionPane.showMessageDialog(null, DNV.getMensajeConLaExcepcion());
+                JOptionPane.showMessageDialog(null, DNV.tipoExcepcion());
 
             } catch (Exception e) {
             }
@@ -111,11 +113,23 @@ public class Controlador {
         return listaDatosPersonales;
     }
 
-    public static void preValidarMedianteExpresionRegular(int i, String nombre, String aZ2_AZ2_AZ2$) {
+    public static void preValidarMedianteExpresionRegular(int i, String dato, String regex) throws DatoNoValido {
+        
+        // DUDA AQUI
+        /*
+        public static void preValidarMedianteExpresionRegular(int i, String nombre, String aZ2_AZ2_AZ2$)
+        Pattern pat = Pattern.compile(nombre, i);
+        Matcher mat = pat.matcher(nombre);*/
+        
+        Pattern pat = Pattern.compile(regex);
+        Matcher mat = pat.matcher(regex);
+        
+        if (!mat.matches())
+            throw new DatoNoValido(2);
 
     }
 
-    public static void validarFecha(int anoCumpleComoInt, int mesCumpleComoInt, int diaCumpleComoInt) {
+    public static void validarFecha(int anoCumpleComoInt, int mesCumpleComoInt, int diaCumpleComoInt) throws DatoNoValido {
 
         try {
 
@@ -134,10 +148,15 @@ public class Controlador {
                 SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy"); // Aplico el patron de la fecha o establezco una mascara DIA/MES/AÃ‘O - Pattern("dd/MM/yyyy")
                 sdf.format(date);
                 
-                throw new DatoNoValido();
+                throw new DatoNoValido(6);
 
             }
-        } catch (Exception e) {
+        }catch (DatoNoValido DNV) {
+            
+            JOptionPane.showMessageDialog(null, DNV.tipoExcepcion());
+            
+        } 
+        catch (Exception e) {
         }
     }
 
