@@ -1,7 +1,5 @@
 package Excepciones;
 
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author 1gdaw10 MIGUEL OLMO HERNANDO
@@ -51,9 +49,12 @@ public class DatoNoValido extends Exception {
                 mensajeConLaExcepcion = "La Ciudad introducida "
                         + "no cumple los requisitos.";
                 break;
-                            case 9:
+            case 9:
                 mensajeConLaExcepcion = "El Codido Postal introducida "
                         + "no cumple los requisitos.";
+                break;
+            case 10:
+                mensajeConLaExcepcion = "Error en la validacion de la Expresion Regular.";
                 break;
 
             default:
