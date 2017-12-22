@@ -2,14 +2,13 @@
 package Excepciones;
 
 public class DatoNoValido extends Exception{
-    private final int tipo;
+    private int tipo;
     private String mensaje;
 
     public DatoNoValido(int tipo) {
         this.tipo = tipo;
     }
     
-    @Override
     public String getMessage(){
         
         switch(tipo)

@@ -41,6 +41,8 @@ import java.util.regex.Pattern;
  */
 public class Controlador {
 
+    public static final String exprexionRegularParaNombre = "^[A-Z]{2,}([ ][A-Z]{2,}[ ][A-Z]{2,})*$";
+    
     public static void main(String[] args) {
 
         ArrayList<Persona> listaDePersonas;
@@ -68,50 +70,58 @@ public class Controlador {
             try {
 
                 String nombre = JOptionPane.showInputDialog("Introduce el nombre de la Persona").toUpperCase();
-                preValidarMedianteExpresionRegular(2, nombre, "^[A-Z]{2,}([ ][A-Z]{2,}[ ][A-Z]{2,}){2}*$");
+                preValidarMedianteExpresionRegular(2, nombre, exprexionRegularParaNombre);
 
                 String anio = JOptionPane.showInputDialog("Introduce el año en el que nacio");
-                preValidarMedianteExpresionRegular(3, anio, "^[1-9]{4}*$");
+                preValidarMedianteExpresionRegular(3, anio, "^[1-9]{4}$");
 
                 //CONVERSION DE STRING A INT CON EL AÑO
-                int anoCumpleComoInt = Integer.parseInt(anio);
+                Integer anoCumpleComoInt = Integer.parseInt(anio);
 
                 String mes = JOptionPane.showInputDialog("Introduce el mes en el que nacio");
-                preValidarMedianteExpresionRegular(4, mes, "^[09]{2}*$");
+                preValidarMedianteExpresionRegular(4, mes, "^[0-9]{1,2}$");
+                
+                if (Integer.parseInt(mes)>12 && Integer.parseInt(mes)>=0) {
+                    throw new DatoNoValido(4);
+                }
 
                 //CONVERSION DE STRING A INT CON EL MES
-                int mesCumpleComoInt = Integer.parseInt(mes);
+                Integer mesCumpleComoInt = Integer.parseInt(mes);
 
                 String dia = JOptionPane.showInputDialog("Introduce el dia en el que nacio");
-                preValidarMedianteExpresionRegular(5, dia, "^[0-9]{1*$");
+                preValidarMedianteExpresionRegular(5, dia, "^[0-9]{1,2}$");
 
                 //CONVERSION DE STRING A INT CON EL MES
-                int diaCumpleComoInt = Integer.parseInt(dia);
+                Integer diaCumpleComoInt = Integer.parseInt(dia);
 
                 String direccion = JOptionPane.showInputDialog("Introduce la Direccion donde reside").toUpperCase();
-                preValidarMedianteExpresionRegular(7, direccion, "^*$");
+                preValidarMedianteExpresionRegular(7, direccion, "^[A-Z]{30}$");
 
                 String ciudad = JOptionPane.showInputDialog("Introduce la Ciudad donde vive").toUpperCase();
-                preValidarMedianteExpresionRegular(8, ciudad, "^*$");
+                preValidarMedianteExpresionRegular(8, ciudad, "^[A-Z]{15}$");
 
                 String codigoPostal = JOptionPane.showInputDialog("Introduce el Codigo Postal");
-                preValidarMedianteExpresionRegular(9, codigoPostal, "^[0-9]{4}*$");
-
+                preValidarMedianteExpresionRegular(9, codigoPostal, "^[0-9]{4}$");
+                
+                // VALIDO LA FECHA - AÑO BISIESTO, ETC
                 validarFecha(anoCumpleComoInt, mesCumpleComoInt, diaCumpleComoInt);
                 
-                Persona objetoPersona = new Persona (nombre, anoCumpleComoInt, mesCumpleComoInt, diaCumpleComoInt, direccion, ciudad, codigoPostal);
+                /* CREO E INICIALIZO EL OBJETO PERSONA Y LE PASO LOS DATOS DE LA 
+                PERSONA VALIDADOS PARA GUARDARLO EN UNA LISTA DE DATOS PERSONALES */            
+                Persona objetoPersona = new Persona (nombre, diaCumpleComoInt, mesCumpleComoInt, anoCumpleComoInt, direccion, codigoPostal, ciudad);
                 listaDatosPersonales.add(objetoPersona);
 
                 /* NO TENER EN CUENTA - PRUEBAS INTERNAS
-    
-                SIMPLEMENTE QUIERO VALIDAR QUE NINGUNO DE LOS DATOS QUE SE PIDEN SE QUEDAN EN BLANCO 
-                if (nombre.isEmpty() || anio.isEmpty() || mes.isEmpty() || dia.isEmpty() || direccion.isEmpty() || ciudad.isEmpty() || codigoPostal.isEmpty()) {
-
+   
                      PARA SABER SI UN DATO PASADO COMO INT ESTA VACIO O NULO Optional.ofNullable(anio).orElse(0) != 0
                     
                     throw new DatoNoValido(1);
                  */
-            } catch (HeadlessException | NumberFormatException E) {
+            }catch (DatoNoValido DNV) {
+
+                JOptionPane.showMessageDialog(null, DNV.tipoExcepcion());
+            } 
+            catch (HeadlessException | NumberFormatException E) {
 
                 JOptionPane.showMessageDialog(null, "Error inexperado" + E.getMessage());
             }
@@ -127,10 +137,10 @@ public class Controlador {
         try {
 
             Pattern pat = Pattern.compile(regex);
-            Matcher mat = pat.matcher(regex);
+            Matcher mat = pat.matcher(dato);
 
             if (!mat.matches()) {
-                throw new DatoNoValido(10);
+                throw new DatoNoValido(i);
             }
 
         } catch (DatoNoValido DNV) {
@@ -144,9 +154,9 @@ public class Controlador {
 
     }
 
-    public static Calendar validarFecha(int anoCumpleComoInt, int mesCumpleComoInt, int diaCumpleComoInt) {
+    public static void validarFecha(Integer anoCumpleComoInt, Integer mesCumpleComoInt, Integer diaCumpleComoInt) {
 
-        Calendar objetoCalendar = null;
+        Calendar objetoCalendar;
 
         try {
 
@@ -181,52 +191,6 @@ public class Controlador {
             JOptionPane.showMessageDialog(null, "Error inexperado" + E.getMessage());
         }
 
-        return objetoCalendar;
-
-        /*
-        
-        ORIGINAL 
-        
-           public static Calendar validarFecha(int anoCumpleComoInt, int mesCumpleComoInt, int diaCumpleComoInt) throws DatoNoValido {
-        Calendar objetoCalendar = null;
-        try {
-
-            if (anoCumpleComoInt < 1900) {
-                throw new IllegalArgumentException();
-            } else {
-
-                // OBJETO calendar
-                objetoCalendar = Calendar.getInstance();
-
-                objetoCalendar.setLenient(false);
-                objetoCalendar.set(Calendar.YEAR, anoCumpleComoInt); // COMPRUEBO EL AÑO
-                objetoCalendar.set(Calendar.MONTH, mesCumpleComoInt - 1); // COMO EMPIEZO EL PRIMER MES CORRESPONDE AL 0 Y EL ULTIMO AL 11 LE RESTO -1
-                objetoCalendar.set(Calendar.DAY_OF_MONTH, diaCumpleComoInt); // COMO COMPRUEBO EL AÑO PRIMERO Y LUEGO YA EL MES, AUTOMATICAMENTE SE SI UN MES TIENE 28, 29, 30 O 31 DIAS
-
-                // COJO LA GECHA DEL SISTEMA PARA PODER LUEGO COMPARLA CON LA FECHA INTRODUCIDA
-                Date fechaDelSistema = objetoCalendar.getTime();
-
-                // VALIDO LA EECHA MEDIANTE EL PATRON ESTABLECIDO dd/MM/YYY DIA/MES/AÑO
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                sdf.format(fechaDelSistema);
-
-                throw new DatoNoValido(6);
-
-            }
-        } catch (DatoNoValido DNV) {
-
-            JOptionPane.showMessageDialog(null, DNV.tipoExcepcion());
-
-        } catch (Exception E) {
-
-            JOptionPane.showMessageDialog(null, "Error inexperado" + E.getMessage());
-        }
-
-        return objetoCalendar;
-    }
-        
-        
-         */
     }
 
     public static void validarMayoriaEdad() {

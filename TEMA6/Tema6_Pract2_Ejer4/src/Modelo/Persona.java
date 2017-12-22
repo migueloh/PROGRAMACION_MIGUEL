@@ -33,6 +33,16 @@ public class Persona {
     public Persona() {
     }
 
+    public Persona(String nombrePersona, Integer diaNacimientoPersona, Integer mesNacimientoPersona, Integer anoNacimientoPersona, String direccionPersona, String codigoPostalPersona, String ciudadPersona) {
+        this.nombrePersona = nombrePersona;
+        this.diaNacimientoPersona = diaNacimientoPersona;
+        this.mesNacimientoPersona = mesNacimientoPersona;
+        this.anoNacimientoPersona = anoNacimientoPersona;
+        this.direccionPersona = direccionPersona;
+        this.codigoPostalPersona = codigoPostalPersona;
+        this.ciudadPersona = ciudadPersona;
+    }
+
     public String getNombrePersona() {
         return nombrePersona;
     }
