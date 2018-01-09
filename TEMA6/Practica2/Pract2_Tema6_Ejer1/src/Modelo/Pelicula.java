@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  * @author 1gdaw12 MIGUEL OLMO HERNANDO
  */
@@ -12,12 +14,21 @@ public class Pelicula {
     
     
     private char[] anio;
+    
+    private ArrayList<Estudio> listaEstudios;
 
-    public Pelicula(String titulo, double duracion, String tipo) {
+    public Pelicula() {
+    }
+
+    public Pelicula(String titulo, double duracion, String tipo, char[] anio) {
         this.titulo = titulo;
         this.duracion = duracion;
         this.tipo = tipo;
+        this.anio = anio;
+        this.listaEstudios = listaEstudios;  
     }
+
+
 
     public String getTitulo() {
         return titulo;
@@ -49,8 +60,24 @@ public class Pelicula {
 
     public void setAnio(char[] anio) {
         this.anio = anio;
-        this.anio = new char[4];
     }
+
+    public ArrayList<Estudio> getListaEstudios() {
+        return listaEstudios;
+    }
+
+    public void setListaEstudios(ArrayList<Estudio> listaEstudios) {
+        this.listaEstudios = listaEstudios;
+    }
+    
+    
+
+    
+    
+    
+    
+
+    
     
     
 }
