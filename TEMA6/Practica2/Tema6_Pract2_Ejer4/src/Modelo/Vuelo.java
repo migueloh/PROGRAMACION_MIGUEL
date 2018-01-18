@@ -1,5 +1,6 @@
 package Modelo;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Vuelo {
@@ -12,6 +13,8 @@ public class Vuelo {
     private Date fechaDeSalida;
     private Date fechaDeegreso;
     private String tipoDeVuelo;
+    
+    private ArrayList <Pasajero> listaPasajeros;
 
     //METODOS PROPIOS DE LA CLASE
     

@@ -8,6 +8,10 @@ public class Pasajero {
     private String sexo;
     private int edad;
     
+    private Vuelo vuel;
+    
+    private Asiento asi;
+    
     //METODOS PROPIOS DE LA CLASE
 
     public void aregarNuevo() {
