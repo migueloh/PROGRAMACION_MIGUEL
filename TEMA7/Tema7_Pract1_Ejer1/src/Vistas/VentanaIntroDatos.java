@@ -1,9 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
+
+import Controladora.Controladora;
+
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -65,8 +64,23 @@ public class VentanaIntroDatos extends javax.swing.JFrame {
         });
 
         jBmostrar.setText("MOSTRAR DATOS");
+        jBmostrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmostrarActionPerformed(evt);
+            }
+        });
 
         jBsalir.setText("SALIR");
+        jBsalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBsalirMouseClicked(evt);
+            }
+        });
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -139,14 +153,36 @@ public class VentanaIntroDatos extends javax.swing.JFrame {
 
     private void jBaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaceptarActionPerformed
         // BOTON ACEPTAR:
-        
+
         if (jTnombre.getText().isEmpty() & jTapellido.getText().isEmpty() & jTdni.getText().isEmpty()) {
-            
+            JOptionPane.showMessageDialog(this, "Los campos Nombre, Apellido y DNI son obligatorios");
         } else {
-            
+
+            Controladora.guardarPersona(jTnombre.getText(), jTapellido.getText(), jTdni.getText());
+
         }
-        
+
     }//GEN-LAST:event_jBaceptarActionPerformed
+
+    private void jBmostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmostrarActionPerformed
+        // BOTON IR A LA VENTANA MOSTRAR
+        
+        Controladora.salirVentanaIntroDatosAbrirVentanaResultados();
+       
+    }//GEN-LAST:event_jBmostrarActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // BOTON SALIR
+ 
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jBsalirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBsalirMouseClicked
+        // AL CLICKAR EN SALIR
+        
+        if (JOptionPane.showConfirmDialog(this, "¿Realmente quieres salir del programa?") == 0) {
+            Controladora.salirVentanas();
+        } 
+    }//GEN-LAST:event_jBsalirMouseClicked
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

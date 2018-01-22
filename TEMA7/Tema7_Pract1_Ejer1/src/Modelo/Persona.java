@@ -12,16 +12,13 @@ public class Persona {
     private String apellidos;
     private String DNI;
     
-    private ArrayList <Persona> grupoPersonas;
-
     public Persona() {
     }
 
-    public Persona(String nombre, String apellidos, String DNI, ArrayList<Persona> grupoPersonas) {
+    public Persona(String nombre, String apellidos, String DNI) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.DNI = DNI;
-        this.grupoPersonas = grupoPersonas;
     }
 
     public String getNombre() {
@@ -47,14 +44,10 @@ public class Persona {
     public void setDNI(String DNI) {
         this.DNI = DNI;
     }
+    
+    
 
-    public ArrayList<Persona> getGrupoPersonas() {
-        return grupoPersonas;
-    }
-
-    public void setGrupoPersonas(ArrayList<Persona> grupoPersonas) {
-        this.grupoPersonas = grupoPersonas;
-    }
+   
     
     
 }
