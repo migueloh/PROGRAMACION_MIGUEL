@@ -97,6 +97,16 @@ public class Controladora {
         return null;
     }
     
+    // Para retornar los datos de la persona
+    public static Persona getPersona(){
+        return per;
+    }
+    
+    // Para retornar el curso
+    public static Curso getCurso(){
+        return cur;
+    }
+    
 
     public static void altaPersona(String dni, String nombre, String apellido, String curso) {
         cur =recogerValorCurso(curso);
@@ -115,6 +125,27 @@ public class Controladora {
         per.getCurso().borrarPersona(per);
         listaPersonas.remove(per);
 
+    }
+
+    public static Persona buscarDNI(String dni) {
+        int i;
+        for(i = 0; i < listaPersonas.size() && listaPersonas.get(i).getDni().compareTo(dni)!= 0;i++);
+            if (i == listaPersonas.size())
+                return null;
+            
+            per = listaPersonas.get(i);
+            return per;
+        
+    }
+    
+    public static Persona recogerValorDNI(String dni) {
+        for (int i = 0; i < listaPersonas.size() ; i++) {
+   
+            if (listaPersonas.get(i).getDni().equalsIgnoreCase(dni)){
+                return listaPersonas.get(i);
+            }
+        }
+        return null;
     }
 
   

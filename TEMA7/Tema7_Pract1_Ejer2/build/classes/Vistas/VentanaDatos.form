@@ -151,6 +151,9 @@
     <Component class="javax.swing.JTextField" name="jTapellido">
     </Component>
     <Component class="javax.swing.JTextField" name="jTcurso">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTcursoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

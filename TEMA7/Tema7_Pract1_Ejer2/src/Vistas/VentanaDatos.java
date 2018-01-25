@@ -80,6 +80,12 @@ public class VentanaDatos extends javax.swing.JFrame {
             }
         });
 
+        jTcurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTcursoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -174,34 +180,47 @@ public class VentanaDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_jBaceptarActionPerformed
 
     private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
-        // AL ENTER
+        
+        //ENTER
 
-            String pregunta = JOptionPane.showInputDialog("1- Para cambiar el curso de la persona" + "\n" +
-                                                          "2- Eliminar a la persona de la base de datos" + "\n" +
-                                                          "3- No realizar ninguna accion.");
-                
+        if (Controladora.buscarDNI(jTcurso.getText())) {
+
+            jTnombre.setText(Controladora.getPersona().getNombre());
+            jTapellido.setText(Controladora.getPersona().getApellidos());
+            jTcurso.setText(Controladora.getCurso().getCurso());
+        }
+
+        String pregunta = JOptionPane.showInputDialog("1- Para cambiar el curso de la persona." + "\n"
+                + "2- Eliminar a la persona de la base de datos." + "\n"
+                + "3- No realizar ninguna accion y volver a la ventana.");
+
         if (pregunta.isEmpty()) {
             JOptionPane.showMessageDialog(this, "La opcion introducida no es valida");
-        } else{
-            
-        if (pregunta.equalsIgnoreCase("1")) {
-            Controladora.editarPersona();
-        } 
-        if (pregunta.equalsIgnoreCase("2")) {
-            Controladora.borrarPersona();
+        } else {
+            if (pregunta.equalsIgnoreCase("1")) {
+                Controladora.editarPersona();
+            } else {
+                if (pregunta.equalsIgnoreCase("2")) {
+                    Controladora.borrarPersona();
+                } else {
+                    if (pregunta.equalsIgnoreCase("3")) {
+                        Controladora.abrirVentanaPrincipal(this);
+                    }
+                }
+            }
         }
-        if (pregunta.equalsIgnoreCase("3")) {
-            Controladora.salirVentanas();
-        }
-    }
 
 
     }//GEN-LAST:event_jTdniActionPerformed
 
-/**
- * @param args the command line arguments
- */
-public static void main(String args[]) {
+    private void jTcursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTcursoActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -212,28 +231,24 @@ public static void main(String args[]) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaDatos.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaDatos.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaDatos.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaDatos.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -258,4 +273,6 @@ public static void main(String args[]) {
     private javax.swing.JTextField jTdni;
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
+
+    // 
 }
