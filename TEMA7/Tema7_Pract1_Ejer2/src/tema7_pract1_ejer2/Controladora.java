@@ -38,7 +38,7 @@ public class Controladora {
 
         // INICIO MAIN
         crearCursos();
-        listaPersonas = new ArrayList<Persona>();
+        listaPersonas = new ArrayList();
         abrirVentanaPrincipal(vD = new VentanaDatos());
 
     }
@@ -122,20 +122,22 @@ public class Controladora {
     }
 
     public static void borrarPersona() {
-        per.getCurso().borrarPersona(per);
+        //per.getCurso().borrarPersona(per);
         listaPersonas.remove(per);
 
     }
 
     public static Persona buscarDNI(String dni) {
-        int i;
-        for(i = 0; i < listaPersonas.size() && listaPersonas.get(i).getDni().compareTo(dni)!= 0;i++);
-            if (i == listaPersonas.size())
-                return null;
-            
-            per = listaPersonas.get(i);
-            return per;
+        int posicion=0;
+        for (int i = 0; i < listaPersonas.size(); i++) {
+            if (listaPersonas.get(i).getDni().equalsIgnoreCase(dni)) {
+                    posicion=i;
+                
+                }
+        }
         
+        per=listaPersonas.get(posicion);
+        return per;
     }
     
     public static Persona recogerValorDNI(String dni) {

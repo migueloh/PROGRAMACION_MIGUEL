@@ -1,5 +1,6 @@
 package Vistas;
 
+import Modelo.Persona;
 import javax.swing.JOptionPane;
 import tema7_pract1_ejer2.*;
 
@@ -180,14 +181,17 @@ public class VentanaDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_jBaceptarActionPerformed
 
     private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
-        
+
         //ENTER
+        Persona p = Controladora.buscarDNI(jTdni.getText());
 
-        if (Controladora.buscarDNI(jTcurso.getText())) {
-
-            jTnombre.setText(Controladora.getPersona().getNombre());
-            jTapellido.setText(Controladora.getPersona().getApellidos());
-            jTcurso.setText(Controladora.getCurso().getCurso());
+        if (p != null) {
+            jTnombre.setText(p.getNombre());
+            jTapellido.setText(p.getApellidos());
+            jTcurso.setText(p.getCurso().getCurso());
+         
+        }else{
+            JOptionPane.showMessageDialog(this, "Persona no encontrada");
         }
 
         String pregunta = JOptionPane.showInputDialog("1- Para cambiar el curso de la persona." + "\n"
@@ -199,9 +203,16 @@ public class VentanaDatos extends javax.swing.JFrame {
         } else {
             if (pregunta.equalsIgnoreCase("1")) {
                 Controladora.editarPersona();
+
             } else {
                 if (pregunta.equalsIgnoreCase("2")) {
                     Controladora.borrarPersona();
+                    jTdni.setText(null);
+                    jTnombre.setText(null);
+                    jTapellido.setText(null);
+                    jTcurso.setText(null);
+                    
+                    JOptionPane.showMessageDialog(this, "Persona eliminada");
                 } else {
                     if (pregunta.equalsIgnoreCase("3")) {
                         Controladora.abrirVentanaPrincipal(this);
