@@ -1,4 +1,7 @@
 /*
+
+MIGUEL
+
  Desarrolla un proyecto que te permita guardar los datos de todas las
 personas (nombre, apellidos y dni) que estudian en Egibide Arriaga.
 Si la persona es nueva, nos tienen que indicar su nombre, apellidos,
