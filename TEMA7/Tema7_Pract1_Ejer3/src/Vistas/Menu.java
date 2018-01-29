@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Vistas;
+import javax.swing.JOptionPane;
 import tema7_pract1_ejer3.*;
 
 /**
@@ -32,6 +33,7 @@ public class Menu extends javax.swing.JFrame {
 
         jBcomprar = new javax.swing.JButton();
         jBvender = new javax.swing.JButton();
+        jBsalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -49,25 +51,35 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
+        jBsalir.setText("SALIR");
+        jBsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBsalirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(132, 132, 132)
+                .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jBcomprar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBvender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(179, Short.MAX_VALUE))
+                    .addComponent(jBvender, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBsalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
+                .addGap(27, 27, 27)
                 .addComponent(jBcomprar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jBvender)
-                .addContainerGap(131, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jBsalir)
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         pack();
@@ -76,7 +88,8 @@ public class Menu extends javax.swing.JFrame {
     private void jBcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcomprarActionPerformed
         // BOTON COMPRAR
         
-        Tema7_Pract1_Ejer3.abrirVentanaComprar();
+        Controladora.abrirVentanaComprar();
+        this.setVisible(false);
         
         
     }//GEN-LAST:event_jBcomprarActionPerformed
@@ -84,8 +97,16 @@ public class Menu extends javax.swing.JFrame {
     private void jBvenderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvenderActionPerformed
         // BOTON VENTA
         
-        Tema7_Pract1_Ejer3.abrirVentanaVenta();
+        Controladora.abrirVentanaVenta();
+        this.setVisible(false);
     }//GEN-LAST:event_jBvenderActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // BOTON SALIR
+        
+        Controladora.salirAPP();
+        JOptionPane.showMessageDialog(this, "Hasta luego");
+    }//GEN-LAST:event_jBsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,6 +145,7 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcomprar;
+    private javax.swing.JButton jBsalir;
     private javax.swing.JButton jBvender;
     // End of variables declaration//GEN-END:variables
 }

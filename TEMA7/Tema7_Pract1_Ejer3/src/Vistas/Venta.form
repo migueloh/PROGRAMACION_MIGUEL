@@ -47,12 +47,12 @@
                       <Component id="jBvolver" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="165" max="-2" attributes="0"/>
-                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="148" max="-2" attributes="0"/>
-                      <Component id="jBcomprar" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="149" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jBcomprar" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabel1" min="-2" pref="101" max="-2" attributes="0"/>
+                          <Component id="jLok" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -81,9 +81,11 @@
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTimporte" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
               <Component id="jBcomprar" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="19" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+              <Component id="jLok" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="45" max="32767" attributes="0"/>
               <Component id="jBvolver" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
           </Group>
@@ -93,6 +95,9 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Yu Gothic UI Semibold" size="24" style="3"/>
+        </Property>
         <Property name="text" type="java.lang.String" value="VENTAS"/>
       </Properties>
     </Component>
@@ -122,15 +127,29 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jTimporte">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTimporteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBvolver">
       <Properties>
         <Property name="text" type="java.lang.String" value="VOLVER"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBvolverActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBcomprar">
       <Properties>
         <Property name="text" type="java.lang.String" value="COMPRAR"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcomprarActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLok">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Venta Verificada "/>
       </Properties>
     </Component>
   </SubComponents>

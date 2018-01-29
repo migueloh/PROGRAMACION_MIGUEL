@@ -5,6 +5,8 @@
  */
 package Vistas;
 
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 import tema7_pract1_ejer3.*;
 
 /**
@@ -20,6 +22,7 @@ public class Compra extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        jLok.setVisible(false);
     }
 
     /**
@@ -40,9 +43,11 @@ public class Compra extends javax.swing.JFrame {
         jTprecioUnitario = new javax.swing.JTextField();
         jBvolver = new javax.swing.JButton();
         jBcomprar = new javax.swing.JButton();
+        jLok = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Yu Gothic", 3, 24)); // NOI18N
         jLabel1.setText("COMPRAS");
 
         jLabel2.setText("Producto");
@@ -51,7 +56,18 @@ public class Compra extends javax.swing.JFrame {
 
         jLabel4.setText("Precio Unitario");
 
+        jTproducto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTproductoActionPerformed(evt);
+            }
+        });
+
         jBvolver.setText("VOLVER");
+        jBvolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBvolverActionPerformed(evt);
+            }
+        });
 
         jBcomprar.setText("COMPRAR");
         jBcomprar.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +75,8 @@ public class Compra extends javax.swing.JFrame {
                 jBcomprarActionPerformed(evt);
             }
         });
+
+        jLok.setText("Compra Verificada");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,11 +88,6 @@ public class Compra extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jBvolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(165, 165, 165)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBcomprar)
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(77, 77, 77)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -85,15 +98,25 @@ public class Compra extends javax.swing.JFrame {
                             .addComponent(jTprecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jTunidades, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                .addComponent(jTproducto)))))
+                                .addComponent(jTproducto))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(122, 122, 122)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(144, 144, 144)
+                        .addComponent(jBcomprar)))
                 .addContainerGap(78, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(33, 33, 33)
+                .addGap(48, 48, 48)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -106,9 +129,11 @@ public class Compra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTprecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(36, 36, 36)
                 .addComponent(jBcomprar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jBvolver)
                 .addGap(15, 15, 15))
         );
@@ -118,11 +143,48 @@ public class Compra extends javax.swing.JFrame {
 
     private void jBcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcomprarActionPerformed
         // BOTON COMPRAR
+        try {
+            if (jTproducto.getText().isEmpty() || jTunidades.getText().isEmpty() || jTprecioUnitario.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Los campos son obligatorios");
 
-        Tema7_Pract1_Ejer3.registrarProductos(jTproducto.getText(), jTunidades.getText(), jTprecioUnitario.getText());
+            } else {
+                Controladora.registrarProductos(jTproducto.getText(), jTunidades.getText(), jTprecioUnitario.getText());
+                jLok.setVisible(true);
+                resetearCampos(jTproducto, jTunidades, jTprecioUnitario);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido al comprar");
+        }
 
 
     }//GEN-LAST:event_jBcomprarActionPerformed
+
+    private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
+        // Volver
+        this.setVisible(false);
+        Controladora.abrirMenu2();
+    }//GEN-LAST:event_jBvolverActionPerformed
+
+    private void jTproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTproductoActionPerformed
+        // ENTER PRODUCTOS:
+        
+        // BUSCAR EL PRODUCTO
+        
+        try {
+
+            if (jTproducto.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Introduce un producto");
+            } else {
+                
+                Controladora.buscarProducto(jTproducto.getText());
+                jTunidades.setText();
+                
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido al buscar producto");
+        }
+    }//GEN-LAST:event_jTproductoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -166,8 +228,17 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLok;
     private javax.swing.JTextField jTprecioUnitario;
     private javax.swing.JTextField jTproducto;
     private javax.swing.JTextField jTunidades;
     // End of variables declaration//GEN-END:variables
+
+    public void resetearCampos(JTextField jTproducto, JTextField jTunidades, JTextField jTprecioUnitario) {
+        
+        jTproducto.setText(null);
+        jTunidades.setText(null);
+        jTprecioUnitario.setText(null);
+                
+    }
 }
