@@ -1,11 +1,8 @@
 package Vistas;
 
+//IMPORTS
 import tema7_pract1_ejer3.*;
-
-import tema7_pract1_ejer3.*;
-
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 
 /**
  *
@@ -21,6 +18,7 @@ public class Venta extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         jLok.setVisible(false);
+        jLfallo.setVisible(false);
     }
 
     /**
@@ -42,6 +40,10 @@ public class Venta extends javax.swing.JFrame {
         jBvolver = new javax.swing.JButton();
         jBcomprar = new javax.swing.JButton();
         jLok = new javax.swing.JLabel();
+        jLfallo = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -86,63 +88,97 @@ public class Venta extends javax.swing.JFrame {
             }
         });
 
+        jLok.setForeground(new java.awt.Color(0, 102, 0));
         jLok.setText("Venta Verificada ");
+
+        jLfallo.setForeground(new java.awt.Color(204, 0, 0));
+        jLfallo.setText("Venta Fallida");
+
+        jLabel5.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel5.setText("ENTER");
+
+        jLabel6.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel6.setText("ENTER");
+
+        jLabel7.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel7.setText("CLICK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(90, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTunidades, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-                        .addComponent(jTproducto)))
-                .addGap(96, 96, 96))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBvolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addGap(37, 37, 37)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBcomprar)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTimporte, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTunidades)
+                                    .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel6)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(86, 86, 86)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jBcomprar)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel7))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLfallo, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(87, 87, 87))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(53, 53, 53)
+                .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(29, 29, 29)
                         .addComponent(jLabel3))
-                    .addComponent(jTunidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTunidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)))
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTimporte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
-                .addComponent(jBcomprar)
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBcomprar)
+                    .addComponent(jLabel7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLfallo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLok)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(jBvolver)
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
 
         pack();
@@ -152,10 +188,32 @@ public class Venta extends javax.swing.JFrame {
         // ENTER PRODUCTO
         try {
 
+            //PRIMERA COMPROBACION SI EL CAMPO PRODUCTO ESTA VACIO
             if (jTproducto.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Introduce un producto");
+                JOptionPane.showMessageDialog(this, "Se requiere un producto.");
             } else {
-                Controladora.buscarProducto(jTproducto.getText());
+
+                //SIEMPRE SE REQUIERE BUSCAR EL PRODUCTO
+                boolean encontradoProducto = Controladora.buscarProducto(jTproducto.getText().toLowerCase());
+
+                //COMPRUEBO SI ES CIERTA LA BUSQUEDA
+                if (encontradoProducto == true) {
+                    /*SI LO ES PARA VENDER, NECESITO SABER LA CANTIDAD DISPONIBLE A LA VENTA
+                    POR ESO AHORA LE DIGO A LA CONTROLADORA QUE ME FACILITE DICHA CANTIDAD*/
+                    String disponibilidad = Controladora.comprobarDisponilibilidad();
+                    /*HAGO EL PARSE A DOUBLE PARA PODER COMPARAR ESA CANTIDAD NUMERICA CON EL VALOR 0
+                    SI ES 0, NO TENGO EXISTENCIAS*/
+                    if (Double.parseDouble(disponibilidad) > 0) {
+                        //MUESTRO EL NUMERO DE EXISTENCIAS SI SE DA EL CASO
+                        JOptionPane.showMessageDialog(this, "Hay " + disponibilidad + " existencias");
+                    } else {
+                        //SI NO HAY EXISTENCIAS, MUESTRO AVISADORES Y MENSAJE
+                        jLfallo.setVisible(true);
+                        JOptionPane.showMessageDialog(this, "No hay existencias");
+                        jLfallo.setVisible(false);
+                        resetearCampos();
+                    }
+                }
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error desconocido al buscar producto");
@@ -185,23 +243,37 @@ public class Venta extends javax.swing.JFrame {
 
     private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
         // VOTON VOLVER
-        this.setVisible(false);
-        Controladora.abrirMenu2();
+
+        try {
+            this.setVisible(false);
+            Controladora.abrirMenu2();
+        } catch (Exception e) {
+        }
+
     }//GEN-LAST:event_jBvolverActionPerformed
 
     private void jBcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcomprarActionPerformed
         // BOTON COMPRAR
-        
         try {
-            
+
+            //COMPROBACION QUE LOS CAMPOS INTRODUCIDOS NO ESTEN VACIOS
             if (jTproducto.getText().isEmpty() || jTunidades.getText().isEmpty() || jTimporte.getText().isEmpty()) {
+                //MENSAJES DE ALERTA VARIOS
+                jLfallo.setVisible(true);
                 JOptionPane.showMessageDialog(this, "Los campos son obligatorios");
+                jLfallo.setVisible(false);
 
             } else {
-                
+                /*SI LOS CAMPOS TIENEN UN VALOR REAL Y LA COMPRA SE PUEDE EFECTUAR
+                LE PIDO A LA CONTROLADORA QUE ME RECALCULE LOS PRODUCTOS QUE TENIA 
+                MENOS LOS ADQUIRIDOS Y ME DIGA QUE LA COMPRA HA SIDO EFECTUADA*/
                 Controladora.recalcularUnidadesDisponibles(jTunidades.getText());
+                //AVISOS VARIOS
                 jLok.setVisible(true);
-                resetearCampos(jTproducto, jTunidades, jTimporte);
+                JOptionPane.showMessageDialog(this, "Productos Vendidos.");
+                //RESETEO LOS CAMPOS PARA VOLVER A REALIZAR UNA VENTA SI SE PROCEDE
+                resetearCampos();
+
             }
 
         } catch (Exception e) {
@@ -260,15 +332,23 @@ public class Venta extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLfallo;
     private javax.swing.JLabel jLok;
     private javax.swing.JTextField jTimporte;
     private javax.swing.JTextField jTproducto;
     private javax.swing.JTextField jTunidades;
     // End of variables declaration//GEN-END:variables
 
-    private void resetearCampos(JTextField jTproducto, JTextField jTunidades, JTextField jTimporte) {
+    // FUNCIONES PROPIAS PARA LA VENTANA
+    
+    //RESETEAR CAMPOS DE TEXTO
+    private void resetearCampos() {
         jTproducto.setText(null);
         jTunidades.setText(null);
         jTimporte.setText(null);
+        jLok.setVisible(false);
     }
 }

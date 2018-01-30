@@ -104,8 +104,14 @@ public class Menu extends javax.swing.JFrame {
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         // BOTON SALIR
         
-        Controladora.salirAPP();
-        JOptionPane.showMessageDialog(this, "Hasta luego");
+        if (JOptionPane.showConfirmDialog(this, "¿Desea realmente abandonar la aplicacion?")==0) {
+            JOptionPane.showMessageDialog(this, "Gracias por su visita, adios.");
+            Controladora.salirAPP();
+        }
+            
+       
+
+        
     }//GEN-LAST:event_jBsalirActionPerformed
 
     /**

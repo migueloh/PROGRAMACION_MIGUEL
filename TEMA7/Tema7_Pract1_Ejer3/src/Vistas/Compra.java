@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
+//IMPORTS
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import tema7_pract1_ejer3.*;
 
 /**
@@ -22,6 +17,7 @@ public class Compra extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        jLfallo.setVisible(false);
         jLok.setVisible(false);
     }
 
@@ -44,6 +40,9 @@ public class Compra extends javax.swing.JFrame {
         jBvolver = new javax.swing.JButton();
         jBcomprar = new javax.swing.JButton();
         jLok = new javax.swing.JLabel();
+        jLfallo = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -76,7 +75,17 @@ public class Compra extends javax.swing.JFrame {
             }
         });
 
+        jLok.setForeground(new java.awt.Color(0, 102, 0));
         jLok.setText("Compra Verificada");
+
+        jLfallo.setForeground(new java.awt.Color(204, 0, 0));
+        jLfallo.setText("Compra Fallida");
+
+        jLabel5.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel5.setText("ENTER");
+
+        jLabel6.setForeground(new java.awt.Color(153, 153, 0));
+        jLabel6.setText("CLICK");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -88,7 +97,7 @@ public class Compra extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jBvolver))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
+                        .addGap(38, 38, 38)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel3)
@@ -96,20 +105,27 @@ public class Compra extends javax.swing.JFrame {
                         .addGap(54, 54, 54)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTprecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTunidades, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
-                                .addComponent(jTproducto))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTunidades, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                    .addComponent(jTproducto))
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(122, 122, 122)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(102, 102, 102)
+                        .addComponent(jBcomprar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(jBcomprar)))
-                .addContainerGap(78, Short.MAX_VALUE))
+                        .addGap(110, 110, 110)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLfallo, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(33, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(111, 111, 111))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -121,7 +137,8 @@ public class Compra extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTproducto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
                         .addGap(29, 29, 29)
                         .addComponent(jLabel3))
                     .addComponent(jTunidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -129,13 +146,17 @@ public class Compra extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTprecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jBcomprar)
-                .addGap(18, 18, 18)
+                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBcomprar)
+                    .addComponent(jLabel6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLfallo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLok, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jBvolver)
-                .addGap(15, 15, 15))
+                .addContainerGap())
         );
 
         pack();
@@ -144,13 +165,19 @@ public class Compra extends javax.swing.JFrame {
     private void jBcomprarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcomprarActionPerformed
         // BOTON COMPRAR
         try {
+            //PRIMERA COMPROBACION SI LOS CAMPOS ESTAN VACIOS
             if (jTproducto.getText().isEmpty() || jTunidades.getText().isEmpty() || jTprecioUnitario.getText().isEmpty()) {
+                jLfallo.setVisible(true);
                 JOptionPane.showMessageDialog(this, "Los campos son obligatorios");
+                jLfallo.setVisible(false);
 
             } else {
+                Controladora.buscarProducto(jTproducto.getText());
                 Controladora.registrarProductos(jTproducto.getText(), jTunidades.getText(), jTprecioUnitario.getText());
                 jLok.setVisible(true);
-                resetearCampos(jTproducto, jTunidades, jTprecioUnitario);
+                JOptionPane.showMessageDialog(this, "Productos Comprados.");
+                resetearCampos();
+
             }
 
         } catch (Exception e) {
@@ -161,29 +188,34 @@ public class Compra extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcomprarActionPerformed
 
     private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
-        // Volver
-        this.setVisible(false);
-        Controladora.abrirMenu2();
+        // VOLVER AL MENU PRINCIPAL
+        try {
+            this.setVisible(false);
+            Controladora.abrirMenu2();
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jBvolverActionPerformed
 
     private void jTproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTproductoActionPerformed
-        // ENTER PRODUCTOS:
-        
-        // BUSCAR EL PRODUCTO
-        
+        // BOTON ENTER COMPRA PRODUCTO
+
         try {
 
-            if (jTproducto.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Introduce un producto");
-            } else {
-                
-                Controladora.buscarProducto(jTproducto.getText());
-                jTunidades.setText();
-                
+            //LE PIDO A LA CONTROLADORA QUE ME BUSQUE EL PRODUCTO
+            boolean localizado = Controladora.buscarProducto(jTproducto.getText().toLowerCase());
+
+            /*SI ME LO ENCUENTRA, LA CONTROLADRA LE DIRA QUE HA SIDO ENCONTRADO A LA VENTANA.
+            PERO AHORA MANTENIENDO EL MODELO VISTA CONTROLADOR, LA VISTA LE VUELVE A PEDIR
+            AL CONTROLADOR QUE AHORA LE BUSQUE LA INFORMACION DEL PRODUCTO*/
+            if (localizado == true) {
+                Controladora.buscarInfoProducto();
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error desconocido al buscar producto");
+            
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
+
+
     }//GEN-LAST:event_jTproductoActionPerformed
 
     /**
@@ -200,16 +232,24 @@ public class Compra extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Compra.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Compra.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -228,17 +268,27 @@ public class Compra extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLfallo;
     private javax.swing.JLabel jLok;
     private javax.swing.JTextField jTprecioUnitario;
     private javax.swing.JTextField jTproducto;
     private javax.swing.JTextField jTunidades;
     // End of variables declaration//GEN-END:variables
 
-    public void resetearCampos(JTextField jTproducto, JTextField jTunidades, JTextField jTprecioUnitario) {
-        
+    // FUNCIONES PROPIAS PARA LA VENTANA
+    
+    //RESETEAR CAMPOS DE TEXTO
+    public void resetearCampos() {
         jTproducto.setText(null);
         jTunidades.setText(null);
         jTprecioUnitario.setText(null);
-                
+        jLok.setVisible(false);
+    }
+
+    // FUNCION QUE LE PERMITE A LA VISTA COMPRA OBTENER EL NOMBRE DEL PRODUCTO Y LAS UNIDADES DE ESTE
+    public void mostrarInfoProducto(String producto, String unidades) {
+        JOptionPane.showMessageDialog(this, "Se dispone de " + unidades + " " + producto);
     }
 }
