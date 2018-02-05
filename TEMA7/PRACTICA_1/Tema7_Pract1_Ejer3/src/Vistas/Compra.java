@@ -172,6 +172,8 @@ public class Compra extends javax.swing.JFrame {
                 jLfallo.setVisible(false);
 
             } else {
+                
+                // realizar una comprobacion con un if, guardar la info en una variable global y quitar esta linea
                 Controladora.buscarProducto(jTproducto.getText());
                 Controladora.registrarProductos(jTproducto.getText(), jTunidades.getText(), jTprecioUnitario.getText());
                 jLok.setVisible(true);
