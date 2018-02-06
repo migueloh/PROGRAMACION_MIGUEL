@@ -48,8 +48,9 @@ public class ZOO extends javax.swing.JFrame {
     private Integer anadirPanelHijo = 1;
     private Integer quitarPanelHijo = 1;
 
-    private static char socioFamiliar = 'f';
-    private static char socioIndividual = 'i';
+    private Integer insertarHijo = 1;
+
+    private static char tipoSocios = ' ';
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -212,11 +213,6 @@ public class ZOO extends javax.swing.JFrame {
 
         jCanyo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
         jCanyo1.setSelectedIndex(-1);
-        jCanyo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCanyo1ActionPerformed(evt);
-            }
-        });
 
         jBborrarHijo1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -462,7 +458,7 @@ public class ZOO extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPhijo3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPhijo2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -490,6 +486,11 @@ public class ZOO extends javax.swing.JFrame {
         jBnuevoHijo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBnuevoHijoMouseClicked(evt);
+            }
+        });
+        jBnuevoHijo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBnuevoHijoActionPerformed(evt);
             }
         });
 
@@ -732,6 +733,7 @@ public class ZOO extends javax.swing.JFrame {
 
         if (jRfamiliar.isSelected()) {
             modoFamiliar();
+            jBinscribirse.setEnabled(true);
         }
     }//GEN-LAST:event_jRfamiliarMouseClicked
 
@@ -740,6 +742,7 @@ public class ZOO extends javax.swing.JFrame {
 
         if (jRindividual.isSelected()) {
             modoIndividual();
+            jBinscribirse.setEnabled(true);
         }
     }//GEN-LAST:event_jRindividualMouseClicked
 
@@ -911,67 +914,67 @@ public class ZOO extends javax.swing.JFrame {
         jCanyo4.setSelectedIndex(-1);
     }//GEN-LAST:event_jBborrarHijo4MouseClicked
 
-    private void jCanyo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCanyo1ActionPerformed
-        // ENTER AÑO
-
-        if (jCanyo1.getSelectedIndex() == 0) {
-            jBinscribirse.setEnabled(true);
-        }
-
-    }//GEN-LAST:event_jCanyo1ActionPerformed
-
     private void jBinscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscribirseActionPerformed
         // BOTON INSCRIBIRSE
 
         try {
 
-            if (socioFamiliar == ' ' || socioIndividual == ' ') {
-                throw new TipoDeSocioNoEspecificado();
-            }
-
-            if (socioFamiliar == 'f') {
+            if (tipoSocios == 'f') {
+                
                 Controladora.crearHijos(jTnombreHijo1.getText(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
-
-                if (jTnombreHijo2.getText().length() > 1) {
+                
+                    
+                if (jTnombreHijo4.getText().length() > 1) {
                     Controladora.crearHijos(jTnombreHijo2.getText(), jCdia2.getSelectedItem().toString(), jCmes2.getSelectedItem().toString(), jCanyo2.getSelectedItem().toString());
                 }
 
-                if (jTnombreHijo3.getText().length() > 1) {
+                if (jTnombreHijo4.getText().length() > 1) {
                     Controladora.crearHijos(jTnombreHijo3.getText(), jCdia3.getSelectedItem().toString(), jCmes3.getSelectedItem().toString(), jCanyo3.getSelectedItem().toString());
                 }
 
                 if (jTnombreHijo4.getText().length() > 1) {
                     Controladora.crearHijos(jTnombreHijo4.getText(), jCdia4.getSelectedItem().toString(), jCmes4.getSelectedItem().toString(), jCanyo4.getSelectedItem().toString());
                 }
+
+                Controladora.guardarDatos(tipoSocios, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
+
+                throw new TipoDeSocioNoEspecificado();
                 
-                Controladora.guardarDatos(socioFamiliar, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
+            } else if (tipoSocios == 'i') {
+
+                Controladora.guardarDatos(tipoSocios, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
                 
-            } else if (socioFamiliar == 'i') {
-                
-                Controladora.guardarDatos(socioIndividual, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
+                throw new TipoDeSocioNoEspecificado();
             }
 
         } catch (TipoDeSocioNoEspecificado TDSNE) {
-            JOptionPane.showMessageDialog(this, "Selecciones un tipo de SOCIO al inicio.");
-        } 
+            JOptionPane.showMessageDialog(this, "Selecciona un tipo de SOCIO al inicio.");
+        }
     }//GEN-LAST:event_jBinscribirseActionPerformed
 
     private void jRfamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfamiliarActionPerformed
         // ENTER FAMILIAR
 
-        socioFamiliar = 'f';
+        tipoSocios = 'f';
+
+    // jRfamiliar.isSelected()
+
     }//GEN-LAST:event_jRfamiliarActionPerformed
 
     private void jRindividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRindividualActionPerformed
         // ENTER INDIVIDUAL
 
-        socioIndividual = 'i';
+        tipoSocios = 'i';
     }//GEN-LAST:event_jRindividualActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
         // BOTON MAGICO
         Controladora.mostrarDatos();
     }//GEN-LAST:event_jPanel3MouseClicked
+
+    private void jBnuevoHijoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBnuevoHijoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBnuevoHijoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1110,6 +1113,7 @@ public class ZOO extends javax.swing.JFrame {
     }
 
     public void añadeHijos() {
+
         if (null != anadirPanelHijo) {
             switch (anadirPanelHijo) {
                 case 1:
@@ -1160,13 +1164,36 @@ public class ZOO extends javax.swing.JFrame {
     public void validaDatosHijos() {
         try {
 
+            if (null != insertarHijo) {
+                switch (insertarHijo) {
+
+                    case 1:
+
+                        if (jTnombreHijo1.getText().isEmpty() || jCdia1.getSelectedIndex() == -1 || jCmes1.getSelectedIndex() == -1 || jCanyo1.getSelectedIndex() == -1) {
+                            throw new DatosHijosNoValidos();
+                        } else {
+                            Controladora.crearHijos(jTnombreHijo1.getText().toString(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
+                            añadeHijos();
+
+                        }
+
+                        break;
+                    case 2:
+                        jPhijo3.setVisible(false);
+                        jTnombreHijo3.setEnabled(false);
+                        quitarPanelHijo = quitarPanelHijo + 1;
+                        break;
+                    case 3:
+                        jPhijo2.setVisible(false);
+                        jTnombreHijo2.setEnabled(false);
+                        quitarPanelHijo = quitarPanelHijo + 1;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             if (jTnombreHijo1.getText().isEmpty() || jCdia1.getSelectedIndex() == -1 || jCmes1.getSelectedIndex() == -1 || jCanyo1.getSelectedIndex() == -1) {
-                throw new DatosHijosNoValidos();
-            } else if (jTnombreHijo2.getText().isEmpty() || jCdia2.getSelectedIndex() == -1 || jCmes2.getSelectedIndex() == -1 || jCanyo2.getSelectedIndex() == -1) {
-                throw new DatosHijosNoValidos();
-            } else if (jTnombreHijo3.getText().isEmpty() || jCdia3.getSelectedIndex() == -1 || jCmes3.getSelectedIndex() == -1 || jCanyo3.getSelectedIndex() == -1) {
-                throw new DatosHijosNoValidos();
-            } else if (jTnombreHijo4.getText().isEmpty() || jCdia4.getSelectedIndex() == -1 || jCmes4.getSelectedIndex() == -1 || jCanyo4.getSelectedIndex() == -1) {
                 throw new DatosHijosNoValidos();
             }
 
@@ -1192,6 +1219,7 @@ public class ZOO extends javax.swing.JFrame {
                 añadeHijos();
             }
              */
+            añadeHijos();
         } catch (DatosHijosNoValidos DHNV) {
             JOptionPane.showMessageDialog(this, "Alguno de los campos de los HIJOS\n"
                     + "no se ha rellenado correctamente.");
