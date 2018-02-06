@@ -5,10 +5,19 @@
  */
 package Vistas;
 
-import java.awt.Color;
+import tema7_pract3_ejer2.*;
 import Excepciones.*;
+
+import java.awt.Color;
 import java.awt.Desktop;
+import java.io.IOException;
 import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -37,7 +46,10 @@ public class ZOO extends javax.swing.JFrame {
 
     // VARIABLE PARA CONTADOR PANELES HIJOS
     private Integer anadirPanelHijo = 1;
-    private Integer quitarPanelHijo = 4;
+    private Integer quitarPanelHijo = 1;
+
+    private static char socioFamiliar = 'f';
+    private static char socioIndividual = 'i';
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -102,13 +114,14 @@ public class ZOO extends javax.swing.JFrame {
         jBinscribirse = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jL1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
         jL2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jL2.setText("* Si, deseo / deseamos hacerme / hacernos socios/s del Zoo-Club. Cuota de ingreso 15€ ");
+        jL2.setText("* Si, deseo / deseamos hacerme / hacernos socios/s del Aquarium. Cuota de ingreso 15€ ");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("CATEGORIA:");
@@ -120,12 +133,22 @@ public class ZOO extends javax.swing.JFrame {
                 jRfamiliarMouseClicked(evt);
             }
         });
+        jRfamiliar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRfamiliarActionPerformed(evt);
+            }
+        });
 
         grupoTipoSocio.add(jRindividual);
         jRindividual.setText("Socio Individual = 32€");
         jRindividual.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jRindividualMouseClicked(evt);
+            }
+        });
+        jRindividual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRindividualActionPerformed(evt);
             }
         });
 
@@ -166,7 +189,7 @@ public class ZOO extends javax.swing.JFrame {
 
         jLabel1.setText("¡ATENCIÓN!. Esta es una hoja de de inscripción de ejemplo, si desea realmente inscribirse ");
 
-        jLabel2.setText("al Zoo-Club de Barcelona, pinche en el siguiente enlace:");
+        jLabel2.setText("al Aquarium de San Sebastian, pinche en el siguiente enlace:");
 
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(51, 102, 255)));
 
@@ -183,26 +206,21 @@ public class ZOO extends javax.swing.JFrame {
 
         jCdia1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jCdia1.setSelectedIndex(-1);
-        jCdia1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCdia1ActionPerformed(evt);
-            }
-        });
 
         jCmes1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         jCmes1.setSelectedIndex(-1);
 
         jCanyo1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017" }));
         jCanyo1.setSelectedIndex(-1);
+        jCanyo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCanyo1ActionPerformed(evt);
+            }
+        });
 
         jBborrarHijo1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBborrarHijo1MouseClicked(evt);
-            }
-        });
-        jBborrarHijo1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBborrarHijo1ActionPerformed(evt);
             }
         });
 
@@ -230,7 +248,7 @@ public class ZOO extends javax.swing.JFrame {
         jPhijo1Layout.setVerticalGroup(
             jPhijo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPhijo1Layout.createSequentialGroup()
-                .addContainerGap(12, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPhijo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jBborrarHijo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPhijo1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -256,11 +274,6 @@ public class ZOO extends javax.swing.JFrame {
 
         jCdia2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jCdia2.setSelectedIndex(-1);
-        jCdia2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCdia2ActionPerformed(evt);
-            }
-        });
 
         jCmes2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         jCmes2.setSelectedIndex(-1);
@@ -271,11 +284,6 @@ public class ZOO extends javax.swing.JFrame {
         jBborrarHijo2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBborrarHijo2MouseClicked(evt);
-            }
-        });
-        jBborrarHijo2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBborrarHijo2ActionPerformed(evt);
             }
         });
 
@@ -303,7 +311,7 @@ public class ZOO extends javax.swing.JFrame {
         jPhijo2Layout.setVerticalGroup(
             jPhijo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPhijo2Layout.createSequentialGroup()
-                .addContainerGap(15, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPhijo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBborrarHijo2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPhijo2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -329,11 +337,6 @@ public class ZOO extends javax.swing.JFrame {
 
         jCdia3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jCdia3.setSelectedIndex(-1);
-        jCdia3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCdia3ActionPerformed(evt);
-            }
-        });
 
         jCmes3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         jCmes3.setSelectedIndex(-1);
@@ -344,11 +347,6 @@ public class ZOO extends javax.swing.JFrame {
         jBborrarHijo3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBborrarHijo3MouseClicked(evt);
-            }
-        });
-        jBborrarHijo3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBborrarHijo3ActionPerformed(evt);
             }
         });
 
@@ -407,11 +405,6 @@ public class ZOO extends javax.swing.JFrame {
 
         jCdia4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         jCdia4.setSelectedIndex(-1);
-        jCdia4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCdia4ActionPerformed(evt);
-            }
-        });
 
         jCmes4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         jCmes4.setSelectedIndex(-1);
@@ -422,11 +415,6 @@ public class ZOO extends javax.swing.JFrame {
         jBborrarHijo4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBborrarHijo4MouseClicked(evt);
-            }
-        });
-        jBborrarHijo4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBborrarHijo4ActionPerformed(evt);
             }
         });
 
@@ -508,8 +496,15 @@ public class ZOO extends javax.swing.JFrame {
         jBinscribirse.setBackground(new java.awt.Color(0, 204, 204));
         jBinscribirse.setFont(new java.awt.Font("Yu Gothic UI", 1, 14)); // NOI18N
         jBinscribirse.setText("INSCRIBIRSE");
+        jBinscribirse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBinscribirseActionPerformed(evt);
+            }
+        });
 
-        jLabel10.setText("LINK");
+        jLabel10.setText(" Aquarium de San Sebastian");
+        jLabel10.setToolTipText("Abrir Enlace");
+        jLabel10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -521,10 +516,6 @@ public class ZOO extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(56, 56, 56)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jBnuevoHijo)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -532,10 +523,10 @@ public class ZOO extends javax.swing.JFrame {
                             .addGap(37, 37, 37)
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(59, 59, 59)
+                            .addGap(53, 53, 53)
                             .addComponent(jLabel2)
-                            .addGap(33, 33, 33)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel10))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(262, 262, 262)
                             .addComponent(jBinscribirse))
@@ -568,7 +559,11 @@ public class ZOO extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addGap(134, 134, 134)
                                 .addComponent(jL3, javax.swing.GroupLayout.PREFERRED_SIZE, 353, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,15 +579,15 @@ public class ZOO extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTeMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -613,22 +608,41 @@ public class ZOO extends javax.swing.JFrame {
                 .addGap(5, 5, 5))
         );
 
-        jL1.setFont(new java.awt.Font("NSimSun", 3, 14)); // NOI18N
+        jL1.setFont(new java.awt.Font("Yu Gothic UI Semibold", 1, 24)); // NOI18N
         jL1.setText("HOJA DE INSCRIPCION");
         jL1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jPanel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel3MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 65, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 30, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(94, 94, 94)
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jL1, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(286, 286, 286))
+                .addComponent(jL1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(180, 180, 180))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,60 +652,80 @@ public class ZOO extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTnombreHijo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreHijo1ActionPerformed
-        // INTRODUCIR NOMBRE HIJO 1:
-        jCdia1.requestFocus();
+        // INTRODUCIR NOMBRE HIJO 1 
+        try {
+            if (jTnombreHijo1.getText().isEmpty()) {
+                throw new CampoVacio();
+            } else {
+                // PASO A METER DIA HIJO 1
+                jCdia1.requestFocus();
+            }
+        } catch (CampoVacio CV) {
+            JOptionPane.showMessageDialog(this, "El NOMBRE de tu 1er hijo es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
+        }
     }//GEN-LAST:event_jTnombreHijo1ActionPerformed
 
-    private void jCdia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCdia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCdia1ActionPerformed
-
-    private void jBborrarHijo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBborrarHijo1ActionPerformed
-
-        jTnombreHijo1.setText(null);
-        //INICIAL DATOS COMBO A SIN VALOR
-        jCdia1.setSelectedIndex(-1);
-        jCmes1.setSelectedIndex(-1);
-        jCanyo1.setSelectedIndex(-1);
-    }//GEN-LAST:event_jBborrarHijo1ActionPerformed
-
     private void jTnombreHijo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreHijo2ActionPerformed
-        // TODO add your handling code here:
+        // INTRODUCIR NOMBRE HIJO 2
+        try {
+            if (jTnombreHijo2.getText().isEmpty()) {
+                throw new CampoVacio();
+            } else {
+                // PASO A METER DIA HIJO 2
+                jCdia2.requestFocus();
+            }
+        } catch (CampoVacio CV) {
+            JOptionPane.showMessageDialog(this, "El NOMBRE de tu 2º hijo es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
+        }
     }//GEN-LAST:event_jTnombreHijo2ActionPerformed
 
-    private void jCdia2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCdia2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCdia2ActionPerformed
-
-    private void jBborrarHijo2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBborrarHijo2ActionPerformed
-        jTnombreHijo2.setText(null);
-        //INICIAL DATOS COMBO A SIN VALOR
-        jCdia2.setSelectedIndex(-1);
-        jCmes2.setSelectedIndex(-1);
-        jCanyo2.setSelectedIndex(-1);
-    }//GEN-LAST:event_jBborrarHijo2ActionPerformed
-
     private void jTnombreHijo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreHijo3ActionPerformed
-        // TODO add your handling code here:
+        // INTRODUCIR NOMBRE HIJO 3
+
+        try {
+            if (jTnombreHijo3.getText().isEmpty()) {
+                throw new CampoVacio();
+            } else {
+                // PASO A METER DIA HIJO 3
+                jCdia3.requestFocus();
+            }
+        } catch (CampoVacio CV) {
+            JOptionPane.showMessageDialog(this, "El NOMBRE de tu 3er hijo es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
+        }
     }//GEN-LAST:event_jTnombreHijo3ActionPerformed
 
-    private void jCdia3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCdia3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCdia3ActionPerformed
-
     private void jTnombreHijo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTnombreHijo4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTnombreHijo4ActionPerformed
+        // INTRODUCIR NOMBRE HIJO 4
 
-    private void jCdia4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCdia4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCdia4ActionPerformed
+        try {
+            if (jTnombreHijo4.getText().isEmpty()) {
+                throw new CampoVacio();
+            } else {
+                // PASO A METER DIA HIJO 4
+                jCdia4.requestFocus();
+            }
+        } catch (CampoVacio CV) {
+            JOptionPane.showMessageDialog(this, "El NOMBRE de tu 4º hijo es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
+        }
+    }//GEN-LAST:event_jTnombreHijo4ActionPerformed
 
     private void jRfamiliarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRfamiliarMouseClicked
         // AL CLICKAR BOTON FAMILIAR
@@ -705,9 +739,7 @@ public class ZOO extends javax.swing.JFrame {
         // AL CLICKAR BOTON INDIVIDUAL
 
         if (jRindividual.isSelected()) {
-
             modoIndividual();
-
         }
     }//GEN-LAST:event_jRindividualMouseClicked
 
@@ -722,7 +754,9 @@ public class ZOO extends javax.swing.JFrame {
             jTapellidos.setEnabled(true);
             jTapellidos.requestFocus();
         } catch (CampoVacio CV) {
-            javax.swing.JOptionPane.showMessageDialog(null, "El campo NOMBRE es obligatorio");
+            JOptionPane.showMessageDialog(this, "El campo NOMBRE es obligatorio");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
 
     }//GEN-LAST:event_jTnombreActionPerformed
@@ -738,7 +772,9 @@ public class ZOO extends javax.swing.JFrame {
             jTtelefono.setEnabled(true);
             jTtelefono.requestFocus();
         } catch (CampoVacio CV) {
-            javax.swing.JOptionPane.showMessageDialog(null, "El campo APELLIDOS es obligatorio");
+            JOptionPane.showMessageDialog(this, "El campo APELLIDOS es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
     }//GEN-LAST:event_jTapellidosActionPerformed
 
@@ -746,48 +782,69 @@ public class ZOO extends javax.swing.JFrame {
         // ENTER TELEFONO
 
         try {
+
             if (jTtelefono.getText().isEmpty()) {
                 throw new CampoVacio();
             }
-            jTeMail.setEnabled(true);
-            jTeMail.requestFocus();
+
+            //VALIDO EL NUMERO DE TELEFONO
+            Pattern pat = Pattern.compile("[0-9]{9}");
+            Matcher mat = pat.matcher(jTtelefono.getText());
+
+            //SI CUMPLE EL PATRON
+            if (mat.find() == true) {
+                jTeMail.setEnabled(true);
+                jTeMail.requestFocus();
+            } else {
+                JOptionPane.showMessageDialog(this, "Lo siento el TELEFONO introducido no es valido. \n"
+                        + "Solo numeros y como maximo 9 digitos. \n"
+                        + "Ejemplo: 902202122 o 646456789.");
+                jTtelefono.setText("");
+            }
+
         } catch (CampoVacio CV) {
-            javax.swing.JOptionPane.showMessageDialog(null, "El campo TELEFONO es obligatorio");
+            JOptionPane.showMessageDialog(this, "El campo TELEFONO es obligatorio.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
+
     }//GEN-LAST:event_jTtelefonoActionPerformed
 
     private void jTeMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTeMailActionPerformed
         // ENTER EMAIL
 
         try {
-            if (jTtelefono.getText().isEmpty()) {
+
+            if (jTeMail.getText().isEmpty()) {
                 throw new CampoVacio();
             }
-            jTnombreHijo1.setEnabled(true);
-            jTnombreHijo1.requestFocus();
 
+            //VALIDO EMAIL
+            Pattern pat = Pattern.compile("^[_a-z0-9-]+(.[_a-z0-9-]+)*@[a-z0-9-]+(.[a-z0-9-]+)*(.[a-z]{2,4})$");
+            Matcher mat = pat.matcher(jTeMail.getText());
+
+            //SI CUMPLE EL PATRON
+            if (mat.find() == true) {
+                jTnombreHijo1.setEnabled(true);
+                jTnombreHijo1.requestFocus();
+            } else {
+                javax.swing.JOptionPane.showMessageDialog(this, "Lo siento el EMAIL introducido no es valido.\n"
+                        + "Has de cumplir con el siguiente patron:\n"
+                        + "nombrecorreo@nombreproveedor.dominio");
+                jTeMail.setText("");
+            }
         } catch (CampoVacio CV) {
-            javax.swing.JOptionPane.showMessageDialog(null, "El campo EMAIL es obligatorio");
+            JOptionPane.showMessageDialog(this, "El campo EMAIL es obligatorio");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
+
     }//GEN-LAST:event_jTeMailActionPerformed
 
     private void jBnuevoHijoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBnuevoHijoMouseClicked
         // CLICK AÑADIR HIJOS
 
-        if (anadirPanelHijo == 1) {
-            jPhijo2.setVisible(true);
-            jTnombreHijo2.setEnabled(true);
-            anadirPanelHijo = anadirPanelHijo + 1;
-        } else if (anadirPanelHijo == 2) {
-            jPhijo3.setVisible(true);
-            jTnombreHijo3.setEnabled(true);
-            anadirPanelHijo += 1;
-        } else if (anadirPanelHijo == 3) {
-            jPhijo4.setVisible(true);
-            jTnombreHijo4.setEnabled(true);
-            anadirPanelHijo += 1;
-        }
-
+        validaDatosHijos();
 
     }//GEN-LAST:event_jBnuevoHijoMouseClicked
 
@@ -797,57 +854,124 @@ public class ZOO extends javax.swing.JFrame {
         if (java.awt.Desktop.isDesktopSupported()) {
             try {
                 Desktop dk = Desktop.getDesktop();
-                dk.browse(new URI("https://www.google.es/"));
-            } catch (Exception e) {
-                System.out.println("Error al abrir URL: " + e.getMessage());
+                dk.browse(new URI("http://aquariumss.com/Tarifas"));
+
+                throw new AvisoGenerarLink();
+
+            } catch (AvisoGenerarLink PGL) {
+                System.out.println("GenerandoLink");
+            } catch (URISyntaxException | IOException ex) {
+                Logger.getLogger(ZOO.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_jLabel10MouseClicked
 
-    private void jBborrarHijo3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBborrarHijo3ActionPerformed
-        // TODO add your handling code here:
-
-        jTnombreHijo3.setText(null);
-        //INICIAL DATOS COMBO A SIN VALOR
-        jCdia3.setSelectedIndex(-1);
-        jCmes3.setSelectedIndex(-1);
-        jCanyo3.setSelectedIndex(-1);
-    }//GEN-LAST:event_jBborrarHijo3ActionPerformed
-
-    private void jBborrarHijo4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBborrarHijo4ActionPerformed
-        // TODO add your handling code here:
-
-        jTnombreHijo4.setText(null);
-        //INICIAL DATOS COMBO A SIN VALOR
-        jCdia4.setSelectedIndex(-1);
-        jCmes4.setSelectedIndex(-1);
-        jCanyo4.setSelectedIndex(-1);
-    }//GEN-LAST:event_jBborrarHijo4ActionPerformed
-
     private void jBborrarHijo1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBborrarHijo1MouseClicked
         // CLICK ELIMINAR HIJO 1
 
+        jTnombreHijo1.setText(null);
+        //INICIAL DATOS COMBO A SIN VALOR
+        jCdia1.setSelectedIndex(-1);
+        jCmes1.setSelectedIndex(-1);
+        jCanyo1.setSelectedIndex(-1);
 
     }//GEN-LAST:event_jBborrarHijo1MouseClicked
 
     private void jBborrarHijo2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBborrarHijo2MouseClicked
         // CLICK ELIMINAR HIJO 2
+        quitaHijos();
 
-        jPhijo2.setVisible(false);
+        //RESETEAR VALORES
+        jTnombreHijo2.setText(null);
+        jCdia2.setSelectedIndex(-1);
+        jCmes2.setSelectedIndex(-1);
+        jCanyo2.setSelectedIndex(-1);
     }//GEN-LAST:event_jBborrarHijo2MouseClicked
 
     private void jBborrarHijo3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBborrarHijo3MouseClicked
-        // TODO add your handling code here:
-        
-           jPhijo3.setVisible(false);
+        // CLICK ELIMINAR HIJO 3
+
+        quitaHijos();
+
+        //RESETEAR VALORES
+        jTnombreHijo3.setText(null);
+        jCdia3.setSelectedIndex(-1);
+        jCmes3.setSelectedIndex(-1);
+        jCanyo3.setSelectedIndex(-1);
     }//GEN-LAST:event_jBborrarHijo3MouseClicked
 
     private void jBborrarHijo4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBborrarHijo4MouseClicked
-        // TODO add your handling code here:
-        
-  
-                jPhijo4.setVisible(false);
+        // CLICK ELIMINAR HIJO 4
+        quitaHijos();
+
+        //RESETEAR VALORES
+        jTnombreHijo4.setText(null);
+        jCdia4.setSelectedIndex(-1);
+        jCmes4.setSelectedIndex(-1);
+        jCanyo4.setSelectedIndex(-1);
     }//GEN-LAST:event_jBborrarHijo4MouseClicked
+
+    private void jCanyo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCanyo1ActionPerformed
+        // ENTER AÑO
+
+        if (jCanyo1.getSelectedIndex() == 0) {
+            jBinscribirse.setEnabled(true);
+        }
+
+    }//GEN-LAST:event_jCanyo1ActionPerformed
+
+    private void jBinscribirseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBinscribirseActionPerformed
+        // BOTON INSCRIBIRSE
+
+        try {
+
+            if (socioFamiliar == ' ' || socioIndividual == ' ') {
+                throw new TipoDeSocioNoEspecificado();
+            }
+
+            if (socioFamiliar == 'f') {
+                Controladora.crearHijos(jTnombreHijo1.getText(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
+
+                if (jTnombreHijo2.getText().length() > 1) {
+                    Controladora.crearHijos(jTnombreHijo2.getText(), jCdia2.getSelectedItem().toString(), jCmes2.getSelectedItem().toString(), jCanyo2.getSelectedItem().toString());
+                }
+
+                if (jTnombreHijo3.getText().length() > 1) {
+                    Controladora.crearHijos(jTnombreHijo3.getText(), jCdia3.getSelectedItem().toString(), jCmes3.getSelectedItem().toString(), jCanyo3.getSelectedItem().toString());
+                }
+
+                if (jTnombreHijo4.getText().length() > 1) {
+                    Controladora.crearHijos(jTnombreHijo4.getText(), jCdia4.getSelectedItem().toString(), jCmes4.getSelectedItem().toString(), jCanyo4.getSelectedItem().toString());
+                }
+                
+                Controladora.guardarDatos(socioFamiliar, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
+                
+            } else if (socioFamiliar == 'i') {
+                
+                Controladora.guardarDatos(socioIndividual, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
+            }
+
+        } catch (TipoDeSocioNoEspecificado TDSNE) {
+            JOptionPane.showMessageDialog(this, "Selecciones un tipo de SOCIO al inicio.");
+        } 
+    }//GEN-LAST:event_jBinscribirseActionPerformed
+
+    private void jRfamiliarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRfamiliarActionPerformed
+        // ENTER FAMILIAR
+
+        socioFamiliar = 'f';
+    }//GEN-LAST:event_jRfamiliarActionPerformed
+
+    private void jRindividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRindividualActionPerformed
+        // ENTER INDIVIDUAL
+
+        socioIndividual = 'i';
+    }//GEN-LAST:event_jRindividualActionPerformed
+
+    private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
+        // BOTON MAGICO
+        Controladora.mostrarDatos();
+    }//GEN-LAST:event_jPanel3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -925,6 +1049,7 @@ public class ZOO extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPhijo1;
     private javax.swing.JPanel jPhijo2;
     private javax.swing.JPanel jPhijo3;
@@ -982,5 +1107,96 @@ public class ZOO extends javax.swing.JFrame {
         jTapellidos.setEnabled(false);
         jTtelefono.setEnabled(false);
         jTeMail.setEnabled(false);
+    }
+
+    public void añadeHijos() {
+        if (null != anadirPanelHijo) {
+            switch (anadirPanelHijo) {
+                case 1:
+                    jPhijo2.setVisible(true);
+                    jTnombreHijo2.setEnabled(true);
+                    anadirPanelHijo = anadirPanelHijo + 1;
+                    break;
+                case 2:
+                    jPhijo3.setVisible(true);
+                    jTnombreHijo3.setEnabled(true);
+                    anadirPanelHijo += 1;
+                    break;
+                case 3:
+                    jPhijo4.setVisible(true);
+                    jTnombreHijo4.setEnabled(true);
+                    anadirPanelHijo += 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void quitaHijos() {
+        if (null != quitarPanelHijo) {
+            switch (quitarPanelHijo) {
+                case 1:
+                    jPhijo4.setVisible(false);
+                    jTnombreHijo4.setEnabled(false);
+                    quitarPanelHijo = quitarPanelHijo + 1;
+                    break;
+                case 2:
+                    jPhijo3.setVisible(false);
+                    jTnombreHijo3.setEnabled(false);
+                    quitarPanelHijo = quitarPanelHijo + 1;
+                    break;
+                case 3:
+                    jPhijo2.setVisible(false);
+                    jTnombreHijo2.setEnabled(false);
+                    quitarPanelHijo = quitarPanelHijo + 1;
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void validaDatosHijos() {
+        try {
+
+            if (jTnombreHijo1.getText().isEmpty() || jCdia1.getSelectedIndex() == -1 || jCmes1.getSelectedIndex() == -1 || jCanyo1.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else if (jTnombreHijo2.getText().isEmpty() || jCdia2.getSelectedIndex() == -1 || jCmes2.getSelectedIndex() == -1 || jCanyo2.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else if (jTnombreHijo3.getText().isEmpty() || jCdia3.getSelectedIndex() == -1 || jCmes3.getSelectedIndex() == -1 || jCanyo3.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else if (jTnombreHijo4.getText().isEmpty() || jCdia4.getSelectedIndex() == -1 || jCmes4.getSelectedIndex() == -1 || jCanyo4.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            }
+
+            /*
+            if (jBborrarHijo1.getText().isEmpty() || jCdia1.getSelectedIndex() == -1 || jCmes1.getSelectedIndex() == -1 || jCanyo1.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else {
+                añadeHijos();
+            }
+            if (jBborrarHijo2.getText().isEmpty() || jCdia2.getSelectedIndex() == -1 || jCmes2.getSelectedIndex() == -1 || jCanyo2.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else {
+                añadeHijos();
+            }
+            if (jBborrarHijo3.getText().isEmpty() || jCdia3.getSelectedIndex() == -1 || jCmes3.getSelectedIndex() == -1 || jCanyo3.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else {
+                añadeHijos();
+            }
+            if (jBborrarHijo4.getText().isEmpty() || jCdia4.getSelectedIndex() == -1 || jCmes4.getSelectedIndex() == -1 || jCanyo4.getSelectedIndex() == -1) {
+                throw new DatosHijosNoValidos();
+            } else {
+                añadeHijos();
+            }
+             */
+        } catch (DatosHijosNoValidos DHNV) {
+            JOptionPane.showMessageDialog(this, "Alguno de los campos de los HIJOS\n"
+                    + "no se ha rellenado correctamente.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
+        }
     }
 }

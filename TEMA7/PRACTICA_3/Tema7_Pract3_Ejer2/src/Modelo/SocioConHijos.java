@@ -22,13 +22,17 @@ public class SocioConHijos extends Socio{
         this.listaHijos = listaHijos;
     }
 
+    public SocioConHijos(String nombre, String apellidos, String telefono, String email) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     public ArrayList<Hijo> getListaHijos() {
         return listaHijos;
     }
 
     public void setListaHijos(ArrayList<Hijo> listaHijos) {
         this.listaHijos = listaHijos;
-    }
+}
     
 
 
