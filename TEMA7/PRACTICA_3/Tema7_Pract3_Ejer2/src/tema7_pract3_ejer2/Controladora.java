@@ -34,8 +34,9 @@ public class Controladora {
         z.setVisible(true);
     }
 
-    public static void crearHijos(String nombreHijo, String diaNace, String mesNace, String anioNace) {
+    public static Integer crearHijos(String nombreHijo, String diaNace, String mesNace, String anioNace) {
         listaHijos.add(new Hijo(nombreHijo, diaNace, mesNace, anioNace));
+        return listaHijos.size();
     }
 
     public static void guardarDatos(char tipoSocios, String nombre, String apellidos, String telefono, String email) {
@@ -59,7 +60,14 @@ public class Controladora {
     }
 
     public static void mostrarDatos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String datos="";
+        for(int i=0;i<sinHijos.size();i++){
+            
+            datos+=sinHijos.get(i).getNombre();
+            
+        }
+        
+        System.out.println(datos);
     }
 
     

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
 
 import tema7_pract3_ejer2.*;
@@ -739,8 +734,9 @@ public class ZOO extends javax.swing.JFrame {
 
     private void jRindividualMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRindividualMouseClicked
         // AL CLICKAR BOTON INDIVIDUAL
-
+        tipoSocios = 'i';
         if (jRindividual.isSelected()) {
+             
             modoIndividual();
             jBinscribirse.setEnabled(true);
         }
@@ -923,7 +919,18 @@ public class ZOO extends javax.swing.JFrame {
                 
                 Controladora.crearHijos(jTnombreHijo1.getText(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
                 
-                    
+                /*
+                Ejemplo 1
+                jTnombreHijo4.getText() == jTnombreHijo4.getText()
+                
+                Ejemplo 2
+                jTnombreHijo4.getText().equals(jTnombreHijo4.getText()
+                
+                Ejemplo 3
+                Como esta.
+                */
+                
+                
                 if (jTnombreHijo4.getText().length() > 1) {
                     Controladora.crearHijos(jTnombreHijo2.getText(), jCdia2.getSelectedItem().toString(), jCmes2.getSelectedItem().toString(), jCanyo2.getSelectedItem().toString());
                 }
@@ -938,12 +945,14 @@ public class ZOO extends javax.swing.JFrame {
 
                 Controladora.guardarDatos(tipoSocios, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
 
-                throw new TipoDeSocioNoEspecificado();
+                
                 
             } else if (tipoSocios == 'i') {
 
                 Controladora.guardarDatos(tipoSocios, jTnombre.getText(), jTapellidos.getText(), jTtelefono.getText(), jTeMail.getText());
                 
+                
+            }else{
                 throw new TipoDeSocioNoEspecificado();
             }
 
@@ -964,7 +973,7 @@ public class ZOO extends javax.swing.JFrame {
     private void jRindividualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRindividualActionPerformed
         // ENTER INDIVIDUAL
 
-        tipoSocios = 'i';
+       
     }//GEN-LAST:event_jRindividualActionPerformed
 
     private void jPanel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel3MouseClicked
@@ -1112,48 +1121,48 @@ public class ZOO extends javax.swing.JFrame {
         jTeMail.setEnabled(false);
     }
 
-    public void añadeHijos() {
-
-        if (null != anadirPanelHijo) {
-            switch (anadirPanelHijo) {
+    public void añadeHijos(Integer num) {
+        
+        
+            switch (num) {
                 case 1:
                     jPhijo2.setVisible(true);
                     jTnombreHijo2.setEnabled(true);
-                    anadirPanelHijo = anadirPanelHijo + 1;
+                  
                     break;
                 case 2:
                     jPhijo3.setVisible(true);
                     jTnombreHijo3.setEnabled(true);
-                    anadirPanelHijo += 1;
+                   
                     break;
                 case 3:
                     jPhijo4.setVisible(true);
                     jTnombreHijo4.setEnabled(true);
-                    anadirPanelHijo += 1;
+                    //anadirPanelH++;
                     break;
                 default:
                     break;
             }
-        }
+        
     }
 
     public void quitaHijos() {
-        if (null != quitarPanelHijo) {
-            switch (quitarPanelHijo) {
+        if (null != anadirPanelHijo) {
+            switch (anadirPanelHijo) {
                 case 1:
                     jPhijo4.setVisible(false);
                     jTnombreHijo4.setEnabled(false);
-                    quitarPanelHijo = quitarPanelHijo + 1;
+                    anadirPanelHijo = anadirPanelHijo - 1;
                     break;
                 case 2:
                     jPhijo3.setVisible(false);
                     jTnombreHijo3.setEnabled(false);
-                    quitarPanelHijo = quitarPanelHijo + 1;
+                    anadirPanelHijo = anadirPanelHijo - 1;
                     break;
                 case 3:
                     jPhijo2.setVisible(false);
                     jTnombreHijo2.setEnabled(false);
-                    quitarPanelHijo = quitarPanelHijo + 1;
+                    anadirPanelHijo = anadirPanelHijo - 1;
                     break;
                 default:
                     break;
@@ -1172,8 +1181,8 @@ public class ZOO extends javax.swing.JFrame {
                         if (jTnombreHijo1.getText().isEmpty() || jCdia1.getSelectedIndex() == -1 || jCmes1.getSelectedIndex() == -1 || jCanyo1.getSelectedIndex() == -1) {
                             throw new DatosHijosNoValidos();
                         } else {
-                            Controladora.crearHijos(jTnombreHijo1.getText().toString(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
-                            añadeHijos();
+                            Integer numeroHijos=Controladora.crearHijos(jTnombreHijo1.getText(), jCdia1.getSelectedItem().toString(), jCmes1.getSelectedItem().toString(), jCanyo1.getSelectedItem().toString());
+                            añadeHijos(numeroHijos);
 
                         }
 
@@ -1219,7 +1228,7 @@ public class ZOO extends javax.swing.JFrame {
                 añadeHijos();
             }
              */
-            añadeHijos();
+           // añadeHijos();
         } catch (DatosHijosNoValidos DHNV) {
             JOptionPane.showMessageDialog(this, "Alguno de los campos de los HIJOS\n"
                     + "no se ha rellenado correctamente.");
