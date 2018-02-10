@@ -1,11 +1,11 @@
 /**
  * @author 1gdaw09
  */
-
 package Vistas;
 
 //IMPORTS
 import Modelo.*;
+import Excepciones.*;
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -17,15 +17,19 @@ import tema7_practica4.*;
 
 public class InicioSesion extends javax.swing.JFrame {
 
-    /**
-     * Creates new form InicioSesion
-     */
+    public int contadorFallos = 2;
+
     public InicioSesion() {
         initComponents();
-        
+
         //ESTADOS PREVIOS DE LA VENTANA
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        jTuser.setEnabled(false);
+        jPass.setEnabled(false);
+        jRsi.setEnabled(false);
+        jRno.setEnabled(false);
+        jBiniciar.setEnabled(false);
     }
 
     /**
@@ -62,9 +66,19 @@ public class InicioSesion extends javax.swing.JFrame {
 
         condicion.add(jRsi);
         jRsi.setText("Sí, acepto");
+        jRsi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRsiActionPerformed(evt);
+            }
+        });
 
         condicion.add(jRno);
         jRno.setText("No acepto");
+        jRno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRnoActionPerformed(evt);
+            }
+        });
 
         jBver.setText("Ver Condiciones de Uso");
         jBver.addActionListener(new java.awt.event.ActionListener() {
@@ -74,6 +88,11 @@ public class InicioSesion extends javax.swing.JFrame {
         });
 
         jBiniciar.setText("Iniciar Sesion");
+        jBiniciar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBiniciarActionPerformed(evt);
+            }
+        });
 
         jBvolver.setText("Volver al Menu");
         jBvolver.addActionListener(new java.awt.event.ActionListener() {
@@ -120,16 +139,19 @@ public class InicioSesion extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(73, 73, 73)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTuser))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jTuser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBver)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -148,7 +170,7 @@ public class InicioSesion extends javax.swing.JFrame {
     private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
         // ACTION BOTON VOLVER
         try {
-            if (JOptionPane.showConfirmDialog(this, "¿Esta seguro/a de regresar al Menú Inicio?")==0) {
+            if (JOptionPane.showConfirmDialog(this, "¿Esta seguro/a de regresar al Menú Inicio?") == 0) {
                 Controladora.volverAlMenuInicio();
                 this.dispose();
             }
@@ -158,7 +180,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
         // ACCION BOTON VER CONDICIONES
-        
+
         if (java.awt.Desktop.isDesktopSupported()) {
             try {
                 Desktop dk = Desktop.getDesktop();
@@ -168,8 +190,65 @@ public class InicioSesion extends javax.swing.JFrame {
                 Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        
+        jRsi.setEnabled(true);
+        jRno.setEnabled(true);
+
+
     }//GEN-LAST:event_jBverActionPerformed
+
+    private void jRsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRsiActionPerformed
+        // ACCION CLICK SI
+
+        if (jRsi.isSelected()) {
+            jBiniciar.setEnabled(true);
+            jTuser.setEnabled(true);
+            jPass.setEnabled(true);
+        }
+    }//GEN-LAST:event_jRsiActionPerformed
+
+    private void jBiniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBiniciarActionPerformed
+        // ACCION INICIO SESION
+
+        try {
+            if (contadorFallos == 0) {
+
+                JOptionPane.showMessageDialog(this, "Amenaza XD");
+                Controladora.cerrarVentanas();
+            }
+            if (jTuser.getText().isEmpty() || jPass.getPassword().equals("")) {
+                throw new CampoVacio();
+            } else {
+                int exite = Controladora.comprobarUsuario(jTuser.getText(), jPass.getPassword());
+                if (exite == 1) {
+                        Controladora.abrirVentanaGestionPersonal(jTuser.getText());
+                        
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El usuario o clave no existen");
+                    }
+            }
+
+        } catch (CampoVacio cV) {
+            JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacios");
+            
+        } catch (Exception e) {
+           
+        }
+        contadorFallos--;
+        System.out.println(contadorFallos);
+
+    }//GEN-LAST:event_jBiniciarActionPerformed
+
+    private void jRnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRnoActionPerformed
+        // ACCION CLICK NO
+
+        if (jRno.isSelected()) {
+            jBiniciar.setEnabled(false);
+            jTuser.setEnabled(false);
+            jPass.setEnabled(false);
+            JOptionPane.showMessageDialog(this, "Si no aceptas las condiciones de uso"
+                    + "\no podras iniciar la sesion. ");
+        }
+    }//GEN-LAST:event_jRnoActionPerformed
 
     /**
      * @param args the command line arguments
