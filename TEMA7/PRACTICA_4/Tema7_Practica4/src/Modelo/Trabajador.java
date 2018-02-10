@@ -1,5 +1,7 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 /**
  * @author 1gdaw09
  */
@@ -11,39 +13,53 @@ public class Trabajador extends Persona{
     // RELACIONES
     private Login login;
     
+    private ArrayList <Contrato> listaContratos;
+    
     private Departamento departamento;
-    private Contrato contrato;
+    
 
     //CONTRUCTORES
+
     public Trabajador() {
+    }
+
+    public Trabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
+        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+    }
+
+    public Trabajador(String numeroEmpleado) {
+        this.numeroEmpleado = numeroEmpleado;
     }
 
     public Trabajador(Login login) {
         this.login = login;
     }
 
-    public Trabajador(Departamento departamento, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
-        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-        this.departamento = departamento;
-    }
-    
-
-    public Trabajador(String numeroEmpleado, Login login, Departamento departamento, Contrato contrato) {
-        this.numeroEmpleado = numeroEmpleado;
-        this.login = login;
-        this.departamento = departamento;
-        this.contrato = contrato;
+    public Trabajador(ArrayList<Contrato> listaContratos) {
+        this.listaContratos = listaContratos;
     }
 
-    public Trabajador(String numeroEmpleado, Login login, Departamento departamento, Contrato contrato, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
+    public Trabajador(Departamento departamento) {
+        this.departamento = departamento;
+    }
+
+    public Trabajador(String numeroEmpleado, Login login, ArrayList<Contrato> listaContratos, Departamento departamento) {
+        this.numeroEmpleado = numeroEmpleado;
+        this.login = login;
+        this.listaContratos = listaContratos;
+        this.departamento = departamento;
+    }
+
+    public Trabajador(String numeroEmpleado, Login login, ArrayList<Contrato> listaContratos, Departamento departamento, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
         super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
         this.numeroEmpleado = numeroEmpleado;
         this.login = login;
+        this.listaContratos = listaContratos;
         this.departamento = departamento;
-        this.contrato = contrato;
     }
     
     //GETTERS & SETTERS
+
     public String getNumeroEmpleado() {
         return numeroEmpleado;
     }
@@ -60,20 +76,20 @@ public class Trabajador extends Persona{
         this.login = login;
     }
 
+    public ArrayList<Contrato> getListaContratos() {
+        return listaContratos;
+    }
+
+    public void setListaContratos(ArrayList<Contrato> listaContratos) {
+        this.listaContratos = listaContratos;
+    }
+
     public Departamento getDepartamento() {
         return departamento;
     }
 
     public void setDepartamento(Departamento departamento) {
         this.departamento = departamento;
-    }
-
-    public Contrato getContrato() {
-        return contrato;
-    }
-
-    public void setContrato(Contrato contrato) {
-        this.contrato = contrato;
     }
 
     public String getDni() {
@@ -140,6 +156,7 @@ public class Trabajador extends Persona{
         this.estadoCivil = estadoCivil;
     }
     
+   
     
     
 }

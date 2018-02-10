@@ -27,6 +27,7 @@ public class Controladora {
 
     }
     
+    //GESTION DE VENTANAS
     public static void abrirVentanaMenuInicio(MenuInicio menuInicio) {
         mI.setVisible(true);
     }
@@ -41,6 +42,10 @@ public class Controladora {
     
     public static void cerrarVentanas() {
         System.exit(0);
+    }
+    
+    public static void volverAlMenuInicio() {
+        mI.setVisible(true);
     }
     
 }

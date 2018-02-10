@@ -9,22 +9,12 @@ public class Login {
     private String usuario;
     private String contrasena;
     
-    //RELACIONES
-    private Trabajador trabajador;
-    
     //CONTRUCTORES
     public Login() {
     }
-
-    public Login(String usuario, String contrasena) {
+        public Login(String usuario, String contrasena) {
         this.usuario = usuario;
         this.contrasena = contrasena;
-    }  
-
-    public Login(String usuario, String contrasena, Trabajador trabajador) {
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.trabajador = trabajador;
     }
     
     //GETTERS & SETTERS
@@ -44,13 +34,10 @@ public class Login {
         this.contrasena = contrasena;
     }
 
-    public Trabajador getTrabajador() {
-        return trabajador;
-    }
 
-    public void setTrabajador(Trabajador trabajador) {
-        this.trabajador = trabajador;
-    }
+
+    
+    
     
     
 }
