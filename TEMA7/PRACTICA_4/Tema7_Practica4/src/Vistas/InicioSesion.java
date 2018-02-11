@@ -184,7 +184,7 @@ public class InicioSesion extends javax.swing.JFrame {
         if (java.awt.Desktop.isDesktopSupported()) {
             try {
                 Desktop dk = Desktop.getDesktop();
-                dk.browse(new URI("https://www.sonypictures.com/corp/tos.html"));
+                dk.browse(new URI(""));
 
             } catch (URISyntaxException | IOException ex) {
                 Logger.getLogger(InicioSesion.class.getName()).log(Level.SEVERE, null, ex);

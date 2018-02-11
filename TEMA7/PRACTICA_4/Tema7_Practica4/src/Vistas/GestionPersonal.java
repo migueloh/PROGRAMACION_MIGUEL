@@ -1,7 +1,13 @@
 package Vistas;
 
 import Modelo.*;
+import javax.swing.JOptionPane;
 import tema7_practica4.*;
+
+/*
+ String lista = Controladora.mostrarListaTrabajadores();
+        Controladora.abrirVentanaMostrarDatos(lista);
+*/
 
 /**
  * @author 1gdaw09
@@ -10,10 +16,12 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     /**
      * Creates new form GestionPersonal
+     *
      * @param nombre
      */
     public GestionPersonal(String nombre) {
         initComponents();
+        jBdarbaja.setVisible(false);
 
         jLbienvenida.setText(nombre);
     }
@@ -60,6 +68,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLbienvenida = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jTdireccion = new javax.swing.JTextField();
+        jBdarbaja = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMsesion = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
@@ -72,10 +81,10 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMbaja = new javax.swing.JMenuItem();
         jMlistar = new javax.swing.JMenu();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
+        jMlistarNempleado = new javax.swing.JMenuItem();
+        jMlistarDepart = new javax.swing.JMenuItem();
+        jMlistarContrato = new javax.swing.JMenuItem();
+        jMlistarTodo = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,7 +100,7 @@ public class GestionPersonal extends javax.swing.JFrame {
 
         jLabel6.setText("Sexo");
 
-        jBaceptar.setText("Aceptar");
+        jBaceptar.setText("DAR DE ALTA");
         jBaceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBaceptarActionPerformed(evt);
@@ -112,9 +121,16 @@ public class GestionPersonal extends javax.swing.JFrame {
         estadoCivil.add(jRmatrimonio);
         jRmatrimonio.setText("Casado / Casada");
 
-        jCtipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCtipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fijo", "Discontinuo" }));
+        jCtipoContrato.setSelectedIndex(-1);
 
-        jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gestion Personal", "Comerciales", "Servicio Tecnico", "Asistencia", " " }));
+
+        jTdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTdniActionPerformed(evt);
+            }
+        });
 
         jLabel7.setText("Estado Civil");
 
@@ -135,6 +151,13 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLbienvenida.setText("nope");
 
         jLabel14.setText("Dirección");
+
+        jBdarbaja.setText("DAR DE BAJA");
+        jBdarbaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdarbajaActionPerformed(evt);
+            }
+        });
 
         jMsesion.setText("Archivo");
         jMsesion.add(jSeparator3);
@@ -157,6 +180,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMadmin.add(jMmodificar);
 
         jMbaja.setText("Dar de Baja");
+        jMbaja.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMbajaActionPerformed(evt);
+            }
+        });
         jMadmin.add(jMbaja);
 
         jMenuBar1.add(jMadmin);
@@ -164,36 +192,27 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.setText("Generar Listados");
         jMlistar.add(jSeparator2);
 
-        jMenuItem2.setText("Listado por Nº Empleado");
-        jMlistar.add(jMenuItem2);
+        jMlistarNempleado.setText("Listado por Nº Empleado");
+        jMlistar.add(jMlistarNempleado);
 
-        jMenuItem3.setText("Listado por Departamento");
-        jMlistar.add(jMenuItem3);
-
-        jMenuItem4.setText("Listado por Contrato");
-        jMlistar.add(jMenuItem4);
-
-        jMenuItem5.setText("Listado Completo de Empleados");
-        jMenuItem5.addMenuKeyListener(new javax.swing.event.MenuKeyListener() {
-            public void menuKeyPressed(javax.swing.event.MenuKeyEvent evt) {
-                jMenuItem5MenuKeyPressed(evt);
-            }
-            public void menuKeyReleased(javax.swing.event.MenuKeyEvent evt) {
-            }
-            public void menuKeyTyped(javax.swing.event.MenuKeyEvent evt) {
-            }
-        });
-        jMenuItem5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenuItem5MouseClicked(evt);
-            }
-        });
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jMlistarDepart.setText("Listado por Departamento");
+        jMlistarDepart.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jMlistarDepartActionPerformed(evt);
             }
         });
-        jMlistar.add(jMenuItem5);
+        jMlistar.add(jMlistarDepart);
+
+        jMlistarContrato.setText("Listado por Contrato");
+        jMlistar.add(jMlistarContrato);
+
+        jMlistarTodo.setText("Listado Completo de Empleados");
+        jMlistarTodo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarTodoActionPerformed(evt);
+            }
+        });
+        jMlistar.add(jMlistarTodo);
 
         jMenuBar1.add(jMlistar);
 
@@ -206,56 +225,59 @@ public class GestionPersonal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(114, 114, 114)
                 .addComponent(jBaceptar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBdarbaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBsalir, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(112, 112, 112))
+                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel5))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jCtipoContrato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jCdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRsolteria)
-                                        .addComponent(jRhombre))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jRmujer)
-                                        .addComponent(jRmatrimonio))))
-                            .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel13)
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(29, 29, 29)
                         .addComponent(jLbienvenida, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel14))
-                        .addGap(62, 62, 62)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTnss, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
-                            .addComponent(jTnombre)
-                            .addComponent(jTapellidos)
-                            .addComponent(jTdni)
-                            .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel13)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel9)
+                                    .addComponent(jLabel10)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel5))
+                                .addGap(23, 23, 23)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jCtipoContrato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jCdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRsolteria)
+                                            .addComponent(jRhombre))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jRmujer)
+                                            .addComponent(jRmatrimonio)))
+                                    .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                                    .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jTtelefono)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel14))
+                                .addGap(62, 62, 62)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jTnss, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE)
+                                    .addComponent(jTnombre)
+                                    .addComponent(jTapellidos)
+                                    .addComponent(jTdni)
+                                    .addComponent(jTdireccion))))))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -322,10 +344,11 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBaceptar)
-                    .addComponent(jBsalir)))
+                    .addComponent(jBsalir)
+                    .addComponent(jBdarbaja)))
         );
 
         pack();
@@ -333,49 +356,85 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     private void jBaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaceptarActionPerformed
         // ACION BOTON ACEPTAR
-        
         try {
-            if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty() || 
-                jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty() ||
-                jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty() || 
-                jCtipoContrato.getSelectedIndex() == -1 ||
-                jCdepartamento.getSelectedIndex() == -1 ||
-                jTnumeroEmpleado.getText().isEmpty()) {   
-            } else{
-                
-                Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(), 
-                                                jTnombre.getText(), jTapellidos.getText(),
-                                                jTdireccion.getText(), jTtelefono.getText(),
-                                                sexo.getSelection().toString(),
-                                                estadoCivil.getSelection().toString(),
-                                                jCtipoContrato.getSelectedItem().toString(),
-                                                jCdepartamento.getSelectedItem().toString(),
-                                                jDfecha.getDate().toString(),
-                                                jTnumeroEmpleado.getText());
-  
+            if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty()
+                    || jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty()
+                    || jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty()
+                    || jCtipoContrato.getSelectedIndex() == -1
+                    || jCdepartamento.getSelectedIndex() == -1
+                    || jTnumeroEmpleado.getText().isEmpty()) {
+            } else {
+                String sexo;
+                String estadoCivil;
+
+                if (jRhombre.isSelected()) {
+                    sexo = "hombre";
+                } else {
+                    sexo = "mujer";
+                }
+                if (jRsolteria.isSelected()) {
+                    estadoCivil = "soltero";
+                } else {
+                    estadoCivil = "casado";
+                }
+                Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(),
+                        jTnombre.getText(), jTapellidos.getText(),
+                        jTdireccion.getText(), jTtelefono.getText(),
+                        sexo,
+                        estadoCivil,
+                        jCtipoContrato.getSelectedItem().toString(),
+                        jCdepartamento.getSelectedItem().toString(),
+                        jDfecha.getDate().toString(),
+                        jTnumeroEmpleado.getText()
+                );
+
             }
-            
+
             System.out.println("ok");
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jBaceptarActionPerformed
 
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // ACTION TODOS
-        
-        
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenuItem5MouseClicked
+    private void jMlistarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarTodoActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_jMenuItem5MouseClicked
+         String lista = Controladora.mostrarListaTrabajadores();
+        Controladora.abrirVentanaMostrarDatos(lista);
+    }//GEN-LAST:event_jMlistarTodoActionPerformed
 
-    private void jMenuItem5MenuKeyPressed(javax.swing.event.MenuKeyEvent evt) {//GEN-FIRST:event_jMenuItem5MenuKeyPressed
-        // TODO add your handling code here:
-        Departamento d = new Departamento();
-        d.mostrarListaTrabajadores();
-    }//GEN-LAST:event_jMenuItem5MenuKeyPressed
+    private void jMbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbajaActionPerformed
+        // ACTION DAR BAJA
+        
+        desactivarCampos();
+        jBdarbaja.setVisible(true);
+        
+        
+    }//GEN-LAST:event_jMbajaActionPerformed
+
+    private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
+        // ACTION ENTER DNI
+        
+        Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
+        
+        if (posicionLista!=-1) {
+            Controladora.mostrarTrabajador();
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
+        }
+    }//GEN-LAST:event_jTdniActionPerformed
+
+    private void jBdarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarbajaActionPerformed
+        // ACTION DAR DE BAJA
+        
+        String mensaje = Controladora.darDeBajaUsuario();
+        JOptionPane.showMessageDialog(this, mensaje);
+    }//GEN-LAST:event_jBdarbajaActionPerformed
+
+    private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
+        // ACTION DEPART
+        
+        String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
+        Controladora.abrirVentanaMostrarDatos(lista);
+    }//GEN-LAST:event_jMlistarDepartActionPerformed
 
     /**
      * @param args the command line arguments
@@ -415,6 +474,7 @@ public class GestionPersonal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup estadoCivil;
     private javax.swing.JButton jBaceptar;
+    private javax.swing.JButton jBdarbaja;
     private javax.swing.JButton jBsalir;
     private javax.swing.JComboBox<String> jCdepartamento;
     private javax.swing.JComboBox<String> jCtipoContrato;
@@ -439,11 +499,11 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMbaja;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu jMlistar;
+    private javax.swing.JMenuItem jMlistarContrato;
+    private javax.swing.JMenuItem jMlistarDepart;
+    private javax.swing.JMenuItem jMlistarNempleado;
+    private javax.swing.JMenuItem jMlistarTodo;
     private javax.swing.JMenuItem jMmodificar;
     private javax.swing.JMenuItem jMsalir;
     private javax.swing.JMenu jMsesion;
@@ -463,4 +523,21 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.JTextField jTtelefono;
     private javax.swing.ButtonGroup sexo;
     // End of variables declaration//GEN-END:variables
+
+    private void desactivarCampos() {
+        jBaceptar.setVisible(false);
+     /*   
+        jTdni.setText(null);
+        jTnss.setEnabled(false);
+        jTnombre.setEditable(false);
+        jTapellidos.setEditable(false);
+        jTdireccion.setEditable(false);
+        jTtelefono.setEditable(false);
+*/
+    }
+
+    public void rellenarCamposEncontrados(String nss, String nombre) {
+        jTnss.setText(nss);
+        jTnombre.setText(nombre);
+    }
 }

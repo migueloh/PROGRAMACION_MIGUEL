@@ -4,9 +4,6 @@ package tema7_practica4;
 import Vistas.*;
 import Modelo.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import javax.swing.ButtonModel;
 
 /**
  * @author 1gdaw09
@@ -18,6 +15,9 @@ public class Controladora {
     public static MenuInicio mI;
     public static InicioSesion iS;
     public static GestionPersonal gP;
+    public static MostrarDatos mD;
+
+    public static int posicionLista;
 
     public static ArrayList<Trabajador> listaTrabajadores;
 
@@ -28,7 +28,7 @@ public class Controladora {
         generarUsuarioAdmin();
 
         iS = new InicioSesion();
-        
+
         abrirVentanaMenuInicio(mI = new MenuInicio());
 
     }
@@ -45,7 +45,7 @@ public class Controladora {
     public static void abrirVentanaGestionPersonal(String nombre) {
         gP = new GestionPersonal(nombre);
         gP.setVisible(true);
-        
+
     }
 
     public static void cerrarVentanas() {
@@ -62,10 +62,10 @@ public class Controladora {
     }
 
     public static int comprobarUsuario(String user, char[] password) {
-        
+
         String constrasena = "";
         for (int x = 0; x < password.length; x++) {
-            constrasena+=password[x];
+            constrasena += password[x];
         }
 
         int existe = 0;//no exite
@@ -73,36 +73,116 @@ public class Controladora {
         for (int i = 0; i < listaTrabajadores.size() && encontrado == true; i++) {
             if (user.equalsIgnoreCase(listaTrabajadores.get(i).getLogin().getUsuario())) {
                 if (constrasena.equalsIgnoreCase(listaTrabajadores.get(i).getLogin().getContrasena())) {
-                        existe = 1; //si existe
-                        encontrado = false;
-                    }
-            } 
+                    existe = 1; //si existe
+                    encontrado = false;
+                }
+            }
         }
         return existe;
     }
 
     public static void insertarTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
-    
-        Trabajador t = new Trabajador(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-        
-        t.setNumeroEmpleado(numeroEmpleado);
-        
-        Contrato c = new Contrato(tipoContrato, fecha);
-        ArrayList <Contrato> listaContratos=new ArrayList();
-        listaContratos.add(c);
-        t.setListaContratos(listaContratos);
-        
-        Departamento d = new Departamento();
-        d.setNombreDepartamento(departamento);
-        t.setDepartamento(d);
-        
-        Login l = new Login (nombre,dni);
+
+        Trabajador t = new Trabajador(numeroEmpleado, tipoContrato, fecha, departamento, dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+
+        Login l = new Login(nombre, dni);
         t.setLogin(l);
-        
+
         listaTrabajadores.add(t);
-        
+
     }
 
-    
+    public static String mostrarListaTrabajadores() {
+        String listaEmpleados = "Listado Completo de trabajadores";
+        for (int x = 0; x < listaTrabajadores.size(); x++) {
+            listaEmpleados += "\n" + "DNI: " + listaTrabajadores.get(x).getDni()
+                    + "\n" + "NSS: " + listaTrabajadores.get(x).getNss()
+                    + "\n" + "NOMBRE: " + listaTrabajadores.get(x).getNombre()
+                    + "\n" + "APELLIDOS: " + listaTrabajadores.get(x).getApellidos()
+                    + "\n" + "DIRECCION: " + listaTrabajadores.get(x).getDireccion()
+                    + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
+                    + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
+                    + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
+                    + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
+                    + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
+                    + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
+                    + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
+                    + "\n-------------------------------------------------------";
+
+        }
+
+        return listaEmpleados;
+    }
+
+    public static void abrirVentanaMostrarDatos(String lista) {
+        mD = new MostrarDatos(lista);
+        mD.setVisible(true);
+    }
+
+    public static Integer buscarPorDni(String dni) {
+        Boolean pararBusqueda = true;
+
+        // La posicion la inicializo a -1 para que me de conflicto con el ArrayList y tampoco
+        // la inicializo a 0 para que no me coja el usuario root 
+        posicionLista = -1;
+        for (int x = 0; x < listaTrabajadores.size() && pararBusqueda == true; x++) {
+
+            if (dni.equalsIgnoreCase(listaTrabajadores.get(x).getDni())) {
+                pararBusqueda = false;
+                posicionLista = x;
+            }
+
+        }
+        return posicionLista;
+    }
+
+    public static void mostrarTrabajador() {
+
+        gP.rellenarCamposEncontrados(listaTrabajadores.get(posicionLista).getNss(),
+                listaTrabajadores.get(posicionLista).getNombre());
+
+    }
+
+    public static String darDeBajaUsuario() {
+        String mensaje;
+        int cantidadUsuario = listaTrabajadores.size();
+        
+            listaTrabajadores.remove(posicionLista);
+            
+        if (cantidadUsuario > listaTrabajadores.size()) {
+            mensaje = "No";
+        } else {
+            mensaje = "Eliminado con Exito";
+        }
+
+        return mensaje;
+    }
+
+
+
+    public static String buscarPorDepartamento(String tipoDepartamento) {
+        String listadoPorDepart = "listadoPorDepart";
+        
+       for (int x = 0; x < listaTrabajadores.size(); x++) {
+
+            if (tipoDepartamento.equalsIgnoreCase(listaTrabajadores.get(x).getNombreDepartamento())) {
+               listadoPorDepart += "\n" + "DNI: " + listaTrabajadores.get(x).getDni()
+                    + "\n" + "NSS: " + listaTrabajadores.get(x).getNss()
+                    + "\n" + "NOMBRE: " + listaTrabajadores.get(x).getNombre()
+                    + "\n" + "APELLIDOS: " + listaTrabajadores.get(x).getApellidos()
+                    + "\n" + "DIRECCION: " + listaTrabajadores.get(x).getDireccion()
+                    + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
+                    + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
+                    + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
+                    + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
+                    + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
+                    + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
+                    + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
+                    + "\n-------------------------------------------------------";
+            }
+
+        }
+        return listadoPorDepart;
+    }
 
 }

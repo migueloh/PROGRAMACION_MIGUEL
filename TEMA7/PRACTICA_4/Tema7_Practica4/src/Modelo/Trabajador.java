@@ -5,61 +5,64 @@ import java.util.ArrayList;
 /**
  * @author 1gdaw09
  */
-public class Trabajador extends Persona{
-    
+public class Trabajador extends Persona {
+
     //ATRIBUTOS PROPIOS DE LA CLASE
+    //TRABAJADOR
     private String numeroEmpleado;
-    
+
+    //CONTRATO
+    private String tipoDeContrato;
+    private String fechaAlta;
+
+    //DEPARTAMENTO
+    private String nombreDepartamento;
+
     // RELACIONES
     private Login login;
-    
-    private ArrayList <Contrato> listaContratos;
-    
-    private Departamento departamento;
-    
 
     //CONTRUCTORES
-
     public Trabajador() {
     }
 
-    public Trabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
-        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-    }
-
-    public Trabajador(String numeroEmpleado) {
+    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento) {
         this.numeroEmpleado = numeroEmpleado;
+        this.tipoDeContrato = tipoDeContrato;
+        this.fechaAlta = fechaAlta;
+        this.nombreDepartamento = nombreDepartamento;
     }
 
+    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
+        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+        this.numeroEmpleado = numeroEmpleado;
+        this.tipoDeContrato = tipoDeContrato;
+        this.fechaAlta = fechaAlta;
+        this.nombreDepartamento = nombreDepartamento;
+    }
+
+    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, Login login) {
+        this.numeroEmpleado = numeroEmpleado;
+        this.tipoDeContrato = tipoDeContrato;
+        this.fechaAlta = fechaAlta;
+        this.nombreDepartamento = nombreDepartamento;
+        this.login = login;
+    }
+
+    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, Login login, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
+        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+        this.numeroEmpleado = numeroEmpleado;
+        this.tipoDeContrato = tipoDeContrato;
+        this.fechaAlta = fechaAlta;
+        this.nombreDepartamento = nombreDepartamento;
+        this.login = login;
+    }
+
+    //CONTRUCTOR INDEPENDIENTE PARA CREAR EL USUARIO ADMINISTRADOR
     public Trabajador(Login login) {
         this.login = login;
     }
 
-    public Trabajador(ArrayList<Contrato> listaContratos) {
-        this.listaContratos = listaContratos;
-    }
-
-    public Trabajador(Departamento departamento) {
-        this.departamento = departamento;
-    }
-
-    public Trabajador(String numeroEmpleado, Login login, ArrayList<Contrato> listaContratos, Departamento departamento) {
-        this.numeroEmpleado = numeroEmpleado;
-        this.login = login;
-        this.listaContratos = listaContratos;
-        this.departamento = departamento;
-    }
-
-    public Trabajador(String numeroEmpleado, Login login, ArrayList<Contrato> listaContratos, Departamento departamento, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
-        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-        this.numeroEmpleado = numeroEmpleado;
-        this.login = login;
-        this.listaContratos = listaContratos;
-        this.departamento = departamento;
-    }
-    
     //GETTERS & SETTERS
-
     public String getNumeroEmpleado() {
         return numeroEmpleado;
     }
@@ -68,28 +71,36 @@ public class Trabajador extends Persona{
         this.numeroEmpleado = numeroEmpleado;
     }
 
+    public String getTipoDeContrato() {
+        return tipoDeContrato;
+    }
+
+    public void setTipoDeContrato(String tipoDeContrato) {
+        this.tipoDeContrato = tipoDeContrato;
+    }
+
+    public String getFechaAlta() {
+        return fechaAlta;
+    }
+
+    public void setFechaAlta(String fechaAlta) {
+        this.fechaAlta = fechaAlta;
+    }
+
+    public String getNombreDepartamento() {
+        return nombreDepartamento;
+    }
+
+    public void setNombreDepartamento(String nombreDepartamento) {
+        this.nombreDepartamento = nombreDepartamento;
+    }
+
     public Login getLogin() {
         return login;
     }
 
     public void setLogin(Login login) {
         this.login = login;
-    }
-
-    public ArrayList<Contrato> getListaContratos() {
-        return listaContratos;
-    }
-
-    public void setListaContratos(ArrayList<Contrato> listaContratos) {
-        this.listaContratos = listaContratos;
-    }
-
-    public Departamento getDepartamento() {
-        return departamento;
-    }
-
-    public void setDepartamento(Departamento departamento) {
-        this.departamento = departamento;
     }
 
     public String getDni() {
@@ -155,8 +166,5 @@ public class Trabajador extends Persona{
     public void setEstadoCivil(String estadoCivil) {
         this.estadoCivil = estadoCivil;
     }
-    
-   
-    
-    
+
 }
