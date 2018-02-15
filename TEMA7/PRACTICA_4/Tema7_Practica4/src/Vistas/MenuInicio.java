@@ -5,6 +5,7 @@
 package Vistas;
 
 //IMPORTS
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import tema7_practica4.*;
 
@@ -21,6 +22,7 @@ public class MenuInicio extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.getContentPane().setBackground(Color.white);
    
         
         
@@ -38,7 +40,7 @@ public class MenuInicio extends javax.swing.JFrame {
 
         jBinicioSesion = new javax.swing.JButton();
         jBCerrarApp = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLogo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,30 +58,33 @@ public class MenuInicio extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("SONY CORP");
+        jLogo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/img/sony.PNG"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBCerrarApp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jBinicioSesion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jBCerrarApp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(30, 30, 30))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(jLogo)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addContainerGap(27, Short.MAX_VALUE)
+                .addComponent(jLogo)
                 .addGap(18, 18, 18)
                 .addComponent(jBinicioSesion)
                 .addGap(18, 18, 18)
                 .addComponent(jBCerrarApp)
-                .addGap(19, 19, 19))
+                .addContainerGap())
         );
 
         pack();
@@ -145,6 +150,6 @@ public class MenuInicio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrarApp;
     private javax.swing.JButton jBinicioSesion;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLogo;
     // End of variables declaration//GEN-END:variables
 }
