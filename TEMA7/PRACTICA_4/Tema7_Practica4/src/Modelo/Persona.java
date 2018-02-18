@@ -3,9 +3,8 @@ package Modelo;
 /**
  * @author 1gdaw09
  */
-
 public abstract class Persona {
-    
+
     //ATRIBUTOS DEL PADRE
     protected String dni;
     protected String nss;
@@ -30,6 +29,5 @@ public abstract class Persona {
         this.sexo = sexo;
         this.estadoCivil = estadoCivil;
     }
-    
-    
+
 }

@@ -20,11 +20,17 @@ public class Controladora {
     public static int posicionLista;
 
     public static ArrayList<Trabajador> listaTrabajadores;
+    public static ArrayList<Departamento> listaDepartamentos;
+    public static ArrayList<Contrato> listaContratos;
 
     public static void main(String[] args) {
 
         // INICIO MAIN
+        //INICIALIZAR CONFIGURACION PREVIA
         listaTrabajadores = new ArrayList();
+
+        generarDepartamentos();
+        generarContratos();
         generarUsuarioAdmin();
 
         iS = new InicioSesion();
@@ -83,10 +89,24 @@ public class Controladora {
 
     public static void insertarTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
 
-        Trabajador t = new Trabajador(numeroEmpleado, tipoContrato, fecha, departamento, dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+        Trabajador t = new Trabajador(numeroEmpleado, dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil, fecha);
 
+        //GENERAR CLAVE AUTO PARA EL TRABAJADOR REGISTRADO
         Login l = new Login(nombre, dni);
         t.setLogin(l);
+
+        for (int i = 0; i < listaDepartamentos.size(); i++) {
+            if (departamento.equalsIgnoreCase(listaDepartamentos.get(i).getNombreDepartamento())) {
+                listaDepartamentos.get(i).getListaTrabajadoresDepartamento().add(t);
+            } 
+        }
+        
+        for (int x = 0 ; x < listaContratos.size(); x++){
+            if(tipoContrato.equalsIgnoreCase(listaContratos.get(x).getTipoDeContrato())){
+                listaContratos.get(x).getListaTrabajadoresContrato().add(t);
+            }
+                
+        }
 
         listaTrabajadores.add(t);
 
@@ -103,8 +123,6 @@ public class Controladora {
                     + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
                     + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
                     + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
-                    + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
-                    + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
                     + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
                     + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
                     + "\n-------------------------------------------------------";
@@ -146,9 +164,9 @@ public class Controladora {
     public static String darDeBajaUsuario() {
         String mensaje;
         int cantidadUsuario = listaTrabajadores.size();
-        
-            listaTrabajadores.remove(posicionLista);
-            
+
+        listaTrabajadores.remove(posicionLista);
+
         if (cantidadUsuario > listaTrabajadores.size()) {
             mensaje = "No";
         } else {
@@ -158,31 +176,60 @@ public class Controladora {
         return mensaje;
     }
 
-
-
-    public static String buscarPorDepartamento(String tipoDepartamento) {
+    /*public static String buscarPorDepartamento(String tipoDepartamento) {
         String listadoPorDepart = "listadoPorDepart";
-        
-       for (int x = 0; x < listaTrabajadores.size(); x++) {
 
-            if (tipoDepartamento.equalsIgnoreCase(listaTrabajadores.get(x).getNombreDepartamento())) {
-               listadoPorDepart += "\n" + "DNI: " + listaTrabajadores.get(x).getDni()
-                    + "\n" + "NSS: " + listaTrabajadores.get(x).getNss()
-                    + "\n" + "NOMBRE: " + listaTrabajadores.get(x).getNombre()
-                    + "\n" + "APELLIDOS: " + listaTrabajadores.get(x).getApellidos()
-                    + "\n" + "DIRECCION: " + listaTrabajadores.get(x).getDireccion()
-                    + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
-                    + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
-                    + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
-                    + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
-                    + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
-                    + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
-                    + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
-                    + "\n-------------------------------------------------------";
+        for (int x = 0; x < listaTrabajadores.size(); x++) {
+
+            if (tipoDepartamento.equalsIgnoreCase(listaDepartamentos.get(x).getNombreDepartamento())) {
+                listadoPorDepart += "\n" + "DNI: " + listaTrabajadores.get(x).getDni()
+                        + "\n" + "NSS: " + listaTrabajadores.get(x).getNss()
+                        + "\n" + "NOMBRE: " + listaTrabajadores.get(x).getNombre()
+                        + "\n" + "APELLIDOS: " + listaTrabajadores.get(x).getApellidos()
+                        + "\n" + "DIRECCION: " + listaTrabajadores.get(x).getDireccion()
+                        + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
+                        + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
+                        + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
+                        + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
+                        + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
+                        + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
+                        + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
+                        + "\n-------------------------------------------------------";
             }
 
         }
         return listadoPorDepart;
+    }*/
+
+    //GENERAR DEPARTAMENTOS
+    public static void generarDepartamentos() {
+
+        listaDepartamentos = new ArrayList();
+
+        Departamento dept1 = new Departamento("Gestion Personal");
+        Departamento dept2 = new Departamento("Servicio Tecnico");
+
+        listaDepartamentos.add(dept1);
+        listaDepartamentos.add(dept2);
+
+    }
+
+    //GENERAR CONTRATOS
+    public static void generarContratos() {
+
+        listaContratos = new ArrayList();
+
+        Contrato contr1 = new Contrato("Fijo");
+        Contrato contr2 = new Contrato("Discontinuo");
+
+        listaContratos.add(contr1);
+        listaContratos.add(contr2);
+
+        /*
+        listaContratos.get(0).getListaTrabajadoresContrato().add(new Trabajador("10"));
+        
+        System.out.println(listaContratos.get(0).getListaTrabajadoresContrato().get(0).getNumeroEmpleado());
+         */
     }
 
 }

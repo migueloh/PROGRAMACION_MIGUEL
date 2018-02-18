@@ -1,68 +1,47 @@
 package Modelo;
 
-import java.util.ArrayList;
-
 /**
  * @author 1gdaw09
  */
 public class Trabajador extends Persona {
 
-    //ATRIBUTOS PROPIOS DE LA CLASE
-    //TRABAJADOR
+    //ATRIBUTOS PROPIOS DE LA CLASE TRABAJADOR
     private String numeroEmpleado;
-
-    //CONTRATO
-    private String tipoDeContrato;
     private String fechaAlta;
 
-    //DEPARTAMENTO
-    private String nombreDepartamento;
-
-    // RELACIONES
+    //RELACIONES
     private Login login;
 
     //CONTRUCTORES
     public Trabajador() {
     }
 
-    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento) {
+    public Trabajador(String numeroEmpleado) {
         this.numeroEmpleado = numeroEmpleado;
-        this.tipoDeContrato = tipoDeContrato;
-        this.fechaAlta = fechaAlta;
-        this.nombreDepartamento = nombreDepartamento;
     }
 
-    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
-        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-        this.numeroEmpleado = numeroEmpleado;
-        this.tipoDeContrato = tipoDeContrato;
-        this.fechaAlta = fechaAlta;
-        this.nombreDepartamento = nombreDepartamento;
-    }
-
-    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, Login login) {
-        this.numeroEmpleado = numeroEmpleado;
-        this.tipoDeContrato = tipoDeContrato;
-        this.fechaAlta = fechaAlta;
-        this.nombreDepartamento = nombreDepartamento;
-        this.login = login;
-    }
-
-    public Trabajador(String numeroEmpleado, String tipoDeContrato, String fechaAlta, String nombreDepartamento, Login login, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
-        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
-        this.numeroEmpleado = numeroEmpleado;
-        this.tipoDeContrato = tipoDeContrato;
-        this.fechaAlta = fechaAlta;
-        this.nombreDepartamento = nombreDepartamento;
-        this.login = login;
-    }
-
-    //CONTRUCTOR INDEPENDIENTE PARA CREAR EL USUARIO ADMINISTRADOR
     public Trabajador(Login login) {
         this.login = login;
     }
 
-    //GETTERS & SETTERS
+    public Trabajador(String numeroEmpleado, String fechaAlta, Login login) {
+        this.numeroEmpleado = numeroEmpleado;
+        this.fechaAlta = fechaAlta;
+        this.login = login;
+    }
+
+    public Trabajador(String numeroEmpleado, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String fechaAlta) {
+        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+        this.numeroEmpleado = numeroEmpleado;
+        this.fechaAlta = fechaAlta;
+    }
+
+    public Trabajador(Login login, String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil) {
+        super(dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil);
+        this.login = login;
+    }
+
+    //CONTRUCTOR INDEPENDIENTE PARA CREAR EL USUARIO ADMINISTRADOR
     public String getNumeroEmpleado() {
         return numeroEmpleado;
     }
@@ -71,28 +50,12 @@ public class Trabajador extends Persona {
         this.numeroEmpleado = numeroEmpleado;
     }
 
-    public String getTipoDeContrato() {
-        return tipoDeContrato;
-    }
-
-    public void setTipoDeContrato(String tipoDeContrato) {
-        this.tipoDeContrato = tipoDeContrato;
-    }
-
     public String getFechaAlta() {
         return fechaAlta;
     }
 
     public void setFechaAlta(String fechaAlta) {
         this.fechaAlta = fechaAlta;
-    }
-
-    public String getNombreDepartamento() {
-        return nombreDepartamento;
-    }
-
-    public void setNombreDepartamento(String nombreDepartamento) {
-        this.nombreDepartamento = nombreDepartamento;
     }
 
     public Login getLogin() {
