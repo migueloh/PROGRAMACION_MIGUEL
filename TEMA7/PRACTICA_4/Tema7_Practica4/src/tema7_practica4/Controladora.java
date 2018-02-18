@@ -166,36 +166,33 @@ public class Controladora {
 
         String tipoD = "";
         String tipoC = "";
-        Boolean encontrado=true;
+        Boolean encontrado = true;
 
         for (int i = 0; i < listaDepartamentos.size() && encontrado == true; i++) {
-            
-            for(int z =0; z < listaDepartamentos.get(i).getListaTrabajadoresDepartamento().size() && encontrado == true; z++){
-                
+
+            for (int z = 0; z < listaDepartamentos.get(i).getListaTrabajadoresDepartamento().size() && encontrado == true; z++) {
+
                 if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaDepartamentos.get(i).getListaTrabajadoresDepartamento().get(z).getDni())) {
-                     tipoD = listaDepartamentos.get(i).getNombreDepartamento();
-                     encontrado = false;
+                    tipoD = listaDepartamentos.get(i).getNombreDepartamento();
+                    encontrado = false;
                 }
-                
-                
+
             }
-            
+
         }
-         
+
         encontrado = true;
 
         for (int x = 0; x < listaContratos.size() && encontrado == true; x++) {
-            
-            for(int y=0; y < listaContratos.get(x).getListaTrabajadoresContrato().size() && encontrado == true; y++){
-                
+
+            for (int y = 0; y < listaContratos.get(x).getListaTrabajadoresContrato().size() && encontrado == true; y++) {
+
                 if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaContratos.get(x).getListaTrabajadoresContrato().get(y).getDni())) {
                     tipoC = listaContratos.get(x).getTipoDeContrato();
                     encontrado = false;
                 }
-                
+
             }
-                
-           
         }
 
         gP.rellenarCamposEncontrados(
@@ -206,21 +203,52 @@ public class Controladora {
                 listaTrabajadores.get(posicionLista).getTelefono(),
                 listaTrabajadores.get(posicionLista).getSexo(),
                 listaTrabajadores.get(posicionLista).getEstadoCivil(),
-                tipoC, 
+                tipoC,
                 tipoD,
                 listaTrabajadores.get(posicionLista).getFechaAlta(),
                 listaTrabajadores.get(posicionLista).getNumeroEmpleado()
-                );
+        );
 
     }
 
     public static void darDeBajaUsuario() {
-       
+
+         //LOCALIZAR DEPARTAMENTO DONDE TRABAJA EL TRABAJADOR PARA ELIMINARLO
+        Boolean encontrado = true;
+
+        for (int i = 0; i < listaDepartamentos.size() && encontrado == true; i++) {
+
+            for (int z = 0; z < listaDepartamentos.get(i).getListaTrabajadoresDepartamento().size() && encontrado == true; z++) {
+
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaDepartamentos.get(i).getListaTrabajadoresDepartamento().get(z).getDni())) {
+                    listaDepartamentos.get(i).getListaTrabajadoresDepartamento().remove(z);
+                    encontrado = false;
+                }
+
+            }
+
+        }
+
+        //LOCALIZAR CONTRATO DEL TRABAJADOR PARA ELIMINARLO
+        encontrado = true;
+
+        for (int x = 0; x < listaContratos.size() && encontrado == true; x++) {
+
+            for (int y = 0; y < listaContratos.get(x).getListaTrabajadoresContrato().size() && encontrado == true; y++) {
+
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaContratos.get(x).getListaTrabajadoresContrato().get(y).getDni())) {
+                    listaContratos.get(x).getListaTrabajadoresContrato().remove(y);
+                    encontrado = false;
+                }
+
+            }
+        }
+        
         listaTrabajadores.remove(posicionLista);
 
     }
 
-    /*
+    
     public static String buscarPorDepartamento(String tipoDepartamento) {
         String listadoPorDepart = "listadoPorDepart";
 
@@ -235,8 +263,6 @@ public class Controladora {
                         + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
                         + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
                         + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
-                        + "\n" + "TIPO CONTRATO: " + listaTrabajadores.get(x).getTipoDeContrato()
-                        + "\n" + "NOMBRE DEPART: " + listaTrabajadores.get(x).getNombreDepartamento()
                         + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
                         + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
                         + "\n-------------------------------------------------------";
@@ -245,7 +271,7 @@ public class Controladora {
         }
         return listadoPorDepart;
     }
-     */
+     
     //GENERAR DEPARTAMENTOS
     public static void generarDepartamentos() {
 
@@ -276,6 +302,67 @@ public class Controladora {
         listaContratos.add(contr1);
         listaContratos.add(contr2);
 
+    }
+
+    public static String actualizarDatosTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
+        
+        //LOCALIZAR DEPARTAMENTO DONDE TRABAJA EL TRABAJADOR PARA ELIMINARLO
+        Boolean encontrado = true;
+
+        for (int i = 0; i < listaDepartamentos.size() && encontrado == true; i++) {
+
+            for (int z = 0; z < listaDepartamentos.get(i).getListaTrabajadoresDepartamento().size() && encontrado == true; z++) {
+
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaDepartamentos.get(i).getListaTrabajadoresDepartamento().get(z).getDni())) {
+                    listaDepartamentos.get(i).getListaTrabajadoresDepartamento().remove(z);
+                    encontrado = false;
+                }
+
+            }
+
+        }
+
+        //LOCALIZAR CONTRATO DEL TRABAJADOR PARA ELIMINARLO
+        encontrado = true;
+
+        for (int x = 0; x < listaContratos.size() && encontrado == true; x++) {
+
+            for (int y = 0; y < listaContratos.get(x).getListaTrabajadoresContrato().size() && encontrado == true; y++) {
+
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaContratos.get(x).getListaTrabajadoresContrato().get(y).getDni())) {
+                    listaContratos.get(x).getListaTrabajadoresContrato().remove(y);
+                    encontrado = false;
+                }
+
+            }
+        }
+
+        listaTrabajadores.get(posicionLista).setNss(nss);
+        listaTrabajadores.get(posicionLista).setNombre(nombre);
+        listaTrabajadores.get(posicionLista).setApellidos(apellidos);
+        listaTrabajadores.get(posicionLista).setDireccion(direccion);
+        listaTrabajadores.get(posicionLista).setTelefono(telefono);
+        listaTrabajadores.get(posicionLista).setSexo(sexo);
+        listaTrabajadores.get(posicionLista).setEstadoCivil(estadoCivil);
+
+        //REALIZAR BUSQUEDA PARA ACTUALIZAR EL DEPARTAMENTO DEL TRABAJADOR
+        for (int i = 0; i < listaDepartamentos.size(); i++) {
+            if (departamento.equalsIgnoreCase(listaDepartamentos.get(i).getNombreDepartamento())) {
+                listaDepartamentos.get(i).getListaTrabajadoresDepartamento().add(listaTrabajadores.get(posicionLista));
+            }
+        }
+
+        //REALIZAR BUSQUEDA PARA ACTUALIZAR EL CONTRATO DEL TRABAJADOR
+        for (int x = 0; x < listaContratos.size(); x++) {
+            if (tipoContrato.equalsIgnoreCase(listaContratos.get(x).getTipoDeContrato())) {
+                listaContratos.get(x).getListaTrabajadoresContrato().add(listaTrabajadores.get(posicionLista));
+            }
+        }
+
+        listaTrabajadores.get(posicionLista).setFechaAlta(fecha);
+        listaTrabajadores.get(posicionLista).setNumeroEmpleado(numeroEmpleado);
+
+        return "Datos del Trabajador actualizados correctamente";
     }
 
 }

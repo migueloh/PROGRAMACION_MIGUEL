@@ -144,6 +144,12 @@ public class GestionPersonal extends javax.swing.JFrame {
         jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gestion Personal", "Servicio Tecnico", " " }));
         jCdepartamento.setSelectedIndex(-1);
 
+        jTdni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTdniActionPerformed(evt);
+            }
+        });
+
         jLabel7.setText("Estado Civil");
 
         jLabel8.setText("Tipo de Contrato");
@@ -176,6 +182,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jBdarFormato.setBackground(new java.awt.Color(153, 255, 153));
         jBdarFormato.setForeground(new java.awt.Color(0, 0, 0));
         jBdarFormato.setText("DAR FORMATO");
+        jBdarFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdarFormatoActionPerformed(evt);
+            }
+        });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/img/sonic.PNG"))); // NOI18N
 
@@ -365,7 +376,6 @@ public class GestionPersonal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addGap(0, 0, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -483,8 +493,8 @@ public class GestionPersonal extends javax.swing.JFrame {
 
                 Controladora.darDeBajaUsuario();
                 JOptionPane.showMessageDialog(this, "El Trabajador ha sido eliminado correctamente");
-                
-            } 
+
+            }
 
         } else {
             JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
@@ -496,8 +506,9 @@ public class GestionPersonal extends javax.swing.JFrame {
     private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
         // ACTION DEPART
 
-        /*String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
-        Controladora.abrirVentanaMostrarDatos(lista);*/
+        String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
+        Controladora.abrirVentanaMostrarDatos(lista);
+        
     }//GEN-LAST:event_jMlistarDepartActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
@@ -533,6 +544,63 @@ public class GestionPersonal extends javax.swing.JFrame {
         jBdarbaja.setVisible(false);
         jBdarFormato.setVisible(true);
     }//GEN-LAST:event_jMmodificarActionPerformed
+
+    private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
+        // ACTION BUSCA CAMPO DNI
+
+        Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
+
+        if (posicionLista != -1) {
+            Controladora.mostrarTrabajador();
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
+        }
+    }//GEN-LAST:event_jTdniActionPerformed
+
+    private void jBdarFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarFormatoActionPerformed
+        // ACTION BOTON INFERIOR DAR FORMATO
+
+        try {
+
+            String replaceOk = "";
+
+            if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty()
+                    || jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty()
+                    || jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty()
+                    || jCtipoContrato.getSelectedIndex() == -1
+                    || jCdepartamento.getSelectedIndex() == -1
+                    || jTnumeroEmpleado.getText().isEmpty()) {
+            } else {
+                String sexo;
+                String estadoCivil;
+
+                if (jRhombre.isSelected()) {
+                    sexo = "hombre";
+                } else {
+                    sexo = "mujer";
+                }
+                if (jRsolteria.isSelected()) {
+                    estadoCivil = "soltero";
+                } else {
+                    estadoCivil = "casado";
+                }
+                replaceOk = Controladora.actualizarDatosTrabajador(jTdni.getText(), jTnss.getText(),
+                        jTnombre.getText(), jTapellidos.getText(),
+                        jTdireccion.getText(), jTtelefono.getText(),
+                        sexo,
+                        estadoCivil,
+                        jCtipoContrato.getSelectedItem().toString(),
+                        jCdepartamento.getSelectedItem().toString(),
+                        jDfecha.getDate().toString(),
+                        jTnumeroEmpleado.getText()
+                );
+
+            }
+            JOptionPane.showMessageDialog(this, replaceOk);
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jBdarFormatoActionPerformed
 
     /**
      * @param args the command line arguments
