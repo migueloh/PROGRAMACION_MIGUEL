@@ -142,12 +142,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jCtipoContrato.setSelectedIndex(-1);
 
         jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gestion Personal", "Servicio Tecnico", " " }));
-
-        jTdni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTdniActionPerformed(evt);
-            }
-        });
+        jCdepartamento.setSelectedIndex(-1);
 
         jLabel7.setText("Estado Civil");
 
@@ -345,14 +340,13 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jLbienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -367,8 +361,11 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel14)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -406,7 +403,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                     .addComponent(jBdarAlta)
                     .addComponent(jBdarbaja)
                     .addComponent(jBdarFormato))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addComponent(jBsalir)
                 .addGap(17, 17, 17))
         );
@@ -474,23 +471,26 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMbajaActionPerformed
 
-    private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
-        // ACTION ENTER DNI
+    private void jBdarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarbajaActionPerformed
+        // ACTION DAR DE BAJA
 
         Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
 
         if (posicionLista != -1) {
-            Controladora.mostrarTrabajador();
+
+            if (JOptionPane.showConfirmDialog(this, "El Trabajador con dicho DNI va a ser eliminado del Sistema. "
+                    + "\n¿Esta seguro de dicha accion?") == 0) {
+
+                Controladora.darDeBajaUsuario();
+                JOptionPane.showMessageDialog(this, "El Trabajador ha sido eliminado correctamente");
+                
+            } 
+
         } else {
             JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
         }
-    }//GEN-LAST:event_jTdniActionPerformed
 
-    private void jBdarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarbajaActionPerformed
-        // ACTION DAR DE BAJA
 
-        String mensaje = Controladora.darDeBajaUsuario();
-        JOptionPane.showMessageDialog(this, mensaje);
     }//GEN-LAST:event_jBdarbajaActionPerformed
 
     private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
@@ -509,7 +509,15 @@ public class GestionPersonal extends javax.swing.JFrame {
     }//GEN-LAST:event_jBsalirActionPerformed
 
     private void jMbuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarDniActionPerformed
-        // TODO add your handling code here:
+        // ACTION BUSCAR DNI
+
+        Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
+
+        if (posicionLista != -1) {
+            Controladora.mostrarTrabajador();
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
+        }
     }//GEN-LAST:event_jMbuscarDniActionPerformed
 
     private void jMaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaltaActionPerformed
@@ -628,8 +636,25 @@ public class GestionPersonal extends javax.swing.JFrame {
          */
     }
 
-    public void rellenarCamposEncontrados(String nss, String nombre) {
+    public void rellenarCamposEncontrados(String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
         jTnss.setText(nss);
         jTnombre.setText(nombre);
+        jTapellidos.setText(apellidos);
+        jTdireccion.setText(direccion);
+        jTtelefono.setText(telefono);
+        jCtipoContrato.setSelectedItem(tipoContrato);
+        jCdepartamento.setSelectedItem(departamento);
+        if (sexo.equalsIgnoreCase("hombre")) {
+            jRhombre.setSelected(true);
+        } else {
+            jRmujer.setSelected(true);
+        }
+        if (estadoCivil.equalsIgnoreCase("soltero")) {
+            jRsolteria.setSelected(true);
+        } else {
+            jRmatrimonio.setSelected(true);
+        }
+        jDfecha.setDateFormatString(fecha);
+        jTnumeroEmpleado.setText(numeroEmpleado);
     }
 }

@@ -90,7 +90,7 @@ public class Controladora {
     public static String insertarTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
 
         String insertOk = "El trabajador ha sido dado de alta.";
-        
+
         Trabajador t = new Trabajador(numeroEmpleado, dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil, fecha);
 
         //GENERAR CLAVE AUTO PARA EL TRABAJADOR REGISTRADO
@@ -139,8 +139,7 @@ public class Controladora {
 
         return listaEmpleados;
     }
-    */
-
+     */
     public static void abrirVentanaMostrarDatos(String lista) {
         mD = new MostrarDatos(lista);
         mD.setVisible(true);
@@ -165,27 +164,62 @@ public class Controladora {
 
     public static void mostrarTrabajador() {
 
-        gP.rellenarCamposEncontrados(listaTrabajadores.get(posicionLista).getNss(),
-                listaTrabajadores.get(posicionLista).getNombre());
+        String tipoD = "";
+        String tipoC = "";
+        Boolean encontrado=true;
 
-    }
+        for (int i = 0; i < listaDepartamentos.size() && encontrado == true; i++) {
+            
+            for(int z =0; z < listaDepartamentos.get(i).getListaTrabajadoresDepartamento().size() && encontrado == true; z++){
+                
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaDepartamentos.get(i).getListaTrabajadoresDepartamento().get(z).getDni())) {
+                     tipoD = listaDepartamentos.get(i).getNombreDepartamento();
+                     encontrado = false;
+                }
+                
+                
+            }
+            
+        }
+         
+        encontrado = true;
 
-    public static String darDeBajaUsuario() {
-        String mensaje;
-        int cantidadUsuario = listaTrabajadores.size();
-
-        listaTrabajadores.remove(posicionLista);
-
-        if (cantidadUsuario > listaTrabajadores.size()) {
-            mensaje = "No";
-        } else {
-            mensaje = "Eliminado con Exito";
+        for (int x = 0; x < listaContratos.size() && encontrado == true; x++) {
+            
+            for(int y=0; y < listaContratos.get(x).getListaTrabajadoresContrato().size() && encontrado == true; y++){
+                
+                if (listaTrabajadores.get(posicionLista).getDni().equalsIgnoreCase(listaContratos.get(x).getListaTrabajadoresContrato().get(y).getDni())) {
+                    tipoC = listaContratos.get(x).getTipoDeContrato();
+                    encontrado = false;
+                }
+                
+            }
+                
+           
         }
 
-        return mensaje;
+        gP.rellenarCamposEncontrados(
+                listaTrabajadores.get(posicionLista).getNss(),
+                listaTrabajadores.get(posicionLista).getNombre(),
+                listaTrabajadores.get(posicionLista).getApellidos(),
+                listaTrabajadores.get(posicionLista).getDireccion(),
+                listaTrabajadores.get(posicionLista).getTelefono(),
+                listaTrabajadores.get(posicionLista).getSexo(),
+                listaTrabajadores.get(posicionLista).getEstadoCivil(),
+                tipoC, 
+                tipoD,
+                listaTrabajadores.get(posicionLista).getFechaAlta(),
+                listaTrabajadores.get(posicionLista).getNumeroEmpleado()
+                );
+
     }
 
-    
+    public static void darDeBajaUsuario() {
+       
+        listaTrabajadores.remove(posicionLista);
+
+    }
+
     /*
     public static String buscarPorDepartamento(String tipoDepartamento) {
         String listadoPorDepart = "listadoPorDepart";
@@ -211,17 +245,17 @@ public class Controladora {
         }
         return listadoPorDepart;
     }
-    */
-
+     */
     //GENERAR DEPARTAMENTOS
     public static void generarDepartamentos() {
 
-        ArrayList <Trabajador> ldTrabajador = new ArrayList();
-        
+        ArrayList<Trabajador> ldTrabajador = new ArrayList();
+        ArrayList<Trabajador> ldTrabajador2 = new ArrayList();
+
         listaDepartamentos = new ArrayList();
-        
+
         Departamento dept1 = new Departamento("Gestion Personal", ldTrabajador);
-        Departamento dept2 = new Departamento("Servicio Tecnico", ldTrabajador);
+        Departamento dept2 = new Departamento("Servicio Tecnico", ldTrabajador2);
 
         listaDepartamentos.add(dept1);
         listaDepartamentos.add(dept2);
@@ -231,21 +265,17 @@ public class Controladora {
     //GENERAR CONTRATOS
     public static void generarContratos() {
 
-        ArrayList <Trabajador> lcTrabajador = new ArrayList();
-        
+        ArrayList<Trabajador> lcTrabajador = new ArrayList();
+        ArrayList<Trabajador> lcTrabajador2 = new ArrayList();
+
         listaContratos = new ArrayList();
 
         Contrato contr1 = new Contrato("Fijo", lcTrabajador);
-        Contrato contr2 = new Contrato("Discontinuo", lcTrabajador);
+        Contrato contr2 = new Contrato("Discontinuo", lcTrabajador2);
 
         listaContratos.add(contr1);
         listaContratos.add(contr2);
 
-        /*
-        listaContratos.get(0).getListaTrabajadoresContrato().add(new Trabajador("10"));
-        
-        System.out.println(listaContratos.get(0).getListaTrabajadoresContrato().get(0).getNumeroEmpleado());
-         */
     }
 
 }
