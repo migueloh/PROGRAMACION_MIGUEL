@@ -215,6 +215,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.add(jSeparator2);
 
         jMlistarNempleado.setText("Listado por Nº Empleado");
+        jMlistarNempleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarNempleadoActionPerformed(evt);
+            }
+        });
         jMlistar.add(jMlistarNempleado);
 
         jMlistarDepart.setText("Listado por Departamento");
@@ -482,6 +487,10 @@ public class GestionPersonal extends javax.swing.JFrame {
         // ACTION SALIR
         Controladora.cerrarVentanas();
     }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jMlistarNempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarNempleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMlistarNempleadoActionPerformed
 
     /**
      * @param args the command line arguments
