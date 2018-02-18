@@ -119,7 +119,6 @@ public class Controladora {
 
     }
 
-    /*
     public static String mostrarListaTrabajadores() {
         String listaEmpleados = "Listado Completo de trabajadores";
         for (int x = 0; x < listaTrabajadores.size(); x++) {
@@ -139,7 +138,7 @@ public class Controladora {
 
         return listaEmpleados;
     }
-     */
+
     public static void abrirVentanaMostrarDatos(String lista) {
         mD = new MostrarDatos(lista);
         mD.setVisible(true);
@@ -213,7 +212,7 @@ public class Controladora {
 
     public static void darDeBajaUsuario() {
 
-         //LOCALIZAR DEPARTAMENTO DONDE TRABAJA EL TRABAJADOR PARA ELIMINARLO
+        //LOCALIZAR DEPARTAMENTO DONDE TRABAJA EL TRABAJADOR PARA ELIMINARLO
         Boolean encontrado = true;
 
         for (int i = 0; i < listaDepartamentos.size() && encontrado == true; i++) {
@@ -243,35 +242,43 @@ public class Controladora {
 
             }
         }
-        
+
         listaTrabajadores.remove(posicionLista);
 
     }
 
-    
     public static String buscarPorDepartamento(String tipoDepartamento) {
-        String listadoPorDepart = "listadoPorDepart";
+        String listadoPorDepart = "LISTADO POR DEPARTAMENTO"
+                + "\n_______________________";
 
-        for (int x = 0; x < listaTrabajadores.size(); x++) {
+        //FOR POSICION DEPARTAMENTO
+        for (int x = 0; x < listaDepartamentos.size(); x++) {
 
-            if (tipoDepartamento.equalsIgnoreCase(listaDepartamentos.get(x).getNombreDepartamento())) {
-                listadoPorDepart += "\n" + "DNI: " + listaTrabajadores.get(x).getDni()
-                        + "\n" + "NSS: " + listaTrabajadores.get(x).getNss()
-                        + "\n" + "NOMBRE: " + listaTrabajadores.get(x).getNombre()
-                        + "\n" + "APELLIDOS: " + listaTrabajadores.get(x).getApellidos()
-                        + "\n" + "DIRECCION: " + listaTrabajadores.get(x).getDireccion()
-                        + "\n" + "TELF: " + listaTrabajadores.get(x).getTelefono()
-                        + "\n" + "SEXO: " + listaTrabajadores.get(x).getSexo()
-                        + "\n" + "ESTADO CIVIL: " + listaTrabajadores.get(x).getEstadoCivil()
-                        + "\n" + "FECHA ALTA: " + listaTrabajadores.get(x).getFechaAlta()
-                        + "\n" + "Nº EMPLEADO: " + listaTrabajadores.get(x).getNumeroEmpleado()
-                        + "\n-------------------------------------------------------";
+            //FOR RECORRER LISTA TRABAJADORES POR DEPARTAMENTO
+            for (int i = 0; i < listaDepartamentos.get(x).getListaTrabajadoresDepartamento().size(); i++) {
+
+                if (tipoDepartamento.equalsIgnoreCase(listaDepartamentos.get(x).getNombreDepartamento())) {
+                    listadoPorDepart += listaDepartamentos.get(x).getNombreDepartamento()
+                            + "\n-------------------------------------------------------"
+                            + "\n" + "DNI: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getDni()
+                            + "\n" + "NSS: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getNss()
+                            + "\n" + "NOMBRE: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getNombre()
+                            + "\n" + "APELLIDOS: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getApellidos()
+                            + "\n" + "DIRECCION: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getDireccion()
+                            + "\n" + "TELF: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getTelefono()
+                            + "\n" + "SEXO: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getSexo()
+                            + "\n" + "ESTADO CIVIL: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getEstadoCivil()
+                            + "\n" + "FECHA ALTA: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getFechaAlta()
+                            + "\n" + "Nº EMPLEADO: " + listaDepartamentos.get(x).getListaTrabajadoresDepartamento().get(i).getNumeroEmpleado()
+                            + "\n-------------------------------------------------------";
+                }
+
             }
 
         }
         return listadoPorDepart;
     }
-     
+
     //GENERAR DEPARTAMENTOS
     public static void generarDepartamentos() {
 
@@ -305,7 +312,7 @@ public class Controladora {
     }
 
     public static String actualizarDatosTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
-        
+
         //LOCALIZAR DEPARTAMENTO DONDE TRABAJA EL TRABAJADOR PARA ELIMINARLO
         Boolean encontrado = true;
 
@@ -365,4 +372,33 @@ public class Controladora {
         return "Datos del Trabajador actualizados correctamente";
     }
 
+    public static String buscarPorContrato(String tipoContrato) {
+        String listadoPorContrat = "LISTADO POR CONTRATO"
+                + "\n_______________________";
+
+        //FOR POSICION DEPARTAMENTO
+        for (int x = 0; x < listaContratos.size(); x++) {
+
+            //FOR RECORRER LISTA TRABAJADORES POR DEPARTAMENTO
+            for (int i = 0; i < listaContratos.get(x).getListaTrabajadoresContrato().size(); i++) {
+
+                if (tipoContrato.equalsIgnoreCase(listaContratos.get(x).getTipoDeContrato())) {
+                    listadoPorContrat += listaContratos.get(x).getTipoDeContrato()
+                            + "\n-------------------------------------------------------"
+                            + "\n" + "DNI: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getDni()
+                            + "\n" + "NSS: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getNss()
+                            + "\n" + "NOMBRE: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getNombre()
+                            + "\n" + "APELLIDOS: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getApellidos()
+                            + "\n" + "DIRECCION: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getDireccion()
+                            + "\n" + "TELF: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getTelefono()
+                            + "\n" + "SEXO: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getSexo()
+                            + "\n" + "ESTADO CIVIL: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getEstadoCivil()
+                            + "\n" + "FECHA ALTA: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getFechaAlta()
+                            + "\n" + "Nº EMPLEADO: " + listaContratos.get(x).getListaTrabajadoresContrato().get(i).getNumeroEmpleado()
+                            + "\n-------------------------------------------------------";
+                }
+            }
+        }
+        return listadoPorContrat;
+    }
 }

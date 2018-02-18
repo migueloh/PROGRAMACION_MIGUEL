@@ -1,6 +1,5 @@
 package Vistas;
 
-import Modelo.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import tema7_practica4.*;
@@ -250,6 +249,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.add(jMlistarDepart);
 
         jMlistarContrato.setText("Listado por Contrato");
+        jMlistarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarContratoActionPerformed(evt);
+            }
+        });
         jMlistar.add(jMlistarContrato);
 
         jMlistarTodo.setText("Listado Completo de Empleados");
@@ -466,8 +470,8 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     private void jMlistarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarTodoActionPerformed
         // ACTION LISTA COMPLETA
-        /*String lista = Controladora.mostrarListaTrabajadores();
-        Controladora.abrirVentanaMostrarDatos(lista);*/
+        String lista = Controladora.mostrarListaTrabajadores();
+        Controladora.abrirVentanaMostrarDatos(lista);
     }//GEN-LAST:event_jMlistarTodoActionPerformed
 
     private void jMbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbajaActionPerformed
@@ -601,6 +605,13 @@ public class GestionPersonal extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jBdarFormatoActionPerformed
+
+    private void jMlistarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarContratoActionPerformed
+        // ACTION BUSCAR CONTRATO:
+        
+        String lista = Controladora.buscarPorContrato(jCtipoContrato.getSelectedItem().toString());
+        Controladora.abrirVentanaMostrarDatos(lista);
+    }//GEN-LAST:event_jMlistarContratoActionPerformed
 
     /**
      * @param args the command line arguments
