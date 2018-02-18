@@ -87,31 +87,39 @@ public class Controladora {
         return existe;
     }
 
-    public static void insertarTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
+    public static String insertarTrabajador(String dni, String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
 
+        String insertOk = "El trabajador ha sido dado de alta.";
+        
         Trabajador t = new Trabajador(numeroEmpleado, dni, nss, nombre, apellidos, direccion, telefono, sexo, estadoCivil, fecha);
 
         //GENERAR CLAVE AUTO PARA EL TRABAJADOR REGISTRADO
         Login l = new Login(nombre, dni);
         t.setLogin(l);
 
-        for (int i = 0; i < listaDepartamentos.size(); i++) {
-            if (departamento.equalsIgnoreCase(listaDepartamentos.get(i).getNombreDepartamento())) {
-                listaDepartamentos.get(i).getListaTrabajadoresDepartamento().add(t);
-            } 
-        }
-        
-        for (int x = 0 ; x < listaContratos.size(); x++){
-            if(tipoContrato.equalsIgnoreCase(listaContratos.get(x).getTipoDeContrato())){
-                listaContratos.get(x).getListaTrabajadoresContrato().add(t);
-            }
-                
-        }
+        try {
 
-        listaTrabajadores.add(t);
+            for (int i = 0; i < listaDepartamentos.size(); i++) {
+                if (departamento.equalsIgnoreCase(listaDepartamentos.get(i).getNombreDepartamento())) {
+                    listaDepartamentos.get(i).getListaTrabajadoresDepartamento().add(t);
+                }
+            }
+
+            for (int x = 0; x < listaContratos.size(); x++) {
+                if (tipoContrato.equalsIgnoreCase(listaContratos.get(x).getTipoDeContrato())) {
+                    listaContratos.get(x).getListaTrabajadoresContrato().add(t);
+                }
+            }
+            listaTrabajadores.add(t);
+            return insertOk;
+        } catch (Exception e) {
+            insertOk = "Error al dar de alta el Trabajador";
+        }
+        return insertOk;
 
     }
 
+    /*
     public static String mostrarListaTrabajadores() {
         String listaEmpleados = "Listado Completo de trabajadores";
         for (int x = 0; x < listaTrabajadores.size(); x++) {
@@ -131,6 +139,7 @@ public class Controladora {
 
         return listaEmpleados;
     }
+    */
 
     public static void abrirVentanaMostrarDatos(String lista) {
         mD = new MostrarDatos(lista);
@@ -176,7 +185,9 @@ public class Controladora {
         return mensaje;
     }
 
-    /*public static String buscarPorDepartamento(String tipoDepartamento) {
+    
+    /*
+    public static String buscarPorDepartamento(String tipoDepartamento) {
         String listadoPorDepart = "listadoPorDepart";
 
         for (int x = 0; x < listaTrabajadores.size(); x++) {
@@ -199,15 +210,18 @@ public class Controladora {
 
         }
         return listadoPorDepart;
-    }*/
+    }
+    */
 
     //GENERAR DEPARTAMENTOS
     public static void generarDepartamentos() {
 
+        ArrayList <Trabajador> ldTrabajador = new ArrayList();
+        
         listaDepartamentos = new ArrayList();
-
-        Departamento dept1 = new Departamento("Gestion Personal");
-        Departamento dept2 = new Departamento("Servicio Tecnico");
+        
+        Departamento dept1 = new Departamento("Gestion Personal", ldTrabajador);
+        Departamento dept2 = new Departamento("Servicio Tecnico", ldTrabajador);
 
         listaDepartamentos.add(dept1);
         listaDepartamentos.add(dept2);
@@ -217,10 +231,12 @@ public class Controladora {
     //GENERAR CONTRATOS
     public static void generarContratos() {
 
+        ArrayList <Trabajador> lcTrabajador = new ArrayList();
+        
         listaContratos = new ArrayList();
 
-        Contrato contr1 = new Contrato("Fijo");
-        Contrato contr2 = new Contrato("Discontinuo");
+        Contrato contr1 = new Contrato("Fijo", lcTrabajador);
+        Contrato contr2 = new Contrato("Discontinuo", lcTrabajador);
 
         listaContratos.add(contr1);
         listaContratos.add(contr2);

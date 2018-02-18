@@ -24,7 +24,10 @@ public class GestionPersonal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
+
+        jBdarAlta.setVisible(false);
         jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
 
         jLbienvenida.setText(nombre);
     }
@@ -46,7 +49,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jBaceptar = new javax.swing.JButton();
+        jBdarAlta = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jRhombre = new javax.swing.JRadioButton();
         jRmujer = new javax.swing.JRadioButton();
@@ -72,7 +75,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTdireccion = new javax.swing.JTextField();
         jBdarbaja = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBdarFormato = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMsesion = new javax.swing.JMenu();
@@ -86,7 +89,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMbaja = new javax.swing.JMenuItem();
         jMlistar = new javax.swing.JMenu();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMlistarNempleado = new javax.swing.JMenuItem();
+        jMbuscarDni = new javax.swing.JMenuItem();
         jMlistarDepart = new javax.swing.JMenuItem();
         jMlistarContrato = new javax.swing.JMenuItem();
         jMlistarTodo = new javax.swing.JMenuItem();
@@ -105,12 +108,12 @@ public class GestionPersonal extends javax.swing.JFrame {
 
         jLabel6.setText("Sexo");
 
-        jBaceptar.setBackground(new java.awt.Color(153, 255, 153));
-        jBaceptar.setForeground(new java.awt.Color(0, 0, 0));
-        jBaceptar.setText("DAR DE ALTA");
-        jBaceptar.addActionListener(new java.awt.event.ActionListener() {
+        jBdarAlta.setBackground(new java.awt.Color(153, 255, 153));
+        jBdarAlta.setForeground(new java.awt.Color(0, 0, 0));
+        jBdarAlta.setText("DAR DE ALTA");
+        jBdarAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBaceptarActionPerformed(evt);
+                jBdarAltaActionPerformed(evt);
             }
         });
 
@@ -175,9 +178,9 @@ public class GestionPersonal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 153));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("DAR FORMATO");
+        jBdarFormato.setBackground(new java.awt.Color(153, 255, 153));
+        jBdarFormato.setForeground(new java.awt.Color(0, 0, 0));
+        jBdarFormato.setText("DAR FORMATO");
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/img/sonic.PNG"))); // NOI18N
 
@@ -196,9 +199,19 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMadmin.add(jSeparator1);
 
         jMalta.setText("Dar de Alta");
+        jMalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMaltaActionPerformed(evt);
+            }
+        });
         jMadmin.add(jMalta);
 
         jMmodificar.setText("Dar Formato");
+        jMmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMmodificarActionPerformed(evt);
+            }
+        });
         jMadmin.add(jMmodificar);
 
         jMbaja.setText("Dar de Baja");
@@ -214,13 +227,13 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.setText("Generar Listados");
         jMlistar.add(jSeparator2);
 
-        jMlistarNempleado.setText("Listado por Nº Empleado");
-        jMlistarNempleado.addActionListener(new java.awt.event.ActionListener() {
+        jMbuscarDni.setText("Buscar Empleado por DNI");
+        jMbuscarDni.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMlistarNempleadoActionPerformed(evt);
+                jMbuscarDniActionPerformed(evt);
             }
         });
-        jMlistar.add(jMlistarNempleado);
+        jMlistar.add(jMbuscarDni);
 
         jMlistarDepart.setText("Listado por Departamento");
         jMlistarDepart.addActionListener(new java.awt.event.ActionListener() {
@@ -282,11 +295,11 @@ public class GestionPersonal extends javax.swing.JFrame {
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(141, 141, 141))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jBaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBdarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(46, 46, 46)
                             .addComponent(jBdarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32)
-                            .addComponent(jButton1)))
+                            .addComponent(jBdarFormato)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(29, 29, 29)
@@ -390,9 +403,9 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBaceptar)
+                    .addComponent(jBdarAlta)
                     .addComponent(jBdarbaja)
-                    .addComponent(jButton1))
+                    .addComponent(jBdarFormato))
                 .addGap(18, 18, Short.MAX_VALUE)
                 .addComponent(jBsalir)
                 .addGap(17, 17, 17))
@@ -401,9 +414,12 @@ public class GestionPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaceptarActionPerformed
+    private void jBdarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarAltaActionPerformed
         // ACION BOTON ACEPTAR
         try {
+
+            String insertOk = "";
+
             if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty()
                     || jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty()
                     || jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty()
@@ -424,7 +440,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                 } else {
                     estadoCivil = "casado";
                 }
-                Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(),
+                insertOk = Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(),
                         jTnombre.getText(), jTapellidos.getText(),
                         jTdireccion.getText(), jTtelefono.getText(),
                         sexo,
@@ -436,23 +452,24 @@ public class GestionPersonal extends javax.swing.JFrame {
                 );
 
             }
-
-            System.out.println("ok");
+            JOptionPane.showMessageDialog(this, insertOk);
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jBaceptarActionPerformed
+    }//GEN-LAST:event_jBdarAltaActionPerformed
 
     private void jMlistarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarTodoActionPerformed
-        // TODO add your handling code here:
-        String lista = Controladora.mostrarListaTrabajadores();
-        Controladora.abrirVentanaMostrarDatos(lista);
+        // ACTION LISTA COMPLETA
+        /*String lista = Controladora.mostrarListaTrabajadores();
+        Controladora.abrirVentanaMostrarDatos(lista);*/
     }//GEN-LAST:event_jMlistarTodoActionPerformed
 
     private void jMbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbajaActionPerformed
         // ACTION DAR BAJA
 
         desactivarCampos();
+        jBdarAlta.setVisible(false);
         jBdarbaja.setVisible(true);
+        jBdarFormato.setVisible(false);
 
 
     }//GEN-LAST:event_jMbajaActionPerformed
@@ -479,18 +496,35 @@ public class GestionPersonal extends javax.swing.JFrame {
     private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
         // ACTION DEPART
 
-        String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
-        Controladora.abrirVentanaMostrarDatos(lista);
+        /*String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
+        Controladora.abrirVentanaMostrarDatos(lista);*/
     }//GEN-LAST:event_jMlistarDepartActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
         // ACTION SALIR
-        Controladora.cerrarVentanas();
+        if (JOptionPane.showConfirmDialog(this, "¿Deseas realmente salir?") == 0) {
+            Controladora.cerrarVentanas();
+        }
+
     }//GEN-LAST:event_jBsalirActionPerformed
 
-    private void jMlistarNempleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarNempleadoActionPerformed
+    private void jMbuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarDniActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMlistarNempleadoActionPerformed
+    }//GEN-LAST:event_jMbuscarDniActionPerformed
+
+    private void jMaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaltaActionPerformed
+        // ACTION DAR ALTA:
+        jBdarAlta.setVisible(true);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
+    }//GEN-LAST:event_jMaltaActionPerformed
+
+    private void jMmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmodificarActionPerformed
+        // ACTION DAR FORMATO
+        jBdarAlta.setVisible(false);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(true);
+    }//GEN-LAST:event_jMmodificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -529,10 +563,10 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup estadoCivil;
-    private javax.swing.JButton jBaceptar;
+    private javax.swing.JButton jBdarAlta;
+    private javax.swing.JButton jBdarFormato;
     private javax.swing.JButton jBdarbaja;
     private javax.swing.JButton jBsalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCdepartamento;
     private javax.swing.JComboBox<String> jCtipoContrato;
     private com.toedter.calendar.JDateChooser jDfecha;
@@ -555,12 +589,12 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.JMenu jMadmin;
     private javax.swing.JMenuItem jMalta;
     private javax.swing.JMenuItem jMbaja;
+    private javax.swing.JMenuItem jMbuscarDni;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMlistar;
     private javax.swing.JMenuItem jMlistarContrato;
     private javax.swing.JMenuItem jMlistarDepart;
-    private javax.swing.JMenuItem jMlistarNempleado;
     private javax.swing.JMenuItem jMlistarTodo;
     private javax.swing.JMenuItem jMmodificar;
     private javax.swing.JMenuItem jMsalir;
@@ -583,7 +617,7 @@ public class GestionPersonal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void desactivarCampos() {
-        jBaceptar.setVisible(false);
+        jBdarAlta.setVisible(false);
         /*   
         jTdni.setText(null);
         jTnss.setEnabled(false);
