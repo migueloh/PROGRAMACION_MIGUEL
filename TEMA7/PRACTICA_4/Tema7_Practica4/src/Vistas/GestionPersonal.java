@@ -1,6 +1,5 @@
 package Vistas;
 
-import Modelo.*;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 import tema7_practica4.*;
@@ -24,7 +23,10 @@ public class GestionPersonal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
+
+        jBdarAlta.setVisible(false);
         jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
 
         jLbienvenida.setText(nombre);
     }
@@ -46,7 +48,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jBaceptar = new javax.swing.JButton();
+        jBdarAlta = new javax.swing.JButton();
         jBsalir = new javax.swing.JButton();
         jRhombre = new javax.swing.JRadioButton();
         jRmujer = new javax.swing.JRadioButton();
@@ -72,7 +74,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jTdireccion = new javax.swing.JTextField();
         jBdarbaja = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        jBdarFormato = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMsesion = new javax.swing.JMenu();
@@ -86,7 +88,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMbaja = new javax.swing.JMenuItem();
         jMlistar = new javax.swing.JMenu();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
-        jMlistarNempleado = new javax.swing.JMenuItem();
+        jMbuscarDni = new javax.swing.JMenuItem();
         jMlistarDepart = new javax.swing.JMenuItem();
         jMlistarContrato = new javax.swing.JMenuItem();
         jMlistarTodo = new javax.swing.JMenuItem();
@@ -105,12 +107,12 @@ public class GestionPersonal extends javax.swing.JFrame {
 
         jLabel6.setText("Sexo");
 
-        jBaceptar.setBackground(new java.awt.Color(153, 255, 153));
-        jBaceptar.setForeground(new java.awt.Color(0, 0, 0));
-        jBaceptar.setText("DAR DE ALTA");
-        jBaceptar.addActionListener(new java.awt.event.ActionListener() {
+        jBdarAlta.setBackground(new java.awt.Color(153, 255, 153));
+        jBdarAlta.setForeground(new java.awt.Color(0, 0, 0));
+        jBdarAlta.setText("DAR DE ALTA");
+        jBdarAlta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBaceptarActionPerformed(evt);
+                jBdarAltaActionPerformed(evt);
             }
         });
 
@@ -138,7 +140,7 @@ public class GestionPersonal extends javax.swing.JFrame {
         jCtipoContrato.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fijo", "Discontinuo" }));
         jCtipoContrato.setSelectedIndex(-1);
 
-        jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gestion Personal", "Comerciales", "Servicio Tecnico", "Asistencia", " " }));
+        jCdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gestion Personal", "Servicio Tecnico", " " }));
         jCdepartamento.setSelectedIndex(-1);
 
         jTdni.addActionListener(new java.awt.event.ActionListener() {
@@ -176,9 +178,14 @@ public class GestionPersonal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 255, 153));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
-        jButton1.setText("DAR FORMATO");
+        jBdarFormato.setBackground(new java.awt.Color(153, 255, 153));
+        jBdarFormato.setForeground(new java.awt.Color(0, 0, 0));
+        jBdarFormato.setText("DAR FORMATO");
+        jBdarFormato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBdarFormatoActionPerformed(evt);
+            }
+        });
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vistas/img/sonic.PNG"))); // NOI18N
 
@@ -197,9 +204,19 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMadmin.add(jSeparator1);
 
         jMalta.setText("Dar de Alta");
+        jMalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMaltaActionPerformed(evt);
+            }
+        });
         jMadmin.add(jMalta);
 
         jMmodificar.setText("Dar Formato");
+        jMmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMmodificarActionPerformed(evt);
+            }
+        });
         jMadmin.add(jMmodificar);
 
         jMbaja.setText("Dar de Baja");
@@ -215,8 +232,13 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.setText("Generar Listados");
         jMlistar.add(jSeparator2);
 
-        jMlistarNempleado.setText("Listado por Nº Empleado");
-        jMlistar.add(jMlistarNempleado);
+        jMbuscarDni.setText("Buscar Empleado por DNI");
+        jMbuscarDni.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMbuscarDniActionPerformed(evt);
+            }
+        });
+        jMlistar.add(jMbuscarDni);
 
         jMlistarDepart.setText("Listado por Departamento");
         jMlistarDepart.addActionListener(new java.awt.event.ActionListener() {
@@ -227,6 +249,11 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMlistar.add(jMlistarDepart);
 
         jMlistarContrato.setText("Listado por Contrato");
+        jMlistarContrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarContratoActionPerformed(evt);
+            }
+        });
         jMlistar.add(jMlistarContrato);
 
         jMlistarTodo.setText("Listado Completo de Empleados");
@@ -270,8 +297,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                                     .addComponent(jRmujer)
                                     .addComponent(jRmatrimonio)))
                             .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTtelefono)))
+                            .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel1)
@@ -279,37 +305,39 @@ public class GestionPersonal extends javax.swing.JFrame {
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(141, 141, 141))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                            .addComponent(jBaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBdarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(46, 46, 46)
                             .addComponent(jBdarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32)
-                            .addComponent(jButton1)))
+                            .addComponent(jBdarFormato)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(29, 29, 29)
                         .addComponent(jLbienvenida))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel14)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel14)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -327,14 +355,13 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jLbienvenida, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
@@ -349,8 +376,10 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(jLabel14)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -385,10 +414,10 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBaceptar)
+                    .addComponent(jBdarAlta)
                     .addComponent(jBdarbaja)
-                    .addComponent(jButton1))
-                .addGap(18, 18, Short.MAX_VALUE)
+                    .addComponent(jBdarFormato))
+                .addGap(18, 24, Short.MAX_VALUE)
                 .addComponent(jBsalir)
                 .addGap(17, 17, 17))
         );
@@ -396,9 +425,12 @@ public class GestionPersonal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBaceptarActionPerformed
+    private void jBdarAltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarAltaActionPerformed
         // ACION BOTON ACEPTAR
         try {
+
+            String insertOk = "";
+
             if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty()
                     || jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty()
                     || jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty()
@@ -419,7 +451,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                 } else {
                     estadoCivil = "casado";
                 }
-                Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(),
+                insertOk = Controladora.insertarTrabajador(jTdni.getText(), jTnss.getText(),
                         jTnombre.getText(), jTapellidos.getText(),
                         jTdireccion.getText(), jTtelefono.getText(),
                         sexo,
@@ -431,14 +463,13 @@ public class GestionPersonal extends javax.swing.JFrame {
                 );
 
             }
-
-            System.out.println("ok");
+            JOptionPane.showMessageDialog(this, insertOk);
         } catch (Exception e) {
         }
-    }//GEN-LAST:event_jBaceptarActionPerformed
+    }//GEN-LAST:event_jBdarAltaActionPerformed
 
     private void jMlistarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarTodoActionPerformed
-        // TODO add your handling code here:
+        // ACTION LISTA COMPLETA
         String lista = Controladora.mostrarListaTrabajadores();
         Controladora.abrirVentanaMostrarDatos(lista);
     }//GEN-LAST:event_jMlistarTodoActionPerformed
@@ -447,13 +478,79 @@ public class GestionPersonal extends javax.swing.JFrame {
         // ACTION DAR BAJA
 
         desactivarCampos();
+        jBdarAlta.setVisible(false);
         jBdarbaja.setVisible(true);
+        jBdarFormato.setVisible(false);
 
 
     }//GEN-LAST:event_jMbajaActionPerformed
 
+    private void jBdarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarbajaActionPerformed
+        // ACTION DAR DE BAJA
+
+        Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
+
+        if (posicionLista != -1) {
+
+            if (JOptionPane.showConfirmDialog(this, "El Trabajador con dicho DNI va a ser eliminado del Sistema. "
+                    + "\n¿Esta seguro de dicha accion?") == 0) {
+
+                Controladora.darDeBajaUsuario();
+                JOptionPane.showMessageDialog(this, "El Trabajador ha sido eliminado correctamente");
+
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
+        }
+
+
+    }//GEN-LAST:event_jBdarbajaActionPerformed
+
+    private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
+        // ACTION DEPART
+
+        String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
+        Controladora.abrirVentanaMostrarDatos(lista);
+        
+    }//GEN-LAST:event_jMlistarDepartActionPerformed
+
+    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
+        // ACTION SALIR
+        if (JOptionPane.showConfirmDialog(this, "¿Deseas realmente salir?") == 0) {
+            Controladora.cerrarVentanas();
+        }
+
+    }//GEN-LAST:event_jBsalirActionPerformed
+
+    private void jMbuscarDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarDniActionPerformed
+        // ACTION BUSCAR DNI
+
+        Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
+
+        if (posicionLista != -1) {
+            Controladora.mostrarTrabajador();
+        } else {
+            JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
+        }
+    }//GEN-LAST:event_jMbuscarDniActionPerformed
+
+    private void jMaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaltaActionPerformed
+        // ACTION DAR ALTA:
+        jBdarAlta.setVisible(true);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
+    }//GEN-LAST:event_jMaltaActionPerformed
+
+    private void jMmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmodificarActionPerformed
+        // ACTION DAR FORMATO
+        jBdarAlta.setVisible(false);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(true);
+    }//GEN-LAST:event_jMmodificarActionPerformed
+
     private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
-        // ACTION ENTER DNI
+        // ACTION BUSCA CAMPO DNI
 
         Integer posicionLista = Controladora.buscarPorDni(jTdni.getText());
 
@@ -464,24 +561,57 @@ public class GestionPersonal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTdniActionPerformed
 
-    private void jBdarbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarbajaActionPerformed
-        // ACTION DAR DE BAJA
+    private void jBdarFormatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBdarFormatoActionPerformed
+        // ACTION BOTON INFERIOR DAR FORMATO
 
-        String mensaje = Controladora.darDeBajaUsuario();
-        JOptionPane.showMessageDialog(this, mensaje);
-    }//GEN-LAST:event_jBdarbajaActionPerformed
+        try {
 
-    private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
-        // ACTION DEPART
+            String replaceOk = "";
 
-        String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
+            if (jTdni.getText().isEmpty() || jTnss.getText().isEmpty()
+                    || jTnombre.getText().isEmpty() || jTapellidos.getText().isEmpty()
+                    || jTdireccion.getText().isEmpty() || jTtelefono.getText().isEmpty()
+                    || jCtipoContrato.getSelectedIndex() == -1
+                    || jCdepartamento.getSelectedIndex() == -1
+                    || jTnumeroEmpleado.getText().isEmpty()) {
+            } else {
+                String sexo;
+                String estadoCivil;
+
+                if (jRhombre.isSelected()) {
+                    sexo = "hombre";
+                } else {
+                    sexo = "mujer";
+                }
+                if (jRsolteria.isSelected()) {
+                    estadoCivil = "soltero";
+                } else {
+                    estadoCivil = "casado";
+                }
+                replaceOk = Controladora.actualizarDatosTrabajador(jTdni.getText(), jTnss.getText(),
+                        jTnombre.getText(), jTapellidos.getText(),
+                        jTdireccion.getText(), jTtelefono.getText(),
+                        sexo,
+                        estadoCivil,
+                        jCtipoContrato.getSelectedItem().toString(),
+                        jCdepartamento.getSelectedItem().toString(),
+                        jDfecha.getDate().toString(),
+                        jTnumeroEmpleado.getText()
+                );
+
+            }
+            JOptionPane.showMessageDialog(this, replaceOk);
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jBdarFormatoActionPerformed
+
+    private void jMlistarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarContratoActionPerformed
+        // ACTION BUSCAR CONTRATO:
+        
+        String lista = Controladora.buscarPorContrato(jCtipoContrato.getSelectedItem().toString());
         Controladora.abrirVentanaMostrarDatos(lista);
-    }//GEN-LAST:event_jMlistarDepartActionPerformed
-
-    private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
-        // ACTION SALIR
-        Controladora.cerrarVentanas();
-    }//GEN-LAST:event_jBsalirActionPerformed
+    }//GEN-LAST:event_jMlistarContratoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -520,10 +650,10 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup estadoCivil;
-    private javax.swing.JButton jBaceptar;
+    private javax.swing.JButton jBdarAlta;
+    private javax.swing.JButton jBdarFormato;
     private javax.swing.JButton jBdarbaja;
     private javax.swing.JButton jBsalir;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<String> jCdepartamento;
     private javax.swing.JComboBox<String> jCtipoContrato;
     private com.toedter.calendar.JDateChooser jDfecha;
@@ -546,12 +676,12 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.JMenu jMadmin;
     private javax.swing.JMenuItem jMalta;
     private javax.swing.JMenuItem jMbaja;
+    private javax.swing.JMenuItem jMbuscarDni;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMlistar;
     private javax.swing.JMenuItem jMlistarContrato;
     private javax.swing.JMenuItem jMlistarDepart;
-    private javax.swing.JMenuItem jMlistarNempleado;
     private javax.swing.JMenuItem jMlistarTodo;
     private javax.swing.JMenuItem jMmodificar;
     private javax.swing.JMenuItem jMsalir;
@@ -574,7 +704,7 @@ public class GestionPersonal extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void desactivarCampos() {
-        jBaceptar.setVisible(false);
+        jBdarAlta.setVisible(false);
         /*   
         jTdni.setText(null);
         jTnss.setEnabled(false);
@@ -585,8 +715,25 @@ public class GestionPersonal extends javax.swing.JFrame {
          */
     }
 
-    public void rellenarCamposEncontrados(String nss, String nombre) {
+    public void rellenarCamposEncontrados(String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
         jTnss.setText(nss);
         jTnombre.setText(nombre);
+        jTapellidos.setText(apellidos);
+        jTdireccion.setText(direccion);
+        jTtelefono.setText(telefono);
+        jCtipoContrato.setSelectedItem(tipoContrato);
+        jCdepartamento.setSelectedItem(departamento);
+        if (sexo.equalsIgnoreCase("hombre")) {
+            jRhombre.setSelected(true);
+        } else {
+            jRmujer.setSelected(true);
+        }
+        if (estadoCivil.equalsIgnoreCase("soltero")) {
+            jRsolteria.setSelected(true);
+        } else {
+            jRmatrimonio.setSelected(true);
+        }
+        jDfecha.setDateFormatString(fecha);
+        jTnumeroEmpleado.setText(numeroEmpleado);
     }
 }
