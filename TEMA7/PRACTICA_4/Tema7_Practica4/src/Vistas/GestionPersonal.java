@@ -24,11 +24,12 @@ public class GestionPersonal extends javax.swing.JFrame {
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
 
-        jBdarAlta.setVisible(false);
-        jBdarbaja.setVisible(false);
-        jBdarFormato.setVisible(false);
-
+        //VARIABLE QUE MUESTRA EL NOMBRE DE USUARIO RETORNADO DEL INICIO DE SESION
         jLbienvenida.setText(nombre);
+
+        //CONFIGURACIONES PREVIAS DE LA VENTANA
+        estadoPrevioVentanaGestionPersonal();
+
     }
 
     /**
@@ -193,9 +194,19 @@ public class GestionPersonal extends javax.swing.JFrame {
         jMsesion.add(jSeparator3);
 
         jMenuItem1.setText("Cerrar Sesion");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMsesion.add(jMenuItem1);
 
         jMsalir.setText("Salir del Programa");
+        jMsalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMsalirActionPerformed(evt);
+            }
+        });
         jMsesion.add(jMsalir);
 
         jMenuBar1.add(jMsesion);
@@ -275,69 +286,66 @@ public class GestionPersonal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel5))
-                        .addGap(23, 23, 23)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jCtipoContrato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRsolteria)
-                                    .addComponent(jRhombre))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jRmujer)
-                                    .addComponent(jRmatrimonio)))
-                            .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
-                            .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(86, 86, 86)
-                            .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(141, 141, 141))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jBdarAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(46, 46, 46)
                             .addComponent(jBdarbaja, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(32, 32, 32)
-                            .addComponent(jBdarFormato)))
+                            .addComponent(jBdarFormato))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel2)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addGap(76, 76, 76)
+                                    .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel3)
+                                .addComponent(jLabel4)
+                                .addComponent(jLabel14))
+                            .addGap(141, 141, 141)))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addGap(29, 29, 29)
                         .addComponent(jLbienvenida))
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jTapellidos, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+                                .addComponent(jTnss)
+                                .addComponent(jTnombre)
+                                .addComponent(jTdireccion))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel6)
+                                .addComponent(jLabel7)
+                                .addComponent(jLabel8)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel10)
+                                .addComponent(jLabel11)
+                                .addComponent(jLabel5))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGap(23, 23, 23)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jCtipoContrato, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jCdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRsolteria)
+                                                .addComponent(jRhombre))
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jRmujer)
+                                                .addComponent(jRmatrimonio)))
+                                        .addComponent(jTnumeroEmpleado, javax.swing.GroupLayout.DEFAULT_SIZE, 272, Short.MAX_VALUE)
+                                        .addComponent(jDfecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addGap(3, 3, 3)
+                                    .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(64, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -361,29 +369,30 @@ public class GestionPersonal extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTnss, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTapellidos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)))
+                            .addComponent(jLabel14)
+                            .addComponent(jTdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel15)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                        .addGap(7, 7, 7)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTtelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5))
+                .addGap(14, 14, 14)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -417,7 +426,7 @@ public class GestionPersonal extends javax.swing.JFrame {
                     .addComponent(jBdarAlta)
                     .addComponent(jBdarbaja)
                     .addComponent(jBdarFormato))
-                .addGap(18, 24, Short.MAX_VALUE)
+                .addGap(18, 40, Short.MAX_VALUE)
                 .addComponent(jBsalir)
                 .addGap(17, 17, 17))
         );
@@ -464,24 +473,22 @@ public class GestionPersonal extends javax.swing.JFrame {
 
             }
             JOptionPane.showMessageDialog(this, insertOk);
+            reiniciarTodosLosCampos();
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jBdarAltaActionPerformed
 
     private void jMlistarTodoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarTodoActionPerformed
         // ACTION LISTA COMPLETA
+        desactivarTodosLosCampos();
         String lista = Controladora.mostrarListaTrabajadores();
         Controladora.abrirVentanaMostrarDatos(lista);
     }//GEN-LAST:event_jMlistarTodoActionPerformed
 
     private void jMbajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbajaActionPerformed
-        // ACTION DAR BAJA
-
-        desactivarCampos();
-        jBdarAlta.setVisible(false);
-        jBdarbaja.setVisible(true);
-        jBdarFormato.setVisible(false);
-
+        // ACTION DAR BAJA      
+        reiniciarTodosLosCampos();
+        modoCamposBaja();
 
     }//GEN-LAST:event_jMbajaActionPerformed
 
@@ -509,10 +516,12 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     private void jMlistarDepartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarDepartActionPerformed
         // ACTION DEPART
-
+        JOptionPane.showMessageDialog(this, "Selecciona un tipo de contrato");
+        activarSoloBuscaDepart();
+        jCtipoContrato.setEnabled(false);
         String lista = Controladora.buscarPorDepartamento(jCdepartamento.getSelectedItem().toString());
         Controladora.abrirVentanaMostrarDatos(lista);
-        
+
     }//GEN-LAST:event_jMlistarDepartActionPerformed
 
     private void jBsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBsalirActionPerformed
@@ -533,20 +542,20 @@ public class GestionPersonal extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "El DNI buscado no se encuentra en la base de datos.");
         }
+        activarSoloDniParaBaja();
     }//GEN-LAST:event_jMbuscarDniActionPerformed
 
     private void jMaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMaltaActionPerformed
         // ACTION DAR ALTA:
-        jBdarAlta.setVisible(true);
-        jBdarbaja.setVisible(false);
-        jBdarFormato.setVisible(false);
+        reiniciarTodosLosCampos();
+        modoCamposAlta();
+
     }//GEN-LAST:event_jMaltaActionPerformed
 
     private void jMmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMmodificarActionPerformed
         // ACTION DAR FORMATO
-        jBdarAlta.setVisible(false);
-        jBdarbaja.setVisible(false);
-        jBdarFormato.setVisible(true);
+        reiniciarTodosLosCampos();
+        modoCamposFormato();
     }//GEN-LAST:event_jMmodificarActionPerformed
 
     private void jTdniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTdniActionPerformed
@@ -608,10 +617,32 @@ public class GestionPersonal extends javax.swing.JFrame {
 
     private void jMlistarContratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarContratoActionPerformed
         // ACTION BUSCAR CONTRATO:
-        
+        JOptionPane.showMessageDialog(this, "Selecciona un tipo de Contrato.");
+        activarSoloBuscaContrat();
+        jCdepartamento.setEnabled(false);
         String lista = Controladora.buscarPorContrato(jCtipoContrato.getSelectedItem().toString());
         Controladora.abrirVentanaMostrarDatos(lista);
     }//GEN-LAST:event_jMlistarContratoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        //ACTION BOTON SUPERIOR CERRAR SESION
+        Controladora.abirVentanaInicioSesion();
+        this.dispose();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
+        // ACTION BOTON SUPERIOR
+        
+         try {
+            if (JOptionPane.showConfirmDialog(this, "¿Realmente desea cerrar la aplicación?")==0) {
+                JOptionPane.showMessageDialog(this, "Que tenga buen día.");
+                Controladora.cerrarVentanas();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "¡Error Inexperado!");
+        }
+
+    }//GEN-LAST:event_jMsalirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -703,16 +734,102 @@ public class GestionPersonal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup sexo;
     // End of variables declaration//GEN-END:variables
 
-    private void desactivarCampos() {
+    //METODOS PROPIOS DE LA VENTANA
+    private void estadoPrevioVentanaGestionPersonal() {
         jBdarAlta.setVisible(false);
-        /*   
-        jTdni.setText(null);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
+
+        desactivarTodosLosCampos();
+    }
+
+    private void modoCamposAlta() {
+        jBdarAlta.setVisible(true);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(false);
+
+        activarTodosLosCampos();
+    }
+
+    private void modoCamposFormato() {
+
+        jBdarAlta.setVisible(false);
+        jBdarbaja.setVisible(false);
+        jBdarFormato.setVisible(true);
+
+        JOptionPane.showMessageDialog(this, "Introduce el DNI del trabajador que"
+                + "\nquieres modificar y pulsa Enter.");
+
+        jTdni.setEnabled(true);
+
+    }
+
+    private void modoCamposBaja() {
+        jBdarAlta.setVisible(false);
+        jBdarbaja.setVisible(true);
+        jBdarFormato.setVisible(false);
+
+        activarSoloDniParaBaja();
+    }
+
+    private void desactivarTodosLosCampos() {
+        jTdni.setEnabled(false);
         jTnss.setEnabled(false);
-        jTnombre.setEditable(false);
-        jTapellidos.setEditable(false);
-        jTdireccion.setEditable(false);
-        jTtelefono.setEditable(false);
-         */
+        jTnombre.setEnabled(false);
+        jTapellidos.setEnabled(false);
+        jTdireccion.setEnabled(false);
+        jTtelefono.setEnabled(false);
+        jRhombre.setEnabled(false);
+        jRmujer.setEnabled(false);
+        jRmatrimonio.setEnabled(false);
+        jRsolteria.setEnabled(false);
+
+        jCtipoContrato.setEnabled(false);
+        jCdepartamento.setEnabled(false);
+
+        jDfecha.setEnabled(false);
+
+        jTnumeroEmpleado.setEnabled(false);
+    }
+
+    private void activarTodosLosCampos() {
+        jTdni.setEnabled(true);
+        jTnss.setEnabled(true);
+        jTnombre.setEnabled(true);
+        jTapellidos.setEnabled(true);
+        jTdireccion.setEnabled(true);
+        jTtelefono.setEnabled(true);
+
+        jRhombre.setEnabled(true);
+        jRmujer.setEnabled(true);
+        jRmatrimonio.setEnabled(true);
+        jRsolteria.setEnabled(true);
+
+        jCtipoContrato.setEnabled(true);
+        jCdepartamento.setEnabled(true);
+
+        jDfecha.setEnabled(true);
+
+        jTnumeroEmpleado.setEnabled(true);
+    }
+
+    private void reiniciarTodosLosCampos() {
+        jTdni.setText(null);
+        jTnss.setText(null);
+        jTnombre.setText(null);
+        jTapellidos.setText(null);
+        jTdireccion.setText(null);
+        jTtelefono.setText(null);
+
+        estadoCivil.clearSelection();
+        sexo.clearSelection();
+
+        jCtipoContrato.setSelectedItem(null);
+        jCdepartamento.setSelectedItem(null);
+
+        jDfecha.setDate(null);
+
+        jTnumeroEmpleado.setText(null);
     }
 
     public void rellenarCamposEncontrados(String nss, String nombre, String apellidos, String direccion, String telefono, String sexo, String estadoCivil, String tipoContrato, String departamento, String fecha, String numeroEmpleado) {
@@ -736,4 +853,82 @@ public class GestionPersonal extends javax.swing.JFrame {
         jDfecha.setDateFormatString(fecha);
         jTnumeroEmpleado.setText(numeroEmpleado);
     }
+
+    private void activarSoloDniParaBaja() {
+        jTdni.setEnabled(true);
+        jTnss.setEnabled(false);
+        jTnombre.setEnabled(false);
+        jTapellidos.setEnabled(false);
+        jTdireccion.setEnabled(false);
+        jTtelefono.setEnabled(false);
+        jRhombre.setEnabled(false);
+        jRmujer.setEnabled(false);
+        jRmatrimonio.setEnabled(false);
+        jRsolteria.setEnabled(false);
+
+        jCtipoContrato.setEnabled(false);
+        jCdepartamento.setEnabled(false);
+
+        jDfecha.setEnabled(false);
+        jTnumeroEmpleado.setEnabled(false);
+    }
+
+    private void activarCamposSoloAmodificar() {
+        jTdni.setEnabled(false);
+        jTnss.setEnabled(false);
+        jTnombre.setEnabled(true);
+        jTapellidos.setEnabled(true);
+        jTdireccion.setEnabled(true);
+        jTtelefono.setEnabled(true);
+        jRhombre.setEnabled(true);
+        jRmujer.setEnabled(true);
+        jRmatrimonio.setEnabled(true);
+        jRsolteria.setEnabled(true);
+
+        jCtipoContrato.setEnabled(true);
+        jCdepartamento.setEnabled(true);
+
+        jDfecha.setEnabled(false);
+
+        jTnumeroEmpleado.setEnabled(false);
+    }
+
+    private void activarSoloBuscaDepart() {
+        jTdni.setEnabled(false);
+        jTnss.setEnabled(false);
+        jTnombre.setEnabled(false);
+        jTapellidos.setEnabled(false);
+        jTdireccion.setEnabled(false);
+        jTtelefono.setEnabled(false);
+        jRhombre.setEnabled(false);
+        jRmujer.setEnabled(false);
+        jRmatrimonio.setEnabled(false);
+        jRsolteria.setEnabled(false);
+
+        jCtipoContrato.setEnabled(false);
+        jCdepartamento.setEnabled(true);
+
+        jDfecha.setEnabled(false);
+        jTnumeroEmpleado.setEnabled(false);
+    }
+
+    private void activarSoloBuscaContrat() {
+        jTdni.setEnabled(false);
+        jTnss.setEnabled(false);
+        jTnombre.setEnabled(false);
+        jTapellidos.setEnabled(false);
+        jTdireccion.setEnabled(false);
+        jTtelefono.setEnabled(false);
+        jRhombre.setEnabled(false);
+        jRmujer.setEnabled(false);
+        jRmatrimonio.setEnabled(false);
+        jRsolteria.setEnabled(false);
+
+        jCtipoContrato.setEnabled(true);
+        jCdepartamento.setEnabled(false);
+
+        jDfecha.setEnabled(false);
+        jTnumeroEmpleado.setEnabled(false);
+    }
+
 }

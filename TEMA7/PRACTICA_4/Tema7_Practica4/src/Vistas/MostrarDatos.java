@@ -6,6 +6,7 @@
 package Vistas;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 import tema7_practica4.*;
 
 /**
@@ -94,11 +95,20 @@ public class MostrarDatos extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // ACTION SALIR
-        Controladora.cerrarVentanas();
+         try {
+            if (JOptionPane.showConfirmDialog(this, "¿Realmente desea cerrar la aplicación?")==0) {
+                JOptionPane.showMessageDialog(this, "Que tenga buen día.");
+                Controladora.cerrarVentanas();
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "¡Error Inexperado!");
+        }
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // ACTION CERRAR
+        jTareaDatos.setText(null);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
