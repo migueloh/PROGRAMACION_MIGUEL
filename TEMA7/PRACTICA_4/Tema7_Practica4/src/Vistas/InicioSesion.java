@@ -27,11 +27,8 @@ public class InicioSesion extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.getContentPane().setBackground(Color.white);
-        jTuser.setEnabled(false);
-        jPass.setEnabled(false);
-        jRsi.setEnabled(false);
-        jRno.setEnabled(false);
-        jBiniciar.setEnabled(false);
+
+        estadoPrevioVentanaMenu();
     }
 
     /**
@@ -187,6 +184,7 @@ public class InicioSesion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jBvolverActionPerformed
 
+    //FUNCION ABRIR LINK EXTERNO -- SIENTO ESTA PARTE MOLESTA
     private void jBverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBverActionPerformed
         // ACCION BOTON VER CONDICIONES
 
@@ -222,7 +220,7 @@ public class InicioSesion extends javax.swing.JFrame {
             if (contadorFallos == 0) {
 
                 JOptionPane.showMessageDialog(this, "¡STOP! Ha superado el limite de intentos."
-                                                + "\nSe procedera al cierre de la aplicacion.");
+                        + "\nSe procedera al cierre de la aplicacion.");
                 Controladora.cerrarVentanas();
             }
             if (jTuser.getText().isEmpty() || jPass.getPassword().equals("")) {
@@ -230,19 +228,21 @@ public class InicioSesion extends javax.swing.JFrame {
             } else {
                 int exite = Controladora.comprobarUsuario(jTuser.getText(), jPass.getPassword());
                 if (exite == 1) {
-                        Controladora.abrirVentanaGestionPersonal(jTuser.getText());
-                        this.dispose();
-                        
-                    } else {
-                        JOptionPane.showMessageDialog(this, "El usuario o clave no existen");
-                    }
+                    Controladora.abrirVentanaGestionPersonal(jTuser.getText());
+                    regenerarEstadoVentana();
+                    this.dispose();
+                    
+
+                } else {
+                    JOptionPane.showMessageDialog(this, "El usuario o clave no existen");
+                }
             }
 
         } catch (CampoVacio cV) {
             JOptionPane.showMessageDialog(this, "Los campos no pueden estar vacios");
-            
+
         } catch (Exception e) {
-           
+
         }
         contadorFallos--;
         System.out.println(contadorFallos);
@@ -310,4 +310,23 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRsi;
     private javax.swing.JTextField jTuser;
     // End of variables declaration//GEN-END:variables
+
+    
+    //METODOS PROPIOS DE LA VENTANA
+    public void estadoPrevioVentanaMenu() {
+        jTuser.setEnabled(false);
+        jPass.setEnabled(false);
+        jRsi.setEnabled(false);
+        jRno.setEnabled(false);
+        jBiniciar.setEnabled(false);
+    }
+
+    private void regenerarEstadoVentana() {
+        jTuser.setText(null);
+        jPass.setText(null);
+
+        condicion.clearSelection();
+        
+        jBiniciar.setEnabled(false);
+    }
 }
