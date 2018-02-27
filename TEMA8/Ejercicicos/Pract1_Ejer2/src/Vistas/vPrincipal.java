@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package Vistas;
+=======
+package vista;
+>>>>>>> master
 
 import pract1_ejer2.*;
 
@@ -13,8 +17,11 @@ public class vPrincipal extends javax.swing.JFrame {
      */
     public vPrincipal() {
         initComponents();
+<<<<<<< HEAD
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+=======
+>>>>>>> master
     }
 
     /**
@@ -28,11 +35,15 @@ public class vPrincipal extends javax.swing.JFrame {
 
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+<<<<<<< HEAD
         jMenuItem1 = new javax.swing.JMenuItem();
+=======
+>>>>>>> master
         jMabrirAc = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+<<<<<<< HEAD
         jMenu1.setText("Archivo");
 
         jMenuItem1.setText("Salir");
@@ -43,6 +54,9 @@ public class vPrincipal extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+=======
+        jMenu1.setText("File");
+>>>>>>> master
         jMenuBar1.add(jMenu1);
 
         jMabrirAc.setText("Acontecimientos");
@@ -70,6 +84,7 @@ public class vPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMabrirAcMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMabrirAcMouseClicked
+<<<<<<< HEAD
         // ON CLICK ACONTECIMIENTO
         this.dispose();
         Controladora.abrirVentanaAcontecimientos();
@@ -80,6 +95,12 @@ public class vPrincipal extends javax.swing.JFrame {
         Controladora.salirApp();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
+=======
+        // TODO add your handling code here:
+        Controladora.abrirVentanaAcontecimientos();
+    }//GEN-LAST:event_jMabrirAcMouseClicked
+
+>>>>>>> master
     /**
      * @param args the command line arguments
      */
@@ -119,6 +140,9 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMabrirAc;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+<<<<<<< HEAD
     private javax.swing.JMenuItem jMenuItem1;
+=======
+>>>>>>> master
     // End of variables declaration//GEN-END:variables
 }

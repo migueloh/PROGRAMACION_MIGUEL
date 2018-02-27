@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 package ModeloBD;
+=======
+package BD;
+>>>>>>> master
 
 import Excepciones.*;
 import java.sql.Connection;

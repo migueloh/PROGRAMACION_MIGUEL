@@ -1,13 +1,18 @@
+<<<<<<< HEAD
 package ModeloBD;
 
 import ModeloUML.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+=======
+package BD;
+>>>>>>> master
 
 /**
  * @author MIGUEL
  */
+<<<<<<< HEAD
 public class AcontecimientoBD extends ConexionBD {
 
     private static Acontecimiento acontecimientos;
@@ -49,4 +54,11 @@ public class AcontecimientoBD extends ConexionBD {
     ps.setStrig (
 
 1, nombre);
+=======
+public class AcontecimientoBD extends ConexionBD{
+    
+    
+    //INSERT INTO `acontecimientos`( nombre, `lugar`, `fecha`, `hora_i`, `hora_f`, `aforo`) VALUES ([?,?,?,?,?,?)
+    ps.setStrig(1, nombre);
+>>>>>>> master
 }
