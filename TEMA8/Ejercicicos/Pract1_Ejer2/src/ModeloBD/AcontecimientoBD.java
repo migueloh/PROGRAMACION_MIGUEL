@@ -18,8 +18,6 @@ public class AcontecimientoBD extends ConexionBD {
     private static String plantilla;
     private static Statement sentencia;
     private static ResultSet resultado;
-    
-    
 /*
     ConexionBD.abrirConexion();
     
@@ -48,7 +46,5 @@ public class AcontecimientoBD extends ConexionBD {
             sentenciaCon.setTime(5, sqlTimeHFin);
             */
             
-    //INSERT INTO `acontecimientos`( `) VALUES ([?,?,?,?,?,?)
 
-
-
+}

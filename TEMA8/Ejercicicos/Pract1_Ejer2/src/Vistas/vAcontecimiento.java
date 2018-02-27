@@ -147,6 +147,12 @@ public class vAcontecimiento extends javax.swing.JFrame {
 
     private void registrarEventoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarEventoActionPerformed
         //REGISTRAR EVENTO
+       /* try {
+            if (jTnombre.getText().isEmpty() && jTlugar.getText().isEmpty() && jDfecha) {
+                
+            }
+        } catch (Exception e) {
+        }*/
         
     }//GEN-LAST:event_registrarEventoActionPerformed
 
