@@ -1,12 +1,10 @@
 package pract1_ejer2;
 
+import Vistas.*;
+import ModeloBD.*;
+import ModeloUML.*;
+import Excepciones.*;
 
-
-import Vistas.vAcontecimiento;
-import Vistas.vPrincipal;
-import vista.*;
-import modelo.*;
-import BD.*;
 
 
 import Vistas.vAcontecimiento;

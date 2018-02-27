@@ -8,5 +8,4 @@ public class ProblemaConexion extends Exception{
         this.mensaje = mensaje;
     }
     
-    
 }
