@@ -1,8 +1,7 @@
 package pract1_ejer2;
 
-import vista.*;
-import modelo.*;
-import BD.*;
+import Vistas.vAcontecimiento;
+import Vistas.vPrincipal;
 import Excepciones.*;
 
 /**
@@ -27,6 +26,15 @@ public class Controladora {
 
     public static void abrirVentanaAcontecimientos() {
         vA.setVisible(true);
+    }
+
+    public static void salirApp() {
+        System.exit(0);    
+    }
+
+    public static void reabrirMenu() {
+        vPrincipal vP = null;
+        abrirVentanaPrincipal(vP);
     }
 
 }

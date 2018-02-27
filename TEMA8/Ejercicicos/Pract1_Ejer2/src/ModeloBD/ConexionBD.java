@@ -1,4 +1,4 @@
-package BD;
+package ModeloBD;
 
 import Excepciones.*;
 import java.sql.Connection;
