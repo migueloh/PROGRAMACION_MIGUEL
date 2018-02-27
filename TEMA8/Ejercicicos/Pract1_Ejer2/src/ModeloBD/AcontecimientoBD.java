@@ -52,7 +52,7 @@ public class AcontecimientoBD extends ConexionBD {
     ps.setStrig (
 
 1, nombre);
-=======
+
 public class AcontecimientoBD extends ConexionBD{
     
     
