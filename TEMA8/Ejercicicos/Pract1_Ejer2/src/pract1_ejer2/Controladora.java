@@ -1,13 +1,12 @@
 package pract1_ejer2;
 
-<<<<<<< HEAD
+
 import Vistas.vAcontecimiento;
 import Vistas.vPrincipal;
-=======
 import vista.*;
 import modelo.*;
 import BD.*;
->>>>>>> master
+
 import Excepciones.*;
 
 /**
@@ -34,7 +33,7 @@ public class Controladora {
         vA.setVisible(true);
     }
 
-<<<<<<< HEAD
+
     public static void salirApp() {
         System.exit(0);    
     }
@@ -44,6 +43,4 @@ public class Controladora {
         abrirVentanaPrincipal(vP);
     }
 
-=======
->>>>>>> master
 }

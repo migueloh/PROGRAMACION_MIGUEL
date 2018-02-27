@@ -1,18 +1,15 @@
-<<<<<<< HEAD
+
 package ModeloBD;
 
 import ModeloUML.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
-=======
-package BD;
->>>>>>> master
 
 /**
  * @author MIGUEL
  */
-<<<<<<< HEAD
+
 public class AcontecimientoBD extends ConexionBD {
 
     private static Acontecimiento acontecimientos;
