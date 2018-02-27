@@ -1,15 +1,6 @@
-<<<<<<< HEAD
 package Vistas;
 
 import pract1_ejer2.*;
-=======
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package vista;
->>>>>>> master
 
 /**
  *
@@ -22,11 +13,8 @@ public class vAcontecimiento extends javax.swing.JFrame {
      */
     public vAcontecimiento() {
         initComponents();
-<<<<<<< HEAD
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-=======
->>>>>>> master
     }
 
     /**
@@ -51,11 +39,8 @@ public class vAcontecimiento extends javax.swing.JFrame {
         jThoraInicio = new javax.swing.JTextField();
         jTaforo = new javax.swing.JTextField();
         jDfecha = new com.toedter.calendar.JDateChooser();
-<<<<<<< HEAD
         jBvolver = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-=======
->>>>>>> master
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,18 +56,13 @@ public class vAcontecimiento extends javax.swing.JFrame {
 
         jLabel6.setText("Aforo");
 
-<<<<<<< HEAD
         registrarEvento.setText("REGISTRAR");
-=======
-        registrarEvento.setText("ACEPTAR");
->>>>>>> master
         registrarEvento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registrarEventoActionPerformed(evt);
             }
         });
 
-<<<<<<< HEAD
         jBvolver.setText("RETROCEDER");
         jBvolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -93,18 +73,12 @@ public class vAcontecimiento extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel7.setText("REGISTRO DE ACONTECIMIENTOS");
 
-=======
->>>>>>> master
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGap(9, 9, 9)
-=======
-                .addGap(46, 46, 46)
->>>>>>> master
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2)
@@ -116,7 +90,6 @@ public class vAcontecimiento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTnombre)
                     .addComponent(jThoraInicio)
-<<<<<<< HEAD
                     .addComponent(jTaforo)
                     .addComponent(jDfecha, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
                     .addComponent(jTlugar)
@@ -132,28 +105,13 @@ public class vAcontecimiento extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBvolver, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45))
-=======
-                    .addComponent(jThoraFin, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTaforo)
-                    .addComponent(jDfecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTlugar))
-                .addGap(54, 54, 54))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(registrarEvento, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(150, 150, 150))
->>>>>>> master
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-<<<<<<< HEAD
                 .addGap(20, 20, 20)
                 .addComponent(jLabel7)
                 .addGap(18, 18, 18)
-=======
-                .addGap(33, 33, 33)
->>>>>>> master
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -177,17 +135,11 @@ public class vAcontecimiento extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jTaforo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-<<<<<<< HEAD
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(registrarEvento)
                     .addComponent(jBvolver))
                 .addContainerGap(11, Short.MAX_VALUE))
-=======
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(registrarEvento)
-                .addGap(15, 15, 15))
->>>>>>> master
         );
 
         pack();
@@ -198,15 +150,12 @@ public class vAcontecimiento extends javax.swing.JFrame {
         
     }//GEN-LAST:event_registrarEventoActionPerformed
 
-<<<<<<< HEAD
     private void jBvolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvolverActionPerformed
         // ACION VOLVER
         this.dispose();
         Controladora.reabrirMenu();
     }//GEN-LAST:event_jBvolverActionPerformed
 
-=======
->>>>>>> master
     /**
      * @param args the command line arguments
      */
@@ -243,10 +192,7 @@ public class vAcontecimiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-<<<<<<< HEAD
     private javax.swing.JButton jBvolver;
-=======
->>>>>>> master
     private com.toedter.calendar.JDateChooser jDfecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -254,10 +200,7 @@ public class vAcontecimiento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-<<<<<<< HEAD
     private javax.swing.JLabel jLabel7;
-=======
->>>>>>> master
     private javax.swing.JTextField jTaforo;
     private javax.swing.JTextField jThoraFin;
     private javax.swing.JTextField jThoraInicio;

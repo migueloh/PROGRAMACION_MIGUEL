@@ -1,5 +1,6 @@
 package pract1_ejer2;
 
+<<<<<<< HEAD
 
 import Vistas.vAcontecimiento;
 import Vistas.vPrincipal;
@@ -7,6 +8,10 @@ import vista.*;
 import modelo.*;
 import BD.*;
 
+=======
+import Vistas.vAcontecimiento;
+import Vistas.vPrincipal;
+>>>>>>> parent of 9c07911... Merge remote-tracking branch 'origin/master'
 import Excepciones.*;
 
 /**
@@ -33,7 +38,10 @@ public class Controladora {
         vA.setVisible(true);
     }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> parent of 9c07911... Merge remote-tracking branch 'origin/master'
     public static void salirApp() {
         System.exit(0);    
     }

@@ -6,7 +6,6 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-<<<<<<< HEAD
             <Property name="text" type="java.lang.String" value="Archivo"/>
           </Properties>
           <SubComponents>
@@ -19,10 +18,6 @@
               </Events>
             </MenuItem>
           </SubComponents>
-=======
-            <Property name="text" type="java.lang.String" value="File"/>
-          </Properties>
->>>>>>> master
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMabrirAc">
           <Properties>
