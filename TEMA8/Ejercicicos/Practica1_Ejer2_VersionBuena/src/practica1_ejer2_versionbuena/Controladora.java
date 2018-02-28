@@ -11,6 +11,7 @@ import java.util.Date;
 
 public class Controladora {
 
+    private static AcontecimientoUML acontecimientoUML;
     private static vMenu vM;
     private static vAcontecimiento vA;
     private static LocalTime horaTimeInicio;
@@ -39,25 +40,24 @@ public class Controladora {
         abrirVentanaInicio(vM);
     }
 
-    public static void registrarAcontecimientos(String nombre, String lugar, Date fechaAcontecimiento, LocalTime horaInicioExtraida, LocalTime horaFinExtraida, String aforo) {        
+    public static void registrarAcontecimientos(String nombre, String lugar, Date fechaAcontecimiento, LocalTime horaInicio, LocalTime horaFin, String aforo) throws Exception {        
         
-        horaTimeInicio = toTime(horaInicioExtraida);
-        
-        
+        acontecimientoUML = new AcontecimientoUML(nombre, lugar, (java.sql.Date) fechaAcontecimiento, horaInicio, horaFin, aforo);
+        AcontecimientoBD.guardarAcontecimiento(acontecimientoUML);
     }
 
-
+/*
     public static LocalTime toTime(LocalTime horaTimeInicio) {
         return java.sql.Time.valueOf(horaTimeFin);
     }
 
-
+/*
     public Date validarFecha() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
         Date fechaSistema = new Date();
 
         return fechaSistema;
     }
-
+*/
 
 }

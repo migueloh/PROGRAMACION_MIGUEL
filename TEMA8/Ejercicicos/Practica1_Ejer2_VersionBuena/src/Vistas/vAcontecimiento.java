@@ -4,9 +4,11 @@ import practica1_ejer2_versionbuena.*;
 import Excepciones.*;
 import java.sql.Time;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 import javax.swing.JOptionPane;
@@ -17,6 +19,9 @@ public class vAcontecimiento extends javax.swing.JFrame {
     /**
      * Creates new form vAcontecimiento
      */
+    public LocalTime horaInicio;
+    public LocalTime horaFin;
+
     public vAcontecimiento() {
         initComponents();
     }
@@ -165,11 +170,12 @@ public class vAcontecimiento extends javax.swing.JFrame {
             if (jTnombre.getText().isEmpty() && jTlugar.getText().isEmpty() && jCalendarComboFecha.getDate() == null && jThoraInicio.getText().isEmpty() && jThoraFin.getText().isEmpty() && jTaforo.getText().isEmpty()) {
                 throw new CampoVacio();
             } else {
-                LocalTime horaInicioExtraida = convertirHoras(jThoraInicio.getText());
-                LocalTime horaFinExtraida = convertirHoras(jThoraFin.getText());
 
-                Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), horaInicioExtraida, horaFinExtraida, jTaforo.getText());
-
+                DateTimeFormatter dTf = DateTimeFormatter.ofPattern("H:mm:ss");
+                LocalTime hI = LocalTime.parse(horaInicio, dTf);
+                
+                Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), horaInicio, horaFin, jTaforo.getText());
+                resetarCampos();
             }
         } catch (CampoVacio CV) {
             JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
@@ -235,10 +241,26 @@ public class vAcontecimiento extends javax.swing.JFrame {
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
 
-    private LocalTime convertirHoras(String hora) {
-        LocalTime horaTransformada = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm:ss"));
-        return horaTransformada;
+    // METODOS PROPIOS DE LA VISTA
+    private void convertirHoras(String jThoraInicio) throws ParseException {
+
+        // Conversión String a LocalTime
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
+            LocalTime horaInicio = LocalTime.parse(jThoraInicio, dtf);
+            LocalTime horaFin = LocalTime.parse(jThoraFin, dtf);
+        } catch (Exception e) {
+        }
     }
 
-    // METODOS PROPIOS DE LA VISTA
+    private void resetarCampos() {
+        jTnombre.setText(null);
+        jTlugar.setText(null);
+        jCalendarComboFecha.setSelectedItem(null);
+        jThoraInicio.setText(null);
+        jThoraFin.setText(null);
+        jTaforo.setText(null);
+
+    }
+
 }

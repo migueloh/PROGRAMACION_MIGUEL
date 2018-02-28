@@ -1,24 +1,27 @@
 package ModeloUML;
 
-import java.sql.Time;
+import java.sql.Date;
+import java.time.LocalTime;
 
 public class AcontecimientoUML {
     
     private String nombre;
     private String lugar;
-    private java.sql.Time fechaAcontecimiento;
-    private java.sql.Time horaInicio;
-    private java.sql.Time horaFin;
+    private Date fechaAcontecimiento;
+    private LocalTime horaInicio;
+    private LocalTime horaFin;
+    private String aforo;
 
     public AcontecimientoUML() {
     }
 
-    public AcontecimientoUML(String nombre, String lugar, Time fechaAcontecimiento, Time horaInicio, Time horaFin) {
+    public AcontecimientoUML(String nombre, String lugar, Date fechaAcontecimiento, LocalTime horaInicio, LocalTime horaFin, String aforo) {
         this.nombre = nombre;
         this.lugar = lugar;
         this.fechaAcontecimiento = fechaAcontecimiento;
         this.horaInicio = horaInicio;
         this.horaFin = horaFin;
+        this.aforo = aforo;
     }
 
     public String getNombre() {
@@ -37,30 +40,51 @@ public class AcontecimientoUML {
         this.lugar = lugar;
     }
 
-    public Time getFechaAcontecimiento() {
+    public Date getFechaAcontecimiento() {
         return fechaAcontecimiento;
     }
 
-    public void setFechaAcontecimiento(Time fechaAcontecimiento) {
+    public void setFechaAcontecimiento(Date fechaAcontecimiento) {
         this.fechaAcontecimiento = fechaAcontecimiento;
     }
 
-    public Time getHoraInicio() {
+    public LocalTime getHoraInicio() {
         return horaInicio;
     }
 
-    public void setHoraInicio(Time horaInicio) {
+    public void setHoraInicio(LocalTime horaInicio) {
         this.horaInicio = horaInicio;
     }
 
-    public Time getHoraFin() {
+    public LocalTime getHoraFin() {
         return horaFin;
     }
 
-    public void setHoraFin(Time horaFin) {
+    public void setHoraFin(LocalTime horaFin) {
         this.horaFin = horaFin;
     }
+
+    public String getAforo() {
+        return aforo;
+    }
+
+    public void setAforo(String aforo) {
+        this.aforo = aforo;
+    }
+
+    
+    
+    
     
 
+    
+    
+    
+
+    
+    
+    
+
+   
     
 }

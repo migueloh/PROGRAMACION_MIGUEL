@@ -4,37 +4,44 @@ import Excepciones.*;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import javax.swing.JOptionPane;
 
 public class GenericoBD {
 
-    private String nombreBD = "acontecimientos";
-    private String url = "jdbc:mysql://localhost:3307/" + nombreBD;
-    private String user = "root";
-    private String pass = "usbw";
-    private Connection con;
+    private static String nombreBD = "acontecimientos";
+    private static String url = "jdbc:mysql://localhost:3307/" + nombreBD;
+    private static String user = "root";
+    private static String pass = "usbw";
+    private static Connection con;
+    
+    /*
+    public static Connection abrirConexion()throws Exception{       
+            Class.forName("com.mysql.jdbc.Driver");
+            String url="jdbc:mysql://localhost:3307/"+"bdPersonas";
+            String usuario = "root";
+            String password = "usbw";
+            con = DriverManager.getConnection(url,usuario,password);
+            return con;
+    }
+    */
 
     // ESTABLECER CONEXION
-    public GenericoBD() throws ClassNotFoundException, SQLException {
+    public static Connection abrirConexion() throws ClassNotFoundException, SQLException, Exception {
         try {
 
             Class.forName("com.mysql.jdbc.Driver");
-            this.con = DriverManager.getConnection(url, user, pass);
+            con = DriverManager.getConnection(url, user, pass);
 
             if (con == null) {
                 throw new ProblemasConexion("mensaje");
             }
-        } catch (Exception E) {
+        } catch (ProblemasConexion | ClassNotFoundException | SQLException E) {
+            return null;
         }
-    }
-
-    // ABRIR CONEXION CONEXION
-    public Connection getConnection() {
         return con;
     }
 
     //CERRAR CONEXION
-    public void cerrarConexion() throws SQLException {
+    public static void cerrarConexion() throws SQLException, Exception {
         con.close();
     }
 
