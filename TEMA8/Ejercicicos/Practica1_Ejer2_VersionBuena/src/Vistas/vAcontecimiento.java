@@ -1,6 +1,16 @@
 package Vistas;
 
 import practica1_ejer2_versionbuena.*;
+import Excepciones.*;
+import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Locale;
+import javax.swing.JOptionPane;
+import practica1_ejer2_versionbuena.*;
 
 public class vAcontecimiento extends javax.swing.JFrame {
 
@@ -151,14 +161,25 @@ public class vAcontecimiento extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // ACTION REGISTRAR
-        try { o null
-            if (jTnombre.getText().isEmpty() && jTlugar.getText().isEmpty() && jCalendarComboFecha.getDate().compareTo(anotherDate) ){
-                
+        try {
+            if (jTnombre.getText().isEmpty() && jTlugar.getText().isEmpty() && jCalendarComboFecha.getDate() == null && jThoraInicio.getText().isEmpty() && jThoraFin.getText().isEmpty() && jTaforo.getText().isEmpty()) {
+                throw new CampoVacio();
             } else {
-                Contr
+                LocalTime horaInicioExtraida = convertirHoras(jThoraInicio.getText());
+                LocalTime horaFinExtraida = convertirHoras(jThoraFin.getText());
+
+                Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), horaInicioExtraida, horaFinExtraida, jTaforo.getText());
+
             }
+        } catch (CampoVacio CV) {
+            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error desconocido");
         }
+
+        /*
+        Mis notas: compareTo(anotherDate) o null
+         */
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -213,4 +234,11 @@ public class vAcontecimiento extends javax.swing.JFrame {
     private javax.swing.JTextField jTlugar;
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
+
+    private LocalTime convertirHoras(String hora) {
+        LocalTime horaTransformada = LocalTime.parse(hora, DateTimeFormatter.ofPattern("HH:mm:ss"));
+        return horaTransformada;
+    }
+
+    // METODOS PROPIOS DE LA VISTA
 }
