@@ -2,26 +2,17 @@ package Vistas;
 
 import practica1_ejer2_versionbuena.*;
 import Excepciones.*;
-import java.sql.Time;
-import java.text.DateFormat;
+
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 import javax.swing.JOptionPane;
-import practica1_ejer2_versionbuena.*;
 
 public class vAcontecimiento extends javax.swing.JFrame {
 
     /**
      * Creates new form vAcontecimiento
      */
-    public LocalTime horaInicio;
-    public LocalTime horaFin;
-
+    
     public vAcontecimiento() {
         initComponents();
     }
@@ -62,6 +53,14 @@ public class vAcontecimiento extends javax.swing.JFrame {
         jLabel4.setText("Hora Final");
 
         jLabel5.setText("Aforo");
+
+        jCalendarComboFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "jueves 1 de marzo de 2018" }));
+        jCalendarComboFecha.setSelectedIndex(-1);
+        jCalendarComboFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCalendarComboFechaActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("Fecha");
 
@@ -171,10 +170,7 @@ public class vAcontecimiento extends javax.swing.JFrame {
                 throw new CampoVacio();
             } else {
 
-                DateTimeFormatter dTf = DateTimeFormatter.ofPattern("H:mm:ss");
-                LocalTime hI = LocalTime.parse(horaInicio, dTf);
-                
-                Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), horaInicio, horaFin, jTaforo.getText());
+                Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), jThoraInicio.getText(), jThoraFin.getText(), jTaforo.getText());
                 resetarCampos();
             }
         } catch (CampoVacio CV) {
@@ -187,6 +183,10 @@ public class vAcontecimiento extends javax.swing.JFrame {
         Mis notas: compareTo(anotherDate) o null
          */
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jCalendarComboFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalendarComboFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCalendarComboFechaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -242,16 +242,6 @@ public class vAcontecimiento extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // METODOS PROPIOS DE LA VISTA
-    private void convertirHoras(String jThoraInicio) throws ParseException {
-
-        // Conversión String a LocalTime
-        try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("H:mm:ss");
-            LocalTime horaInicio = LocalTime.parse(jThoraInicio, dtf);
-            LocalTime horaFin = LocalTime.parse(jThoraFin, dtf);
-        } catch (Exception e) {
-        }
-    }
 
     private void resetarCampos() {
         jTnombre.setText(null);
@@ -260,7 +250,6 @@ public class vAcontecimiento extends javax.swing.JFrame {
         jThoraInicio.setText(null);
         jThoraFin.setText(null);
         jTaforo.setText(null);
-
     }
 
 }

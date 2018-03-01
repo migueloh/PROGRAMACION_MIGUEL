@@ -1,10 +1,12 @@
 package ModeloBD;
 
 import ModeloUML.AcontecimientoUML;
+import java.sql.Date;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.time.LocalTime;
 
 public class AcontecimientoBD extends GenericoBD {
 
@@ -20,9 +22,11 @@ public class AcontecimientoBD extends GenericoBD {
         pS = abrirConexion().prepareStatement(plantilla);
         pS.setString(1, acontecimientoUML.getNombre());
         pS.setString(2, acontecimientoUML.getLugar());
-        pS.setDate(3, acontecimientoUML.getFechaAcontecimiento());
+        
+        pS.setDate(3, (Date) acontecimientoUML.getFechaAcontecimiento());
+        
+        pS.setTime(4, (LocalTime) acontecimientoUML.getHoraInicio());
 
-        // Conversion LocalTime en java.sql.Time
         java.sql.Time sqlTimeHoraInicio = java.sql.Time.valueOf(acontecimientoUML.getHoraInicio());
         pS.setTime(4, sqlTimeHoraInicio);
         

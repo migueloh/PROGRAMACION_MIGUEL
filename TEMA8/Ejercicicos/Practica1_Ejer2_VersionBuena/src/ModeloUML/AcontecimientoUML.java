@@ -1,6 +1,6 @@
 package ModeloUML;
 
-import java.sql.Date;
+import java.util.Date;
 import java.time.LocalTime;
 
 public class AcontecimientoUML {
@@ -10,12 +10,12 @@ public class AcontecimientoUML {
     private Date fechaAcontecimiento;
     private LocalTime horaInicio;
     private LocalTime horaFin;
-    private String aforo;
+    private Integer aforo;
 
     public AcontecimientoUML() {
     }
 
-    public AcontecimientoUML(String nombre, String lugar, Date fechaAcontecimiento, LocalTime horaInicio, LocalTime horaFin, String aforo) {
+    public AcontecimientoUML(String nombre, String lugar, Date fechaAcontecimiento, LocalTime horaInicio, LocalTime horaFin, Integer aforo) {
         this.nombre = nombre;
         this.lugar = lugar;
         this.fechaAcontecimiento = fechaAcontecimiento;
@@ -64,13 +64,15 @@ public class AcontecimientoUML {
         this.horaFin = horaFin;
     }
 
-    public String getAforo() {
+    public Integer getAforo() {
         return aforo;
     }
 
-    public void setAforo(String aforo) {
+    public void setAforo(Integer aforo) {
         this.aforo = aforo;
     }
+
+    
 
     
     

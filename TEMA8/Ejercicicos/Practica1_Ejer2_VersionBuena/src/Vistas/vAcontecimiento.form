@@ -151,6 +151,17 @@
       </Properties>
     </Component>
     <Component class="org.freixas.jcalendar.JCalendarCombo" name="jCalendarComboFecha">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="1">
+            <StringItem index="0" value="jueves 1 de marzo de 2018"/>
+          </StringArray>
+        </Property>
+        <Property name="selectedIndex" type="int" value="-1"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCalendarComboFechaActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
