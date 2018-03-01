@@ -5,6 +5,9 @@ import Excepciones.*;
 
 import java.text.ParseException;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class vAcontecimiento extends javax.swing.JFrame {
@@ -12,7 +15,6 @@ public class vAcontecimiento extends javax.swing.JFrame {
     /**
      * Creates new form vAcontecimiento
      */
-    
     public vAcontecimiento() {
         initComponents();
     }
@@ -36,11 +38,17 @@ public class vAcontecimiento extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jCalendarComboFecha = new org.freixas.jcalendar.JCalendarCombo();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jBorrar = new javax.swing.JButton();
+        jBuscar = new javax.swing.JButton();
+        jBmodificar = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jCalendarComboFecha = new org.freixas.jcalendar.JCalendarCombo();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -54,17 +62,9 @@ public class vAcontecimiento extends javax.swing.JFrame {
 
         jLabel5.setText("Aforo");
 
-        jCalendarComboFecha.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "jueves 1 de marzo de 2018" }));
-        jCalendarComboFecha.setSelectedIndex(-1);
-        jCalendarComboFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCalendarComboFechaActionPerformed(evt);
-            }
-        });
-
         jLabel6.setText("Fecha");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Alta");
 
         jButton1.setText("RETROCEDER");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -80,49 +80,96 @@ public class vAcontecimiento extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Borrado");
+
+        jLabel9.setText("Busqueda");
+
+        jBorrar.setText("BORRAR");
+        jBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBorrarActionPerformed(evt);
+            }
+        });
+
+        jBuscar.setText("BUSCAR");
+
+        jBmodificar.setText("MODIFICAR");
+        jBmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBmodificarActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("NOTA: Borrar los campos en cada accion, no codificados.");
+
+        jCalendarComboFecha.setSelectedIndex(-1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(77, 77, 77)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(312, 312, 312)
+                        .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel5)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6)
-                                .addComponent(jLabel2)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel7)
+                        .addGap(31, 31, 31)
+                        .addComponent(jLabel8)
+                        .addGap(33, 33, 33)
+                        .addComponent(jLabel9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel7)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jCalendarComboFecha, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                                    .addComponent(jTnombre)
-                                    .addComponent(jTlugar, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTaforo, javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(jThoraFin, javax.swing.GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE)
-                                .addComponent(jThoraInicio)))
-                        .addGap(46, 46, 46))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(102, 102, 102))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(9, 9, 9)
+                                .addComponent(jBuscar)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addGap(36, 36, 36)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jBmodificar)
+                                                .addGap(34, 34, 34)
+                                                .addComponent(jBorrar))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTaforo, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jThoraFin)
+                                                .addComponent(jThoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jCalendarComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                .addComponent(jTnombre)
+                                                .addComponent(jTlugar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(11, 11, 11)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel6)
+                                        .addComponent(jLabel2)))))))
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(jLabel10)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel7)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,10 +179,10 @@ public class vAcontecimiento extends javax.swing.JFrame {
                     .addComponent(jTlugar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCalendarComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
-                .addGap(32, 32, 32)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel6)
+                    .addComponent(jCalendarComboFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jThoraInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
@@ -149,9 +196,15 @@ public class vAcontecimiento extends javax.swing.JFrame {
                     .addComponent(jLabel5))
                 .addGap(32, 32, 32)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(65, Short.MAX_VALUE))
+                    .addComponent(jButton2)
+                    .addComponent(jBorrar)
+                    .addComponent(jBuscar)
+                    .addComponent(jBmodificar))
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel10)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         pack();
@@ -167,26 +220,44 @@ public class vAcontecimiento extends javax.swing.JFrame {
         // ACTION REGISTRAR
         try {
             if (jTnombre.getText().isEmpty() && jTlugar.getText().isEmpty() && jCalendarComboFecha.getDate() == null && jThoraInicio.getText().isEmpty() && jThoraFin.getText().isEmpty() && jTaforo.getText().isEmpty()) {
-                throw new CampoVacio();
+                throw new CampoVacio("Los campos anteriores no pueden estar vacios.");
             } else {
 
                 Controladora.registrarAcontecimientos(jTnombre.getText(), jTlugar.getText(), jCalendarComboFecha.getDate(), jThoraInicio.getText(), jThoraFin.getText(), jTaforo.getText());
                 resetarCampos();
             }
-        } catch (CampoVacio CV) {
-            JOptionPane.showMessageDialog(this, "Todos los campos son obligatorios");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error desconocido");
         }
-
-        /*
-        Mis notas: compareTo(anotherDate) o null
-         */
+        //Mis notas: compareTo(anotherDate) o null
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jCalendarComboFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCalendarComboFechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCalendarComboFechaActionPerformed
+
+    private void jBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBorrarActionPerformed
+        // ACTION BORRAR
+
+        try {
+            JOptionPane.showMessageDialog(this, "Introduce el nombre del evento a borrar");
+            Controladora.pedirBorrarAcontecimiento(jTnombre.getText());
+
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_jBorrarActionPerformed
+
+    private void jBmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBmodificarActionPerformed
+        // ACTION MODIFICAR
+        JOptionPane.showMessageDialog(this, "Solo puedes cambiar la fecha y las horas");
+        try {
+            Controladora.pedirActualizarAcontecimiento((Date) jCalendarComboFecha.getSelectedItem(), jThoraInicio.getText(), jThoraFin.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(vAcontecimiento.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jBmodificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -224,16 +295,22 @@ public class vAcontecimiento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBmodificar;
+    private javax.swing.JButton jBorrar;
+    private javax.swing.JButton jBuscar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private org.freixas.jcalendar.JCalendarCombo jCalendarComboFecha;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTaforo;
     private javax.swing.JTextField jThoraFin;
     private javax.swing.JTextField jThoraInicio;
@@ -242,7 +319,6 @@ public class vAcontecimiento extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     // METODOS PROPIOS DE LA VISTA
-
     private void resetarCampos() {
         jTnombre.setText(null);
         jTlugar.setText(null);

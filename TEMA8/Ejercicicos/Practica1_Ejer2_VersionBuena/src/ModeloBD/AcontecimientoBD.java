@@ -1,12 +1,8 @@
 package ModeloBD;
 
 import ModeloUML.AcontecimientoUML;
-import java.sql.Date;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.time.LocalTime;
+import java.sql.*;
 
 public class AcontecimientoBD extends GenericoBD {
 
@@ -15,31 +11,65 @@ public class AcontecimientoBD extends GenericoBD {
     private static Statement sT;
     private static ResultSet rS;
 
-    public static void guardarAcontecimiento(AcontecimientoUML acontecimientoUML) throws Exception {
+    public static void guardarAcontecimiento(AcontecimientoUML acon) throws SQLException, Exception {
+
         //nombre, lugar, fechaAcontecimiento, horaInicio, horaFin, aforo
-        plantilla = "INSERT INTO acontecimientos (nombre, lugar, fechaAcontecimiento ,horaInicio, horaFin, aforo) VALUES (?,?,?,?,?,?)";
+        plantilla = "INSERT INTO Acontecimientos (nombre, lugar, fechaAcontecimiento, horaInicio, horaFin, aforo) VALUES (?,?,?,?,?,?)";
 
         pS = abrirConexion().prepareStatement(plantilla);
-        pS.setString(1, acontecimientoUML.getNombre());
-        pS.setString(2, acontecimientoUML.getLugar());
-        
-        pS.setDate(3, (Date) acontecimientoUML.getFechaAcontecimiento());
-        
-        pS.setTime(4, (LocalTime) acontecimientoUML.getHoraInicio());
+        pS.setString(1, acon.getNombre());
+        pS.setString(2, acon.getLugar());
+        pS.setDate(3, conversionDate(acon.getFechaAcontecimiento()));
+        pS.setTime(4, conversionTime(acon.getHoraInicio()));
+        pS.setTime(5, conversionTime(acon.getHoraFin()));
+        pS.setInt(6, acon.getAforo());
 
-        java.sql.Time sqlTimeHoraInicio = java.sql.Time.valueOf(acontecimientoUML.getHoraInicio());
-        pS.setTime(4, sqlTimeHoraInicio);
+        pS.executeUpdate();
+        cerrarConexion();
+    }
+
+    public static Time conversionTime(java.time.LocalTime hora) {
+        return java.sql.Time.valueOf(hora);
+    }
+
+    public static java.sql.Date conversionDate(java.util.Date fecha) {
+        return new java.sql.Date(fecha.getTime());
+    }
+
+    public static void ejecutarBorrado(AcontecimientoUML acon) throws SQLException, Exception {
+        plantilla = "DELETE FROM Acontecimientos where nombre = ?";
+        pS = abrirConexion().prepareStatement(plantilla);
+        pS.setString(1, acon.getNombre());
+
+        pS.executeUpdate();
+        cerrarConexion();
+    }
+
+    public static void ejecutarModificacion(AcontecimientoUML acon) throws Exception {
+
+        plantilla = "UPDATE Acontecimientos SET lugar = ?, fecha = ?, horaInicio = ?, horaFin = ?, aforo = ? where nombre = ?";
+        pS = abrirConexion().prepareStatement(plantilla);
+
+        pS.setString(1, acon.getNombre());
+        pS.setString(2, acon.getLugar());
         
-        java.sql.Time sqlTimeHoraFin = java.sql.Time.valueOf(acontecimientoUML.getHoraFin());
-        pS.setTime(5, sqlTimeHoraFin);
+        // Conversion java.util.Date en java.sql.Date
+        java.sql.Date sqlFechaAcon = new java.sql.Date(acon.getFechaAcontecimiento().getTime());
+        pS.setDate(3, sqlFechaAcon);
+
+        // Conversion LocalTime en java.sql.Time
+        java.sql.Time sqlTimeHInicio = java.sql.Time.valueOf(acon.getHoraInicio());
+        pS.setTime(4, sqlTimeHInicio);
         
-        pS.setString(6, acontecimientoUML.getAforo());
-        
+        // Conversion LocalTime en java.sql.Time
+        java.sql.Time sTimeHoraFin = java.sql.Time.valueOf(acon.getHoraFin());
+        pS.setTime(5, sTimeHoraFin);
+
+        pS.setInt(6, acon.getAforo());
+
         pS.executeUpdate();
 
         cerrarConexion();
     }
-
-
 
 }

@@ -1,5 +1,6 @@
 package Vistas;
 
+import javax.swing.JOptionPane;
 import practica1_ejer2_versionbuena.*;
 
 public class vMenu extends javax.swing.JFrame {
@@ -24,7 +25,10 @@ public class vMenu extends javax.swing.JFrame {
         jMarchivo = new javax.swing.JMenu();
         jMsalir = new javax.swing.JMenuItem();
         jMaccion = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMcrear = new javax.swing.JMenuItem();
+        jMeliminar = new javax.swing.JMenuItem();
+        jModificar = new javax.swing.JMenuItem();
+        jMbuscar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -42,13 +46,37 @@ public class vMenu extends javax.swing.JFrame {
 
         jMaccion.setText("Accion");
 
-        jMenuItem1.setText("Crear Acontecimientos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMcrear.setText("Crear Acontecimientos");
+        jMcrear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMcrearActionPerformed(evt);
             }
         });
-        jMaccion.add(jMenuItem1);
+        jMaccion.add(jMcrear);
+
+        jMeliminar.setText("Eliminar Acontecimientos");
+        jMeliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMeliminarActionPerformed(evt);
+            }
+        });
+        jMaccion.add(jMeliminar);
+
+        jModificar.setText("Modificar Acontecimientos");
+        jModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jModificarActionPerformed(evt);
+            }
+        });
+        jMaccion.add(jModificar);
+
+        jMbuscar.setText("Buscar Acontecimientos");
+        jMbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMbuscarActionPerformed(evt);
+            }
+        });
+        jMaccion.add(jMbuscar);
 
         jMenuBar1.add(jMaccion);
 
@@ -68,17 +96,34 @@ public class vMenu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMcrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMcrearActionPerformed
         // ACCION CRERAR ENVENTO
         this.dispose();
         Controladora.abrirVentanaCrearAcontecimientos();
-        
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    }//GEN-LAST:event_jMcrearActionPerformed
 
     private void jMsalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMsalirActionPerformed
         // ACTION MENU SALIR
         Controladora.cerrarVentanas();
     }//GEN-LAST:event_jMsalirActionPerformed
+
+    private void jMeliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMeliminarActionPerformed
+        // ACTION ELIMINAR
+        this.dispose();
+        Controladora.abrirVentanaCrearAcontecimientos();
+    }//GEN-LAST:event_jMeliminarActionPerformed
+
+    private void jMbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMbuscarActionPerformed
+        // ACTION BUSCAR
+        JOptionPane.showMessageDialog(this, "En proceso de construccion");
+    }//GEN-LAST:event_jMbuscarActionPerformed
+
+    private void jModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jModificarActionPerformed
+        // ACTION MODIFICAR
+        this.dispose();
+        Controladora.abrirVentanaCrearAcontecimientos();
+    }//GEN-LAST:event_jModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,8 +163,11 @@ public class vMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMaccion;
     private javax.swing.JMenu jMarchivo;
+    private javax.swing.JMenuItem jMbuscar;
+    private javax.swing.JMenuItem jMcrear;
+    private javax.swing.JMenuItem jMeliminar;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jModificar;
     private javax.swing.JMenuItem jMsalir;
     // End of variables declaration//GEN-END:variables
 }

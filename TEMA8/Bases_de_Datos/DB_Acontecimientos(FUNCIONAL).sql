@@ -5,23 +5,24 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema Acontecimientos
 -- -----------------------------------------------------
-DROP SCHEMA IF EXISTS `acontecimientos` ;
+DROP SCHEMA IF EXISTS `Acontecimientos` ;
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema Acontecimientos
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `acontecimientos` DEFAULT CHARACTER SET utf8 ;
-USE `acontecimientos` ;
+CREATE SCHEMA IF NOT EXISTS `Acontecimientos` DEFAULT CHARACTER SET utf8 ;
+USE `Acontecimientos` ;
+
 
 -- -----------------------------------------------------
--- Table `mydb`.`acontecimiento`
+-- Table `Acontecimientos`.`Acontecimiento`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `acontecimientos`.`Acontecimientos` ;
+DROP TABLE IF EXISTS `Acontecimientos`.`Acontecimientos` ;
 
-CREATE TABLE IF NOT EXISTS `acontecimientos`.`Acontecimientos` (
-  `id` INT(2) NOT NULL,
+CREATE TABLE IF NOT EXISTS `Acontecimientos`.`Acontecimientos` (
+  `id` INT(2) NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(15) NOT NULL,
   `lugar` VARCHAR(15) NOT NULL,
   `fecha` DATE NOT NULL,
@@ -33,25 +34,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`empresa`
+-- Table `Acontecimientos`.`Empresas`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `acontecimientos`.`Empresas` ;
+DROP TABLE IF EXISTS `Acontecimientos`.`Empresas` ;
 
-CREATE TABLE IF NOT EXISTS `acontecimientos`.`Empresas` (
+CREATE TABLE IF NOT EXISTS `Acontecimientos`.`Empresas` (
   `nif` VARCHAR(8) NOT NULL,
   `nombre` VARCHAR(20) NOT NULL,
-  `razon_social` VARCHAR(40) NOT NULL,
+  `razon_Social` VARCHAR(40) NOT NULL,
   `cnae` INT(5) NOT NULL,
   PRIMARY KEY (`nif`))
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `mydb`.`asistente`
+-- Table `Acontecimientos`.`PERSONA`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `acontecimientos`.`Personas` ;
+DROP TABLE IF EXISTS `Acontecimientos`.`Personas` ;
 
-CREATE TABLE IF NOT EXISTS `acontecimientos`.`Personas` (
+CREATE TABLE IF NOT EXISTS `Acontecimientos`.`Personas` (
   `dni` VARCHAR(12) NOT NULL,
   `nombre` VARCHAR(15) NOT NULL,
   `apel1` VARCHAR(25) NOT NULL,
@@ -59,32 +59,31 @@ CREATE TABLE IF NOT EXISTS `acontecimientos`.`Personas` (
   `tel` VARCHAR(13) NOT NULL,
   `nif_emp` VARCHAR(8) NOT NULL,
   PRIMARY KEY (`dni`),
-  INDEX `fk_asistente_empresa_idx` (`nif_emp` ASC),
-  CONSTRAINT `fk_asistente_empresa`
-    FOREIGN KEY (`nif_emp`)
-    REFERENCES `acontecimientos`.`Empresas` (`nif`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_Persona_Empresas1_idx`(`nif_emp` ASC),
+  CONSTRAINT `fk_Persona_Empresas1`
+	FOREIGN KEY (`nif_emp`)
+	REFERENCES `acontecimientos`.`Empresas`(`nif`)
+	ON DELETE NO ACTION
+	ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-
 -- -----------------------------------------------------
--- Table `mydb`.`acontecimiento_has_asistente`
+-- Table `Acontecimientos`.`Asistentes`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `acontecimientos`.`Asistentes` ;
+DROP TABLE IF EXISTS `Acontecimientos`.`Asistentes` ;
 
-CREATE TABLE IF NOT EXISTS `acontecimientos`.`Asistentes` (
+CREATE TABLE IF NOT EXISTS `Acontecimientos`.`Asistentes` (
   `id_acon` INT(2) NOT NULL,
   `id_asis` VARCHAR(12) NOT NULL,
   PRIMARY KEY (`id_acon`, `id_asis`),
-  INDEX `fk_acontecimiento_asistente1_idx` (`id_asis` ASC),
-  INDEX `fk_acontecimiento_has_asistentes_acontecimiento1_idx` (`id_acon` ASC),
-  CONSTRAINT `fk_acontecimiento_has_asistentes_acontecimiento1`
+  INDEX `fk_Acontecimiento_has_Persona_Persona1_idx` (`id_asis` ASC),
+  INDEX `fk_Acontecimiento_has_Persona_Acontecimiento_idx` (`id_acon` ASC),
+  CONSTRAINT `fk_Acontecimiento_has_Persona_Acontecimiento`
     FOREIGN KEY (`id_acon`)
-    REFERENCES `acontecimientos`.`Acontecimientos` (`id`)
+    REFERENCES `Acontecimientos`.`Acontecimientos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_acontecimiento_has_asistente_asistente1`
+  CONSTRAINT `fk_Acontecimiento_has_Persona_Persona1`
     FOREIGN KEY (`id_asis`)
     REFERENCES `Acontecimientos`.`Personas` (`dni`)
     ON DELETE NO ACTION
