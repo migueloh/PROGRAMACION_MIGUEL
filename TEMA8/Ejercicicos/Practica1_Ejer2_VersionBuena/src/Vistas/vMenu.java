@@ -10,6 +10,8 @@ public class vMenu extends javax.swing.JFrame {
      */
     public vMenu() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**

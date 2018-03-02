@@ -14,7 +14,7 @@ public class AcontecimientoBD extends GenericoBD {
     public static void guardarAcontecimiento(AcontecimientoUML acon) throws SQLException, Exception {
 
         //nombre, lugar, fechaAcontecimiento, horaInicio, horaFin, aforo
-        plantilla = "INSERT INTO Acontecimientos (nombre, lugar, fechaAcontecimiento, horaInicio, horaFin, aforo) VALUES (?,?,?,?,?,?)";
+        plantilla = "INSERT INTO Acontecimientos (nombre, lugar, fecha, hora_i, hora_f, aforo) VALUES (?,?,?,?,?,?)";
 
         pS = abrirConexion().prepareStatement(plantilla);
         pS.setString(1, acon.getNombre());
@@ -28,10 +28,13 @@ public class AcontecimientoBD extends GenericoBD {
         cerrarConexion();
     }
 
+   
+    // Conversion java.util.Time en java.sql.Time
     public static Time conversionTime(java.time.LocalTime hora) {
         return java.sql.Time.valueOf(hora);
     }
 
+    // Conversion java.util.Date en java.sql.Date
     public static java.sql.Date conversionDate(java.util.Date fecha) {
         return new java.sql.Date(fecha.getTime());
     }
@@ -47,7 +50,7 @@ public class AcontecimientoBD extends GenericoBD {
 
     public static void ejecutarModificacion(AcontecimientoUML acon) throws Exception {
 
-        plantilla = "UPDATE Acontecimientos SET lugar = ?, fecha = ?, horaInicio = ?, horaFin = ?, aforo = ? where nombre = ?";
+        plantilla = "UPDATE Acontecimientos SET lugar = ?, fecha = ?, hora_i = ?, hora_f = ?, aforo = ? where nombre = ?";
         pS = abrirConexion().prepareStatement(plantilla);
 
         pS.setString(1, acon.getNombre());

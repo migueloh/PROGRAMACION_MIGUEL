@@ -65,8 +65,10 @@ public class Controladora {
         Calendar cal = Calendar.getInstance();
         cal.setTime(fechaActual);
 
-        if (fechaActual.before(fechaAcontecimiento)) {
+        if (fechaAcontecimiento.before(fechaActual)) {
             throw new ProblemasFecha("La fecha ha de ser mayor que la actual");
+        } else{
+            fechaAcon = fechaAcontecimiento;
         }
     }
 
