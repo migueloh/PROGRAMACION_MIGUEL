@@ -23,6 +23,9 @@ public class vMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar2 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMarchivo = new javax.swing.JMenu();
         jMsalir = new javax.swing.JMenuItem();
@@ -31,6 +34,14 @@ public class vMenu extends javax.swing.JFrame {
         jMeliminar = new javax.swing.JMenuItem();
         jModificar = new javax.swing.JMenuItem();
         jMbuscar = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
+        jMenu1.setText("File");
+        jMenuBar2.add(jMenu1);
+
+        jMenu2.setText("Edit");
+        jMenuBar2.add(jMenu2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,7 +57,7 @@ public class vMenu extends javax.swing.JFrame {
 
         jMenuBar1.add(jMarchivo);
 
-        jMaccion.setText("Accion");
+        jMaccion.setText("Acontecimientos");
 
         jMcrear.setText("Crear Acontecimientos");
         jMcrear.addActionListener(new java.awt.event.ActionListener() {
@@ -81,6 +92,18 @@ public class vMenu extends javax.swing.JFrame {
         jMaccion.add(jMbuscar);
 
         jMenuBar1.add(jMaccion);
+
+        jMenu3.setText("Persona");
+
+        jMenuItem1.setText("Crear Persona");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu3);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,6 +150,12 @@ public class vMenu extends javax.swing.JFrame {
         Controladora.abrirVentanaCrearAcontecimientos();
     }//GEN-LAST:event_jModificarActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // ACTION CREAR PERSONA
+        this.dispose();
+        Controladora.abrirVentanaPersona();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -168,7 +197,12 @@ public class vMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMbuscar;
     private javax.swing.JMenuItem jMcrear;
     private javax.swing.JMenuItem jMeliminar;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jModificar;
     private javax.swing.JMenuItem jMsalir;
     // End of variables declaration//GEN-END:variables

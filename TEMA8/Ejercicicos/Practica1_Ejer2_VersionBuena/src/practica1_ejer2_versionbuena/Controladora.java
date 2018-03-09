@@ -88,4 +88,8 @@ public class Controladora {
 
     }
 
+    public static void abrirVentanaPersona() {
+
+    }
+
 }
