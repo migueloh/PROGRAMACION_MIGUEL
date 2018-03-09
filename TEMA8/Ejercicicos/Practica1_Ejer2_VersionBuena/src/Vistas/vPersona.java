@@ -16,6 +16,8 @@ public class vPersona extends javax.swing.JFrame {
      */
     public vPersona() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
