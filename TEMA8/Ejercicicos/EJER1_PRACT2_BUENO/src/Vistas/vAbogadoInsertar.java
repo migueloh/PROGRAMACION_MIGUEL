@@ -1,6 +1,8 @@
 
 package Vistas;
 import ejer1_pract2_bueno.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -81,8 +83,13 @@ public class vAbogadoInsertar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // ACTION ACEPTAR
-        
-        Controladora.generarAbogado(jTdni.getText(), jTnombre.getText(), jTape1.getText(), jTapel2.getText(), jTdir.getText());
+        try {
+            
+
+            Controladora.generarAbogado(jTdni.getText(), jTnombre.getText(), jTape1.getText(), jTapel2.getText(), jTdir.getText());
+        } catch (Exception ex) {
+            Logger.getLogger(vAbogadoInsertar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
