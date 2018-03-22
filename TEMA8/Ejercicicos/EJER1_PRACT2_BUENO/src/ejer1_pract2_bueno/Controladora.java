@@ -38,4 +38,22 @@ public class Controladora {
         AbogadoBD.ejercutarBorrado(dni);
     }
 
+    public static void editarAbogado(String dni, String nombre, String ape1, String ape2, String dir) throws Exception {
+        
+        //solo se podra cambiar la direccion
+        ab = new Abogado(dni, nombre, ape1, ape2, dir);
+        
+        AbogadoBD.actualizarDireccion(ab);
+    
+    }
+
+    public static void buscarAbogado(String dni) {
+        
+        ab.setDni(dni);
+        
+        AbogadoBD.solicitarInformacion(dni);
+        
+    }
+    
+
 }

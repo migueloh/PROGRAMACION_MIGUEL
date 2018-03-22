@@ -93,9 +93,7 @@ public class vAbogadoEditar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // ACTION ACEPTAR
         try {
-            
-
-            Controladora.generarAbogado(jTdni.getText(), jTnombre.getText(), jTape1.getText(), jTapel2.getText(), jTdir.getText());
+            Controladora.editarAbogado(jTdni.getText(), jTnombre.getText(), jTape1.getText(), jTapel2.getText(), jTdir.getText());
         } catch (Exception ex) {
             Logger.getLogger(vAbogadoEditar.class.getName()).log(Level.SEVERE, null, ex);
         }
