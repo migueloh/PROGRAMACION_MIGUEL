@@ -1,21 +1,24 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Vistas;
+
+
 
 /**
  *
  * @author 1gdaw09
  */
 public class vPrincipal extends javax.swing.JFrame {
+    
+    private static vAbogadoInsertar vAI;
+    private static vAbogadoBorrar vAB;
+    private static vAbogadoEditar vAE;
+    private static vAbogadoConsultar vAC;
 
     /**
      * Creates new form vPrincipal
      */
     public vPrincipal() {
         initComponents();
+        
     }
 
     /**
@@ -27,7 +30,69 @@ public class vPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuBar1 = new javax.swing.JMenuBar();
+        archivo = new javax.swing.JMenu();
+        abogados = new javax.swing.JMenu();
+        altaAbogado = new javax.swing.JMenuItem();
+        BorrarAbogado = new javax.swing.JMenuItem();
+        editarAbogado = new javax.swing.JMenuItem();
+        consultarAbogado = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        altaCaso = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        archivo.setText("Archivo");
+        jMenuBar1.add(archivo);
+
+        abogados.setText("Abogados");
+
+        altaAbogado.setText("Dar de Alta Abogado");
+        altaAbogado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaAbogadoActionPerformed(evt);
+            }
+        });
+        abogados.add(altaAbogado);
+
+        BorrarAbogado.setText("Dar de Baja Abogado");
+        BorrarAbogado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BorrarAbogadoActionPerformed(evt);
+            }
+        });
+        abogados.add(BorrarAbogado);
+
+        editarAbogado.setText("Editar Datos Abogado");
+        editarAbogado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarAbogadoActionPerformed(evt);
+            }
+        });
+        abogados.add(editarAbogado);
+
+        consultarAbogado.setText("Consultar Abogados");
+        consultarAbogado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarAbogadoActionPerformed(evt);
+            }
+        });
+        abogados.add(consultarAbogado);
+
+        jMenuBar1.add(abogados);
+
+        jMenu1.setText("Casos");
+
+        altaCaso.setText("Dar de Alta Caso");
+        jMenu1.add(altaCaso);
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -37,11 +102,35 @@ public class vPrincipal extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 279, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void altaAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaAbogadoActionPerformed
+        // ACTION ALTA ABOGADO
+        vAI = new vAbogadoInsertar();
+        vAI.setVisible(true);
+    }//GEN-LAST:event_altaAbogadoActionPerformed
+
+    private void editarAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarAbogadoActionPerformed
+        // ACTION EDITAR ABOGADO
+        vAE = new vAbogadoEditar();
+        vAE.setVisible(true);
+    }//GEN-LAST:event_editarAbogadoActionPerformed
+
+    private void consultarAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarAbogadoActionPerformed
+        // ACTION CONSULTAR ABOGADO
+        vAC = new vAbogadoConsultar();
+        vAC.setVisible(true);
+    }//GEN-LAST:event_consultarAbogadoActionPerformed
+
+    private void BorrarAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarAbogadoActionPerformed
+        // TODO add your handling code here:
+        vAB = new vAbogadoBorrar();
+        vAB.setVisible(true);
+    }//GEN-LAST:event_BorrarAbogadoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +168,15 @@ public class vPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem BorrarAbogado;
+    private javax.swing.JMenu abogados;
+    private javax.swing.JMenuItem altaAbogado;
+    private javax.swing.JMenuItem altaCaso;
+    private javax.swing.JMenu archivo;
+    private javax.swing.JMenuItem consultarAbogado;
+    private javax.swing.JMenuItem editarAbogado;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables
 }

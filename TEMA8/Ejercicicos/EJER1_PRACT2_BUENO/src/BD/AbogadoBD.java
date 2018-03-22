@@ -13,6 +13,11 @@ public class AbogadoBD extends GenericoBD {
     private static Statement sT;
     private static ResultSet rS;
 
+    public static void ejercutarBorrado(String dni) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
     public void insertarBD(Abogado a) throws SQLException, Exception {
 
         plantilla = "INSERT INTO  abogados (dni, nombre, ape1, ape2, dir) VALUES (?,?,?,?,?)";
@@ -27,6 +32,20 @@ public class AbogadoBD extends GenericoBD {
         pS.executeUpdate();
         
         cerrarConexion();
+    }
+    
+    
+    public static void ejercutarBorrado(Abogado dni) throws SQLException, Exception {
+        plantilla = "DELETE FROM abogados where nombre = ?";
+        
+        pS = abrirConexion().prepareStatement(plantilla);
+        
+        pS.setString(1, dni.getDni());
+
+        pS.executeUpdate();
+        
+        cerrarConexion();
+        
     }
 
 }

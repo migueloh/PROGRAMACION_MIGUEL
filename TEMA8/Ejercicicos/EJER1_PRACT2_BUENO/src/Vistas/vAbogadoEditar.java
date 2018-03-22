@@ -8,12 +8,12 @@ import java.util.logging.Logger;
  *
  * @author MIGUEL
  */
-public class vAbogadoInsertar extends javax.swing.JFrame {
+public class vAbogadoEditar extends javax.swing.JFrame {
 
     /**
      * Creates new form vAbogado
      */
-    public vAbogadoInsertar() {
+    public vAbogadoEditar() {
         initComponents();
     }
 
@@ -43,7 +43,7 @@ public class vAbogadoInsertar extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("INSERTAR");
+        jLabel1.setText("EDITAR");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -60,9 +60,7 @@ public class vAbogadoInsertar extends javax.swing.JFrame {
                             .addComponent(jTape1)
                             .addComponent(jTnombre)
                             .addComponent(jTdni, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jButton1))
                 .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -99,7 +97,7 @@ public class vAbogadoInsertar extends javax.swing.JFrame {
 
             Controladora.generarAbogado(jTdni.getText(), jTnombre.getText(), jTape1.getText(), jTapel2.getText(), jTdir.getText());
         } catch (Exception ex) {
-            Logger.getLogger(vAbogadoInsertar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(vAbogadoEditar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -120,21 +118,23 @@ public class vAbogadoInsertar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoInsertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vAbogadoEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoInsertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vAbogadoEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoInsertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vAbogadoEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoInsertar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vAbogadoEditar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vAbogadoInsertar().setVisible(true);
+                new vAbogadoEditar().setVisible(true);
             }
         });
     }
