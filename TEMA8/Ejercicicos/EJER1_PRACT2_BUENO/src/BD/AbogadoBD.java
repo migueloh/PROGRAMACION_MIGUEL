@@ -8,6 +8,8 @@ import java.sql.Statement;
 
 public class AbogadoBD extends GenericoBD {
 
+    private static Abogado abogadoUML;
+
     private static PreparedStatement pS;
     private static String plantilla;
     private static Statement sT;
@@ -55,28 +57,38 @@ public class AbogadoBD extends GenericoBD {
         cerrarConexion();
     }
 
-    public static void solicitarInformacion(String dni) throws SQLException, Exception {
+    public static boolean solicitarInformacion(String dni) throws SQLException, Exception {
+        
+        boolean encontrado;
+        
         plantilla = "SELECT * FROM abogados WHERE DNI = ?;";
-        
-        pS = abrirConexion().prepareStatement(dni);
-        
-        pS.setString(1, dni);
-        
-        
-        pS.executeQuery();
-        
-        
-            if (!rs.next()) {
-                 //ResultSet esta vacio
-            } else {
-                enco = 1;
-                System.out.println(enco);
-            }
-}
-        
-        
-        
 
+        pS = abrirConexion().prepareStatement(dni);
+
+        pS.setString(1, dni);
+
+        rS = pS.executeQuery();
+
+        if (!rS.next()) {
+            return false;
+        } else {
+            abogadoUML = new Abogado();
+            
+            abogadoUML.setDni(rS.getString("dni"));
+            abogadoUML.setNombre(rS.getString("nombre"));
+            abogadoUML.setApe1(rS.getString("ape1"));
+            abogadoUML.setApe2(rS.getString("ape2"));
+            abogadoUML.setDir(rS.getString("dir"));
+            
+            encontrado = true;
+
+        }
+        rS.close();
+        sT.close();
+        cerrarConexion();
+        
+        return encontrado;
+   
     }
 
 }

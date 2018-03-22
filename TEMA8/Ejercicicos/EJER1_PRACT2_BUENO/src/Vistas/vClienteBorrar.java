@@ -8,12 +8,12 @@ import java.util.logging.Logger;
  *
  * @author MIGUEL
  */
-public class vAbogadoBorrar extends javax.swing.JFrame {
+public class vClienteBorrar extends javax.swing.JFrame {
 
     /**
      * Creates new form vAbogado
      */
-    public vAbogadoBorrar() {
+    public vClienteBorrar() {
         initComponents();
     }
 
@@ -105,7 +105,7 @@ public class vAbogadoBorrar extends javax.swing.JFrame {
 
             Controladora.borrarAbogado(jTdni.getText());
         } catch (Exception ex) {
-            Logger.getLogger(vAbogadoBorrar.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(vClienteBorrar.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -126,14 +126,26 @@ public class vAbogadoBorrar extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vClienteBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vClienteBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vClienteBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(vAbogadoBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(vClienteBorrar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -142,7 +154,7 @@ public class vAbogadoBorrar extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new vAbogadoBorrar().setVisible(true);
+                new vClienteBorrar().setVisible(true);
             }
         });
     }

@@ -8,10 +8,17 @@ package Vistas;
  */
 public class vPrincipal extends javax.swing.JFrame {
     
+//ABOGADO
     private static vAbogadoInsertar vAI;
     private static vAbogadoBorrar vAB;
     private static vAbogadoEditar vAE;
     private static vAbogadoConsultar vAC;
+    
+    //CLIENTE
+    private static vClienteInsertar vCI;
+    private static vClienteBorrar vCB;
+    private static vClienteEditar vCE;
+    private static vClienteConsultar vCC;
 
     /**
      * Creates new form vPrincipal
@@ -37,9 +44,15 @@ public class vPrincipal extends javax.swing.JFrame {
         BorrarAbogado = new javax.swing.JMenuItem();
         editarAbogado = new javax.swing.JMenuItem();
         consultarAbogado = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        casos = new javax.swing.JMenu();
         altaCaso = new javax.swing.JMenuItem();
+        closeCaso = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        clientes = new javax.swing.JMenu();
+        altaCliente = new javax.swing.JMenuItem();
+        bajaCliente = new javax.swing.JMenuItem();
+        editarCliente = new javax.swing.JMenuItem();
+        consultarCliente = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,15 +95,54 @@ public class vPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(abogados);
 
-        jMenu1.setText("Casos");
+        casos.setText("Casos");
 
         altaCaso.setText("Dar de Alta Caso");
-        jMenu1.add(altaCaso);
+        casos.add(altaCaso);
 
-        jMenuItem1.setText("jMenuItem1");
-        jMenu1.add(jMenuItem1);
+        closeCaso.setText("Cerrar Caso");
+        casos.add(closeCaso);
 
-        jMenuBar1.add(jMenu1);
+        jMenuItem1.setText("Borrar Caso");
+        casos.add(jMenuItem1);
+
+        jMenuBar1.add(casos);
+
+        clientes.setText("Clientes");
+
+        altaCliente.setText("Dar de Alta Cliente");
+        altaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaClienteActionPerformed(evt);
+            }
+        });
+        clientes.add(altaCliente);
+
+        bajaCliente.setText("Dar de Baja Cliente");
+        bajaCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bajaClienteActionPerformed(evt);
+            }
+        });
+        clientes.add(bajaCliente);
+
+        editarCliente.setText("Editar Datos Cliente");
+        editarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarClienteActionPerformed(evt);
+            }
+        });
+        clientes.add(editarCliente);
+
+        consultarCliente.setText("Consultar Clientes");
+        consultarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                consultarClienteActionPerformed(evt);
+            }
+        });
+        clientes.add(consultarCliente);
+
+        jMenuBar1.add(clientes);
 
         setJMenuBar(jMenuBar1);
 
@@ -127,10 +179,34 @@ public class vPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_consultarAbogadoActionPerformed
 
     private void BorrarAbogadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BorrarAbogadoActionPerformed
-        // TODO add your handling code here:
+        // ACTION BORRAR ABOGADO
         vAB = new vAbogadoBorrar();
         vAB.setVisible(true);
     }//GEN-LAST:event_BorrarAbogadoActionPerformed
+
+    private void altaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaClienteActionPerformed
+        // ACTION ALTA CLIENTE
+        vCI = new vClienteInsertar();
+        vCI.setVisible(true);
+    }//GEN-LAST:event_altaClienteActionPerformed
+
+    private void bajaClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bajaClienteActionPerformed
+        // ACTION BAJA CLIENTE
+        vCB = new vClienteBorrar();
+        vCB.setVisible(true);
+    }//GEN-LAST:event_bajaClienteActionPerformed
+
+    private void editarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarClienteActionPerformed
+        // ACTION EDITAR CLIENTE
+        vCE = new vClienteEditar();
+        vCE.setVisible(true);
+    }//GEN-LAST:event_editarClienteActionPerformed
+
+    private void consultarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarClienteActionPerformed
+        // ACTION CONSULTAR CLIENTE
+        vCC = new vClienteConsultar();
+        vCC.setVisible(true);
+    }//GEN-LAST:event_consultarClienteActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,10 +248,16 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu abogados;
     private javax.swing.JMenuItem altaAbogado;
     private javax.swing.JMenuItem altaCaso;
+    private javax.swing.JMenuItem altaCliente;
     private javax.swing.JMenu archivo;
+    private javax.swing.JMenuItem bajaCliente;
+    private javax.swing.JMenu casos;
+    private javax.swing.JMenu clientes;
+    private javax.swing.JMenuItem closeCaso;
     private javax.swing.JMenuItem consultarAbogado;
+    private javax.swing.JMenuItem consultarCliente;
     private javax.swing.JMenuItem editarAbogado;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem editarCliente;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     // End of variables declaration//GEN-END:variables

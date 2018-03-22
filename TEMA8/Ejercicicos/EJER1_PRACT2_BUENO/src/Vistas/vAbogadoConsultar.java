@@ -1,14 +1,18 @@
-
 package Vistas;
+
+import UML.*;
 import ejer1_pract2_bueno.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author MIGUEL
  */
 public class vAbogadoConsultar extends javax.swing.JFrame {
+
+    private static Abogado abogadoUML;
 
     /**
      * Creates new form vAbogado
@@ -101,8 +105,16 @@ public class vAbogadoConsultar extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // ACTION ACEPTAR
         try {
-            
-            Controladora.buscarAbogado(jTdni.getText());
+            if (jTdni.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Introduce un dni para realizar la busqueda:");
+            } else {
+
+                boolean aB = Controladora.buscarDniAbogado(jTdni.getText());
+
+                rellenarCamposDeLaBusqueda();
+
+            }
+
         } catch (Exception ex) {
             Logger.getLogger(vAbogadoConsultar.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -160,4 +172,10 @@ public class vAbogadoConsultar extends javax.swing.JFrame {
     private javax.swing.JTextField jTdni;
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
+
+    private void rellenarCamposDeLaBusqueda() {
+        if (jTnombre.getText().equals(Controladora.buscarDniAbogado(dni))) {
+            
+        }
+    }
 }

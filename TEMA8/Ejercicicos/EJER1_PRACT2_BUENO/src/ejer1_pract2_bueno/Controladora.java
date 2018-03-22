@@ -1,7 +1,7 @@
 package ejer1_pract2_bueno;
 
 import BD.*;
-import UML.Abogado;
+import UML.*;
 import Vistas.vPrincipal;
 
 /**
@@ -9,16 +9,19 @@ import Vistas.vPrincipal;
  * @author MIGUEL
  */
 public class Controladora {
-    
+
     private static Abogado ab;
+    private static Cliente cl;
 
     private static vPrincipal vP;
     private static AbogadoBD vABD;
+    private static ClienteBD vCBD;
 
     public static void main(String[] args) {
 
 // INICIO MAIN
         vABD = new AbogadoBD();
+        vCBD = new ClienteBD();
 
         abrirVentanaPrincipal(vP = new vPrincipal());
 
@@ -39,21 +42,37 @@ public class Controladora {
     }
 
     public static void editarAbogado(String dni, String nombre, String ape1, String ape2, String dir) throws Exception {
-        
+
         //solo se podra cambiar la direccion
         ab = new Abogado(dni, nombre, ape1, ape2, dir);
-        
+
         AbogadoBD.actualizarDireccion(ab);
-    
+
     }
 
-    public static void buscarAbogado(String dni) {
-        
-        ab.setDni(dni);
-        
-        AbogadoBD.solicitarInformacion(dni);
-        
+    public static boolean buscarDniAbogado(String dni) throws Exception {
+        return AbogadoBD.solicitarInformacion(dni);
     }
-    
+
+    //////cliente
+    public static void generarCliente(String dni, String nombre, String ape1, String ape2, String dir, String tel) throws Exception {
+        cl = new Cliente(dni, nombre, ape1, ape2, dir, tel);
+        vCBD.insertarBD(cl);
+    }
+
+    public static void borrarCliente(String dni) throws Exception {
+        ClienteBD.ejercutarBorrado(dni);
+    }
+
+    public static void editarCliente(String dni, String nombre, String ape1, String ape2, String dir, String tel) throws Exception {
+
+        //solo se podra cambiar rl telefono
+        cl = new Cliente(dni, nombre, ape1, ape2, dir, tel);
+        ClienteBD.actualizarDireccion(cl);
+    }
+
+    public static boolean buscarDniCliente(String dni) throws Exception {
+        return ClienteBD.solicitarInformacion(dni);
+    }
 
 }
