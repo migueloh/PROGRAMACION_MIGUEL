@@ -111,7 +111,7 @@ public class vClienteConsultar extends javax.swing.JFrame {
 
                 boolean aB = Controladora.buscarDniAbogado(jTdni.getText());
 
-                rellenarCamposDeLaBusqueda();
+                
 
             }
 
@@ -197,9 +197,5 @@ public class vClienteConsultar extends javax.swing.JFrame {
     private javax.swing.JTextField jTnombre;
     // End of variables declaration//GEN-END:variables
 
-    private void rellenarCamposDeLaBusqueda() {
-        if (jTnombre.getText().equals(Controladora.buscarDniAbogado(dni))) {
-            
-        }
-    }
+ 
 }

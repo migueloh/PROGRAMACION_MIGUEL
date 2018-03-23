@@ -19,13 +19,22 @@ public class vPrincipal extends javax.swing.JFrame {
     private static vClienteBorrar vCB;
     private static vClienteEditar vCE;
     private static vClienteConsultar vCC;
+    
+    
+    //CASO
+    private static vCasoAlta vCAI;
+    private static vCasoCerrar vCAB;
+    private static vCasoEliminado vCAE;
+    private static vCasoConsultar vCAC;
 
     /**
      * Creates new form vPrincipal
      */
     public vPrincipal() {
         initComponents();
-        
+        this.setExtendedState(MAXIMIZED_BOTH);
+        this.setLocationRelativeTo(null);
+         
     }
 
     /**
@@ -48,6 +57,7 @@ public class vPrincipal extends javax.swing.JFrame {
         altaCaso = new javax.swing.JMenuItem();
         closeCaso = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         clientes = new javax.swing.JMenu();
         altaCliente = new javax.swing.JMenuItem();
         bajaCliente = new javax.swing.JMenuItem();
@@ -98,13 +108,36 @@ public class vPrincipal extends javax.swing.JFrame {
         casos.setText("Casos");
 
         altaCaso.setText("Dar de Alta Caso");
+        altaCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                altaCasoActionPerformed(evt);
+            }
+        });
         casos.add(altaCaso);
 
         closeCaso.setText("Cerrar Caso");
+        closeCaso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                closeCasoActionPerformed(evt);
+            }
+        });
         casos.add(closeCaso);
 
         jMenuItem1.setText("Borrar Caso");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         casos.add(jMenuItem1);
+
+        jMenuItem2.setText("Consultar Caso");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        casos.add(jMenuItem2);
 
         jMenuBar1.add(casos);
 
@@ -208,6 +241,35 @@ public class vPrincipal extends javax.swing.JFrame {
         vCC.setVisible(true);
     }//GEN-LAST:event_consultarClienteActionPerformed
 
+    private void altaCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_altaCasoActionPerformed
+        // ACTION INSERTAR CASO:
+        
+        vCAI = new vCasoAlta();
+        vCAI.setVisible(true);
+        
+    }//GEN-LAST:event_altaCasoActionPerformed
+
+    private void closeCasoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_closeCasoActionPerformed
+        // ACTION CERRAR CASO
+        vCAB = new vCasoCerrar();
+        vCAB.setVisible(true);
+        
+    }//GEN-LAST:event_closeCasoActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // ACTION BORRAR
+        vCAE = new vCasoEliminado();
+        vCAE.setVisible(true);
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // ACTION CONSULTAR
+        
+        vCAC = new vCasoConsultar();
+        vCAC.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -260,5 +322,6 @@ public class vPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem editarCliente;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

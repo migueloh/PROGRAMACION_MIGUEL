@@ -1,5 +1,5 @@
-[Thu Mar 22 19:08:33.097644 2018] [mpm_winnt:notice] [pid 884:tid 792] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
-[Thu Mar 22 19:08:33.097644 2018] [mpm_winnt:notice] [pid 884:tid 792] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
-[Thu Mar 22 19:08:33.097644 2018] [core:notice] [pid 884:tid 792] AH00094: Command line: 'D:\\GITHUB_TRABAJOS_MIGUEL\\PROGRAMACION_MIGUEL\\USBWEBSERVER_v8.6\\USBWebServer_v8.6/apache2/bin/httpd_usbwv8.exe -d D:/GITHUB_TRABAJOS_MIGUEL/PROGRAMACION_MIGUEL/USBWEBSERVER_v8.6/USBWebServer_v8.6/apache2'
-[Thu Mar 22 19:08:33.126158 2018] [mpm_winnt:notice] [pid 884:tid 792] AH00418: Parent: Created child process 16772
-[Thu Mar 22 19:08:34.623001 2018] [mpm_winnt:notice] [pid 16772:tid 808] AH00354: Child: Starting 64 worker threads.
+[Fri Mar 23 10:13:08.240578 2018] [mpm_winnt:notice] [pid 8040:tid 812] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Fri Mar 23 10:13:08.240578 2018] [mpm_winnt:notice] [pid 8040:tid 812] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Fri Mar 23 10:13:08.240578 2018] [core:notice] [pid 8040:tid 812] AH00094: Command line: 'C:\\GITHUB_MIGUEL_OLMO_NO_BORRAR\\PROGRAMACION_MIGUEL\\USBWEBSERVER_v8.6\\USBWebServer_v8.6/apache2/bin/httpd_usbwv8.exe -d C:/GITHUB_MIGUEL_OLMO_NO_BORRAR/PROGRAMACION_MIGUEL/USBWEBSERVER_v8.6/USBWebServer_v8.6/apache2'
+[Fri Mar 23 10:13:08.240578 2018] [mpm_winnt:notice] [pid 8040:tid 812] AH00418: Parent: Created child process 10528
+[Fri Mar 23 10:13:08.871772 2018] [mpm_winnt:notice] [pid 10528:tid 828] AH00354: Child: Starting 64 worker threads.
