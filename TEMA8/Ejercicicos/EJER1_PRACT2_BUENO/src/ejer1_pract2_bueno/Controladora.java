@@ -15,6 +15,7 @@ public class Controladora {
 
     private static vPrincipal vP;
     private static AbogadoBD vABD;
+    
     private static ClienteBD vCBD;
 
     public static void main(String[] args) {
@@ -50,8 +51,20 @@ public class Controladora {
 
     }
 
-    public static boolean buscarDniAbogado(String dni) throws Exception {
-        return AbogadoBD.solicitarInformacion(dni);
+    public static Boolean buscarDniAbogado(String dni) throws Exception {
+
+        Boolean encontrado;
+        encontrado = AbogadoBD.solicitarInformacion(dni);
+        if (encontrado) {
+            encontrado = true;
+        }
+        return encontrado;
+    }
+
+    public static Abogado recuperarInformacionAbogado(String dni) throws Exception {
+        
+        ab = AbogadoBD.solicitarDatosInformaticos(dni);
+        return ab;
     }
 
     //////cliente
