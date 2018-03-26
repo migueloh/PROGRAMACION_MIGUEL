@@ -113,6 +113,9 @@ public class vAbogadoConsultar extends javax.swing.JFrame {
                     
                     abogadoUML = Controladora.recuperarInformacionAbogado(jTdni.getText());
                     
+                            jTdni.setText(null);
+
+                    
                     mostrarDatosEnPantalla(abogadoUML);
                     
                 } else {
@@ -180,7 +183,11 @@ public class vAbogadoConsultar extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void mostrarDatosEnPantalla(Abogado abogadoUML) {
+        jTdni.setText(abogadoUML.getDni());
         jTnombre.setText(abogadoUML.getNombre());
+        jTape1.setText(abogadoUML.getApe1());
+        jTapel2.setText(abogadoUML.getApe2());
+        jTdir.setText(abogadoUML.getDir());
         
     }
 
